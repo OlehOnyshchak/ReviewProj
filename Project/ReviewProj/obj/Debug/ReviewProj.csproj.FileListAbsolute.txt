@@ -187,6 +187,7 @@ D:\Projects\University\ReviewProj\Project\ReviewProj\bin\Microsoft.AI.Dependency
 D:\Projects\University\ReviewProj\Project\ReviewProj\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\Projects\University\ReviewProj\Project\ReviewProj\bin\Microsoft.AI.WindowsServer.xml
 D:\Projects\University\ReviewProj\Project\ReviewProj\bin\Microsoft.AI.Web.xml
-D:\Projects\University\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.csprojResolveAssemblyReference.cache
 D:\Projects\University\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.dll
 D:\Projects\University\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.pdb
+D:\Projects\University\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.Migrations.Shrek.resources
+D:\Projects\University\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.csproj.GenerateResource.Cache
