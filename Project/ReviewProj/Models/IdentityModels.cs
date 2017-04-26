@@ -23,53 +23,34 @@ namespace ReviewProj.Models
         }
     }
 
-    public class Owner
+    [Table("Owners")]
+    public class Owner : ApplicationUser
     {
-        [Key]
-        public string UserId { get; set; }
-        [ForeignKey("UserId")]
-        public ApplicationUser User { get; set; }
-
         public bool IsBanned { get; set; }
+
+        [InverseProperty("Owner")]
+        public List<Enterprise> Enterprises { get; set; }
     }
 
-    public class Reviewer
+    [Table("Reviewers")]
+    public class Reviewer : ApplicationUser
     {
-        [Key]
-        public string UserId { get; set; }
-        [ForeignKey("UserId")]
-        public ApplicationUser User { get; set; }
-
         public bool IsBanned { get; set; }
         public DateTime BirthDate { get; set; }
         public String Nationality { get; set; }
         public double Rating { get; set; }
 
-        public int MyImageId { get; set; }
-        [ForeignKey("MyImageId")]
-        public MyImage Avatar { get; set; }
+        //public int MyImageId { get; set; }
+        //[ForeignKey("MyImageId")]
+  //      public Resource Avatar { get; set; }
+
+        [Column(TypeName = "varbinary")] // max(varbinary) = 5 Mb
+        public byte[] Avatar { get; set; }
     }
 
-    public class Admin
+    [Table("Admins")]
+    public class Admin : ApplicationUser
     {
-        [Key]
-        public string UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public ApplicationUser User { get; set; }
-    }
-
-    public class OwnerEnterprise
-    {
-        [Key, Column(Order = 0)]
-        public string OwnerId { get; set; }
-        [ForeignKey("OwnerId")]
-        public Owner Owner { get; set; }
-
-        [Key, Column(Order = 1)]
-        public int EntId { get; set; }
-        [ForeignKey("EntId")]
-        public Enterprise Enterprise { get; set; }
     }
 
     public class Ban
@@ -77,12 +58,12 @@ namespace ReviewProj.Models
         [Key]
         public int BanId { get; set; }
 
-        public string AdminId { get; set; }
-        [ForeignKey("AdminId")]
+        //public string AdminId { get; set; }
+        //[ForeignKey("AdminId")]
         public Admin Admin { get; set; }
 
-        public string UserId { get; set; }
-        [ForeignKey("UserId")]
+        //public string UserId { get; set; }
+        //[ForeignKey("UserId")]  
         public ApplicationUser User { get; set; }
 
         public DateTime StartTime { get; set; }
@@ -94,45 +75,47 @@ namespace ReviewProj.Models
         [Key]
         public int ReviewId { get; set; }
 
-        public string ReviewerId { get; set; }
-        [ForeignKey("ReviewerId")]
+        //public string ReviewerId { get; set; }
+        //[ForeignKey("ReviewerId")]
         public Reviewer Reviewer { get; set; }
 
-        public int EntId { get; set; }
-        [ForeignKey("EntId")]
+        //public int EntId { get; set; }
+        //[ForeignKey("EntId")]
         public Enterprise Enterprise { get; set; }
+
+        public List<Vote> Votes;
 
         public double Mark { get; set; }
         public String Description { get; set; }
 
         public double TotalRating { get; set; }
-
         public DateTime Date { get; set; }
     }
 
-    public class ReviewVoter
+    [ComplexType]
+    public class Vote
     {
-        [Key, Column(Order = 0)]
-        public int ReviewId { get; set; }
-        [ForeignKey("ReviewId")]
         public Review Review { get; set; }
-
-        [Key, Column(Order = 1)]
-        public string VoterId { get; set; }
-        [ForeignKey("VoterId")]
         public Reviewer Voter { get; set; }
-
         public double VoteDelta { get; set; }
     }
 
-    public class MyImage
+    public class Resource
     {
         [Key]
-        public int ImageId { get; set; }
+        public int ResourceId { get; set; }
 
-        [Column(TypeName = "image")]
-        public byte[] Image { get; set; }
+        [Column(TypeName = "varbinary")] // max(varbinary) = 5 Mb
+        public byte[] Data { get; set; }
         public int Type { get; set; }
+    }
+
+    [ComplexType]
+    public class Address
+    {
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string HouseNumber { get; set; }
     }
 
     public class Enterprise
@@ -140,50 +123,23 @@ namespace ReviewProj.Models
         [Key]
         public int EntId { get; set; }
 
-        public string OwnerId { get; set; }
-        [ForeignKey("OwnerId")]
+        // fkeys
         public Owner Owner { get; set; }
+        public Address Address { get; set; }
+        public List<String> Contacts { get; set; }
+        public List<Resource> Resources { get; set; }
+        [InverseProperty("Enterprise")]
+        public List<Review> Reviews { get; set; }
 
         public string Name { get; set; }
-
-        public string City { get; set; }
-        public string Street { get; set; }
-        public string HouseNumber { get; set; }
-
         public double Rating { get; set; }
-
         public int Type { get; set; }
-    }
-
-    public class EnterpriseContact
-    {
-        [Key, Column(Order = 0)]
-        public int EntId { get; set; }
-        [ForeignKey("EntId")]
-        public Enterprise Enterprise { get; set; }
-
-        [Key, Column(Order = 1)]
-        public String Contact { get; set; }
-    }
-
-    public class EnterpriseImage
-    {
-        [Key]
-        public int EntImId { get; set; }
-
-        public int EntId { get; set; }
-        [ForeignKey("EntId")]
-        public Enterprise Enterprise { get; set; }
-
-        public int MyImageId { get; set; }
-        [ForeignKey("MyImageId")]
-        public MyImage Image { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("ReviewProj", throwIfV1Schema: false)
+            : base("ReviewProj_1.4", throwIfV1Schema: false)
         {
         }
 
@@ -198,10 +154,6 @@ namespace ReviewProj.Models
         DbSet<Enterprise> Enterprises { get; set; }
         DbSet<Review> Reviews { get; set; }
         DbSet<Ban> Bans { get; set; }
-        DbSet<MyImage> Images { get; set; }
-        DbSet<EnterpriseImage> EnterpriseImages { get; set; }
-        DbSet<EnterpriseContact> EnterpriseContacts { get; set; }
-        DbSet<ReviewVoter> ReviewVoters { get; set; }
-        DbSet<OwnerEnterprise> OwnerEnterprises { get; set; }
+        DbSet<Resource> Resources { get; set; }
     }
 }

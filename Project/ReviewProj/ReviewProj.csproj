@@ -195,9 +195,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704252304172_Shrek.cs" />
-    <Compile Include="Migrations\201704252304172_Shrek.Designer.cs">
-      <DependentUpon>201704252304172_Shrek.cs</DependentUpon>
+    <Compile Include="Migrations\201704260958223_Initial.cs" />
+    <Compile Include="Migrations\201704260958223_Initial.Designer.cs">
+      <DependentUpon>201704260958223_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704260959107_Donkey.cs" />
+    <Compile Include="Migrations\201704260959107_Donkey.Designer.cs">
+      <DependentUpon>201704260959107_Donkey.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -283,8 +287,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704252304172_Shrek.resx">
-      <DependentUpon>201704252304172_Shrek.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704260958223_Initial.resx">
+      <DependentUpon>201704260958223_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704260959107_Donkey.resx">
+      <DependentUpon>201704260959107_Donkey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
