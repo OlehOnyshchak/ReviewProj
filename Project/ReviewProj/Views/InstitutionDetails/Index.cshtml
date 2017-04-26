@@ -11,6 +11,7 @@
     <title>Institution Details</title>
     <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
     <link href="~/Styles/styles.css" rel="stylesheet" />
+    <link href="~/Styles/ratingStyle.css" rel="stylesheet" />
 </head>
 <body>
     <br>
@@ -63,10 +64,23 @@
                             <img class="thumbnail" src="https://urplaneta.ru/img/avatar_placeholder_sq.png" alt="https://urplaneta.ru/img/avatar_placeholder_sq.png" height="100" width="100">
                         </div>
                         <div class="media-object-section">
+                            <div class="rate">
+                                <input type="radio" id="star5" name="rate" value="5" />
+                                <label for="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" name="rate" value="4" />
+                                <label for="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" name="rate" value="3" />
+                                <label for="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="rate" value="2" />
+                                <label for="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" name="rate" value="1" />
+                                <label for="star1" title="text">1 star</label>
+                            </div>
+                            <br/>
                             <h5>Mike Stevenson</h5>
                             <p>I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you.</p>
+                            </div>
                         </div>
-                    </div>
                     <div class="media-object stack-for-small">
                         <div class="media-object-section">
                             <img class="thumbnail" src="https://pp.userapi.com/c629405/v629405258/39399/nqDM15H_pWw.jpg" alt="https://urplaneta.ru/img/avatar_placeholder_sq.png" height="100" width="100">
@@ -82,34 +96,9 @@
                     <textarea placeholder="Please type in your review"></textarea>
                 </label>
 
-                @*<div class="rate">
-                    
-                    <input type="radio" id="star5" name="rate" value="5" />
-                    
-                    <label for="star5" title="text">5 stars</label>
-                    
-                    <input type="radio" id="star4" name="rate" value="4" />
-                    
-                    <label for="star4" title="text">4 stars</label>
-                    
-                    <input type="radio" id="star3" name="rate" value="3" />
-                    
-                    <label for="star3" title="text">3 stars</label>
-                    
-                    <input type="radio" id="star2" name="rate" value="2" />
-                    
-                    <label for="star2" title="text">2 stars</label>
-                    
-                    <input type="radio" id="star1" name="rate" value="1" />
-                    
-                    <label for="star1" title="text">1 star</label>
-                    
-                </div>*@
-
 
                 <button class="button">Submit Review</button>
             </div>
-
         </div>
     </div>
 
