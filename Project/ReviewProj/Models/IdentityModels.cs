@@ -148,12 +148,14 @@ namespace ReviewProj.Models
             return new ApplicationDbContext();
         }
 
-        DbSet<Owner> Owners { get; set; }
-        DbSet<Reviewer> Reviewers { get; set; }
-        DbSet<Admin> Admins { get; set; }
-        DbSet<Enterprise> Enterprises { get; set; }
-        DbSet<Review> Reviews { get; set; }
-        DbSet<Ban> Bans { get; set; }
-        DbSet<Resource> Resources { get; set; }
+        public DbSet<Owner> Owners { get; set; }
+        public DbSet<Reviewer> Reviewers { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Enterprise> Enterprises { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Ban> Bans { get; set; }
+        public DbSet<Resource> Resources { get; set; }
+
+        //public System.Data.Entity.DbSet<ReviewProj.Models.Enterprise> Enterprises { get; set; }
     }
 }

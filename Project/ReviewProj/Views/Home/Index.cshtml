@@ -1,31 +1,31 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model List<ReviewProj.Models.Enterprise>
+@{
+    ViewBag.Title = "Index";
 }
+<link href="~/Content/index_style.css" type="text/css" rel="stylesheet" />
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<h2 class="collection-title">Top Institutions</h2>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+<div class="collections">
+    @foreach (var ent in @Model)
+    {
+        <div class="collection-item-outer">
+            <div class="collection-item">
+                <h4 class="institution-title">
+                    <a href="/InstitutionDetails/Index/@ent.EntId">@ent.Name</a>
+                </h4>
+                <!-- Picture -->
+                <img src="~/Content/images/profile.jpg" />
+                <div class="collection-text">
+                    <p>
+                        <!-- Enterprise Description -->
+                        Для подорожуючих на трасах  працюють ресторани французької кухні «A la minute» – це ресторани швидкого обслуговування з кухнею що задовольнить навiть гурманiв.
+                        Визначальною особливістю ресторанів  «A la minute» є сучасний інтер’єр, затишна атмосфера, швидке та приємне обслуговування. І головне – оригінальне меню з вишуканих страв за доступними цінами.
+                        В основі меню «A la minute» лежать страви французької кухні, приготовлені з натуральних свіжих продуктів. Саме меню підібрано з врахуванням широкого кола смаків та потреб подорожуючих. Тут є ситні, нежирні та приготовлені на пару страви.
+                    </p>
+                    <button>Read more</button>
+                </div>
+            </div>
+        </div>
+    }
 </div>

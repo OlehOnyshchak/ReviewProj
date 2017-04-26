@@ -193,3 +193,6 @@ D:\Projects\University\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.csproj
 D:\Projects\University\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.Migrations.Initial.resources
 D:\Projects\University\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.csproj.GenerateResource.Cache
 D:\Projects\University\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.Migrations.Donkey.resources
+D:\github\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.Migrations.Initial.resources
+D:\github\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.Migrations.Donkey.resources
+D:\github\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.csproj.GenerateResource.Cache
