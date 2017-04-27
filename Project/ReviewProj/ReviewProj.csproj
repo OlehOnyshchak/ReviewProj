@@ -193,6 +193,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstitutionDetailsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProfileViewController.cs" />
+    <Compile Include="Controllers\RegisterEnterpriceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,6 +218,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProfileViewModels.cs" />
+    <Compile Include="Models\RegisterEnterpriceeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -229,6 +233,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\noImg.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -282,6 +287,14 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\InstitutionDetails\Index.cshtml" />
+    <Content Include="Views\ProfileView\Index.cshtml" />
+    <Content Include="Views\ProfileView\EditProfile.cshtml" />
+    <Content Include="Views\ProfileView\AddPhoto.cshtml" />
+    <Content Include="Views\RegisterEnterprice\AddPhoto.cshtml" />
+    <Content Include="Views\RegisterEnterprice\RegistPart3.cshtml" />
+    <Content Include="Views\RegisterEnterprice\AddContacts.cshtml" />
+    <Content Include="Views\RegisterEnterprice\RegistPart2.cshtml" />
+    <Content Include="Views\RegisterEnterprice\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

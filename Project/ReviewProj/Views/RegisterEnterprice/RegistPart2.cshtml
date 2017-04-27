@@ -1,0 +1,30 @@
+﻿@model IEnumerable<System.String>
+
+@{
+    ViewBag.Title = "RegistPart2";
+}
+
+<h2>RegistPart2</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddContacts")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item)
+                @Html.ActionLink("Edit", "Edit", new { itemName = item }) |
+                @Html.ActionLink("Delete", "Delete", new { itemName = item })
+            </td>
+        </tr>
+    }
+
+
+</table>
+@Html.ActionLink("next", "AddPhoto")

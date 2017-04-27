@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ReviewProj.Models.Resource>
+@{
+    ViewBag.Title = "RegistPart3";
+}
+
+<h2>RegistPart3</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddPhoto")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                <div style="background-image:url( data:image/jpeg;base64,@Convert.ToBase64String(item.Data) )"><</div>
+                <img src="@Url.Action("GetChoosedPhotos", "RegisterEnterprice",new { ID = item.ResourceId } )" height="48" width="48" />
+                @Html.ActionLink("Edit", "Edit", new { itemName = item }) |
+                @Html.ActionLink("Delete", "Delete", new { itemName = item })
+            </td>
+        </tr>
+    }
+
+
+</table>
+@Html.ActionLink("finish", "SaveDataset")

@@ -7,6 +7,12 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
+            @Html.ActionLink("GoTo Profile", "Index", "ProfileView", routeValues: null, htmlAttributes: new { title = "ProfileView" })
+        </li>
+        <li>
+            <img src="@Url.Action("UserPhotos", "ProfileView" )" height="48" width="48" />
+        </li>
+        <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
