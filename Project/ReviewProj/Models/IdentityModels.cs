@@ -73,8 +73,10 @@ namespace ReviewProj.Models
         public String Nationality { get; set; }
         public double Rating { get; set; }
 
+        // hot fix, should be added to Resources table
         [Column(TypeName = "varbinary")] // max(varbinary) = 5 Mb
         public byte[] Avatar { get; set; }
+        public String AvatarFormat { get; set; }
     }
 
     [Table("Admins")]
@@ -133,6 +135,10 @@ namespace ReviewProj.Models
 
         [Column(TypeName = "varbinary")] // max(varbinary) = 5 Mb
         public byte[] Data { get; set; }
+        // physical format of data, e.g. png
+        public String Format { get; set; }
+
+        // logical type of data, e.g. main picture
         public int Type { get; set; }
     }
 
