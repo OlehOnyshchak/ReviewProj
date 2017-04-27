@@ -14,6 +14,27 @@ namespace ReviewProj.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser()
+        { }
+        public ApplicationUser(ApplicationUser user)
+        {
+            this.AccessFailedCount = user.AccessFailedCount;
+            // this.Claims - read only
+            this.Email = user.Email;
+            this.EmailConfirmed = user.EmailConfirmed;
+            this.Id = user.Id;
+            this.LockoutEnabled = user.LockoutEnabled;
+            this.LockoutEndDateUtc = user.LockoutEndDateUtc;
+            // this.Logins - read only
+            this.PasswordHash = user.PasswordHash;
+            this.PhoneNumber = user.PhoneNumber;
+            this.PhoneNumberConfirmed = user.PhoneNumberConfirmed;
+            // this.Roles - read only
+            this.SecurityStamp = user.SecurityStamp;
+            this.TwoFactorEnabled = user.TwoFactorEnabled;
+            this.UserName = user.UserName;
+        }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -26,6 +47,10 @@ namespace ReviewProj.Models
     [Table("Owners")]
     public class Owner : ApplicationUser
     {
+        public Owner() { }
+        public Owner(ApplicationUser user) :
+            base(user) { }
+
         public bool IsBanned { get; set; }
 
         [InverseProperty("Owner")]
@@ -35,6 +60,14 @@ namespace ReviewProj.Models
     [Table("Reviewers")]
     public class Reviewer : ApplicationUser
     {
+        // NONE: check if 
+        public Reviewer() { }
+        // NOTE: check if this constructor don't create duplicates inside ApplicationUser table.
+        // if you encounted an error during adding to DB one of the ApplicationUser's inherited classes,
+        // check if this error is related to "Primary key is already exist in ApplicationUser table" (AspNetUsers)
+        public Reviewer(ApplicationUser user) :
+            base(user) { }
+
         public bool IsBanned { get; set; }
         public DateTime BirthDate { get; set; }
         public String Nationality { get; set; }
@@ -47,6 +80,9 @@ namespace ReviewProj.Models
     [Table("Admins")]
     public class Admin : ApplicationUser
     {
+        public Admin() { }
+        public Admin(ApplicationUser user) :
+            base(user) { }
     }
 
     public class Ban
