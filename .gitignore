@@ -23,8 +23,6 @@
 # Logs and databases #
 ######################
 *.log
-*.sql
-*.sqlite
 
 # OS generated files #
 ######################
@@ -39,3 +37,4 @@ Thumbs.db
 Project/ReviewProj/bin/
 Project/ReviewProj/obj/
 Project/.vs/ReviewProj/v15/.suo
+Project/ReviewProj.v12.suo

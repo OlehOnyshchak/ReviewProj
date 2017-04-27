@@ -61,12 +61,16 @@ namespace ReviewProj.Models
     public class Reviewer : ApplicationUser
     {
         // NONE: check if 
-        public Reviewer() { }
+        public Reviewer() { BirthDate = new DateTime(1800, 1, 1); }
         // NOTE: check if this constructor don't create duplicates inside ApplicationUser table.
-        // if you encounted an error during adding to DB one of the ApplicationUser's inherited classes,
+        // if you uncounted an error during adding to DB one of the ApplicationUser's inherited classes,
         // check if this error is related to "Primary key is already exist in ApplicationUser table" (AspNetUsers)
         public Reviewer(ApplicationUser user) :
-            base(user) { }
+            base(user) 
+        {
+            // can't be fewer than 1753! - SQL constrain
+            BirthDate = new DateTime(1800, 1, 1 ); 
+        }
 
         public bool IsBanned { get; set; }
         public DateTime BirthDate { get; set; }
