@@ -40,10 +40,6 @@ namespace ReviewProj.Models
         public String Nationality { get; set; }
         public double Rating { get; set; }
 
-        //public int MyImageId { get; set; }
-        //[ForeignKey("MyImageId")]
-  //      public Resource Avatar { get; set; }
-
         [Column(TypeName = "varbinary")] // max(varbinary) = 5 Mb
         public byte[] Avatar { get; set; }
     }
@@ -58,12 +54,8 @@ namespace ReviewProj.Models
         [Key]
         public int BanId { get; set; }
 
-        //public string AdminId { get; set; }
-        //[ForeignKey("AdminId")]
+        // fkeys
         public Admin Admin { get; set; }
-
-        //public string UserId { get; set; }
-        //[ForeignKey("UserId")]  
         public ApplicationUser User { get; set; }
 
         public DateTime StartTime { get; set; }
@@ -75,19 +67,17 @@ namespace ReviewProj.Models
         [Key]
         public int ReviewId { get; set; }
 
-        //public string ReviewerId { get; set; }
-        //[ForeignKey("ReviewerId")]
+        // fkeys
         public Reviewer Reviewer { get; set; }
-
-        //public int EntId { get; set; }
-        //[ForeignKey("EntId")]
         public Enterprise Enterprise { get; set; }
-
+        // TODO: show amount of likes and dislikes on each review
         public List<Vote> Votes;
 
+        // reviewer feedback
         public double Mark { get; set; }
         public String Description { get; set; }
 
+        // total like/dislike sum
         public double TotalRating { get; set; }
         public DateTime Date { get; set; }
     }
@@ -131,6 +121,7 @@ namespace ReviewProj.Models
         [InverseProperty("Enterprise")]
         public List<Review> Reviews { get; set; }
 
+        public string Description { get; set; }
         public string Name { get; set; }
         public double Rating { get; set; }
         public int Type { get; set; }
@@ -155,7 +146,5 @@ namespace ReviewProj.Models
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Ban> Bans { get; set; }
         public DbSet<Resource> Resources { get; set; }
-
-        //public System.Data.Entity.DbSet<ReviewProj.Models.Enterprise> Enterprises { get; set; }
     }
 }

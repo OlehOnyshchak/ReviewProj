@@ -394,3 +394,4 @@ D:\Projects\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.Migrations.Donkey
 D:\Projects\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.csproj.GenerateResource.Cache
 D:\Projects\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.dll
 D:\Projects\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.pdb
+D:\Projects\ReviewProj\Project\ReviewProj\obj\Debug\ReviewProj.Migrations.EnterpriseDescription.resources
