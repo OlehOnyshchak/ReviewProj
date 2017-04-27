@@ -139,12 +139,12 @@ namespace ReviewProj.Models
             return new ApplicationDbContext();
         }
 
-        public DbSet<Owner> Owners { get; set; }
-        public DbSet<Reviewer> Reviewers { get; set; }
-        public DbSet<Admin> Admins { get; set; }
-        public DbSet<Enterprise> Enterprises { get; set; }
-        public DbSet<Review> Reviews { get; set; }
-        public DbSet<Ban> Bans { get; set; }
-        public DbSet<Resource> Resources { get; set; }
+        public virtual DbSet<Owner> Owners { get; set; }
+        public virtual DbSet<Reviewer> Reviewers { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<Enterprise> Enterprises { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<Ban> Bans { get; set; }
+        public virtual DbSet<Resource> Resources { get; set; }
     }
 }
