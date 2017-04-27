@@ -1,4 +1,4 @@
-﻿
+﻿@model ReviewProj.Models.Enterprise
 @{
     ViewBag.Title = "Index";
 }
@@ -50,7 +50,8 @@
 
         </div>
         <div class="medium-6 large-5 columns">
-            <h3>Hotel Astoria</h3>
+            <h3>@Model.Name</h3>
+            <!--<h3>Hotel Astoria</h3>-->
             <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in.</p>
             <a href="#" class="button large expanded">See Reviews</a>
         </div>
