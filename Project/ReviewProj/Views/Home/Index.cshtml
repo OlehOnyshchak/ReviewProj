@@ -1,4 +1,5 @@
-﻿@model List<ReviewProj.Models.Enterprise>
+﻿@using ReviewProj.Models;
+@model List<Enterprise>
 @{
     ViewBag.Title = "Index";
 }
@@ -7,21 +8,30 @@
 <h2 class="collection-title">Top Institutions</h2>
 
 <div class="collections">
-    @foreach (var ent in @Model)
+    @foreach (Enterprise ent in @Model)
     {
         <div class="collection-item-outer">
             <div class="collection-item">
                 <h4 class="institution-title">
                     <a href="/InstitutionDetails/Index/@ent.EntId">@ent.Name</a>
                 </h4>
+
                 <!-- Picture -->
-                <img src="~/Content/images/profile.jpg" />
+                @try
+                {
+                    Resource res = ent.Resources.First();
+                    string base64 = Convert.ToBase64String(res.Data);
+                    string imgSrc = String.Format("data:image/{0};base64,{1}", res.Format, base64);
+                    <img height="120" src="@imgSrc" />
+                }
+                catch
+                {
+                    <img height="120" src="~/Content/images/no_image_available.png" />
+                }
+
                 <div class="collection-text">
                     <p>
-                        <!-- Enterprise Description -->
-                        Для подорожуючих на трасах  працюють ресторани французької кухні «A la minute» – це ресторани швидкого обслуговування з кухнею що задовольнить навiть гурманiв.
-                        Визначальною особливістю ресторанів  «A la minute» є сучасний інтер’єр, затишна атмосфера, швидке та приємне обслуговування. І головне – оригінальне меню з вишуканих страв за доступними цінами.
-                        В основі меню «A la minute» лежать страви французької кухні, приготовлені з натуральних свіжих продуктів. Саме меню підібрано з врахуванням широкого кола смаків та потреб подорожуючих. Тут є ситні, нежирні та приготовлені на пару страви.
+                        @ent.Description
                     </p>
                     <button>Read more</button>
                 </div>
