@@ -1,4 +1,5 @@
-﻿@model ReviewProj.Models.Enterprise
+﻿@using ReviewProj.Models;
+@model ReviewProj.Models.Enterprise
 @{
     ViewBag.Title = "Index";
 }
@@ -17,21 +18,44 @@
     <br>
     <div id="padding-style" class="row">
         <div class="medium-6 columns">
-            <img class="thumbnail" src="https://www.danubiushotels.com/w/accomms/0_1000/0/any/Hotel-Astoria-Budapest-lobby-maxi301.jpg">
-            <div class="row small-up-4">
-                <div class="column">
-                    <img class="thumbnail" src="http://placehold.it/250x200">
-                </div>
-                <div class="column">
-                    <img class="thumbnail" src="http://placehold.it/250x200">
-                </div>
-                <div class="column">
-                    <img class="thumbnail" src="http://placehold.it/250x200">
-                </div>
-                <div class="column">
-                    <img class="thumbnail" src="http://placehold.it/250x200">
-                </div>
-            </div>
+            
+            @if (Model.Resources != null)
+            {
+                int  i = 0;
+                bool hasClosedPhotosBlock = false;
+
+                foreach (Resource res in Model.Resources)
+                {
+                    string imgSrc = getImageSrcFromResource(res);
+                    if (i == 0)
+                    {
+                        <img class="thumbnail" src=imageSrc />
+                    } else
+                    {
+                        if(i % 4 == 1)
+                        {
+                            <div class="row small-up-4">
+                        }
+
+                        <div class="column">
+                            <img class="thumbnail" src=@imgSrc">
+                        </div>
+
+                        if(i % 4 == 0) {
+                            </div>
+                            hasClosedPhotosBlock = true;
+                        }  
+                    }
+
+                    ++i;
+                }
+
+                @if(i > 1 && !hasClosedPhotosBlock) {
+                     </div>
+                }
+            }
+
+
 
             <div class="row small-up-4">
                 <div class="column">
@@ -51,9 +75,7 @@
         </div>
         <div class="medium-6 large-5 columns">
             <h3>@Model.Name</h3>
-            <!--<h3>Hotel Astoria</h3>-->
-            <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in.</p>
-            <a href="#" class="button large expanded">See Reviews</a>
+            <p>@Model.Description.</p>
         </div>
         <div class="column row">
             <hr>
@@ -105,3 +127,20 @@
 
 </body>
 </html>
+
+@functions{
+    public string getImageSrcFromResource(Resource res)
+    {
+        try
+                {
+            string base64 = Convert.ToBase64String(res.Data);
+            string imgSrc = String.Format("data:image/{0};base64,{1}", res.Format, base64);
+            return imgSrc;
+        }
+
+        catch
+        {
+            return "~/Content/images/no_image_available.png";
+        }
+    }
+}
