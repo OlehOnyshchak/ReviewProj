@@ -1,0 +1,15 @@
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.dll.config
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.dll
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.pdb
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.dll
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.SqlServer.dll
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Mvc.dll
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.xml
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.SqlServer.xml
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.csprojResolveAssemblyReference.cache
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.dll
+D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.pdb
