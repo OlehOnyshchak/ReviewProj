@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ReviewProj.Domain.Entities
+{
+    public class Review
+    {
+        Review()
+        {
+            TotalRating = 0.0;
+            Date = DateTime.Now;
+        }
+
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ReviewId { get; set; }
+
+        // fkeys
+        [Required]
+        public Reviewer Reviewer { get; set; }
+
+        [Required]
+        public Enterprise Enterprise { get; set; }
+
+        // TODO: show amount of likes and dislikes on each review
+        [InverseProperty("Review")]
+        public List<Vote> Votes;
+
+        // reviewer feedback
+        [Required]
+        [Range(minimum: 0.0, maximum: 5.0,
+            ErrorMessage = "Reviews's Mark should be in the range [0.0, 5.0]")]
+        public double Mark { get; set; }
+
+        public string Description { get; set; }
+
+        // total like/dislike sum
+        [Required]
+        public double TotalRating { get; set; }
+
+        [Required]
+        public DateTime Date { get; set; }
+    }
+}
