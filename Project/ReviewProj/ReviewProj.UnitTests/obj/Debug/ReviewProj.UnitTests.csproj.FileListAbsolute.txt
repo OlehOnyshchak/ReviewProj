@@ -79,7 +79,6 @@ D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.UnitTest
 D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.UnitTests\bin\Debug\ReviewProj.UnitTests.dll
 D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.UnitTests\bin\Debug\ReviewProj.UnitTests.pdb
 D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.UnitTests\bin\Debug\Castle.Core.dll
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.UnitTests\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Extension.dll
 D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.UnitTests\bin\Debug\Moq.dll
 D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.UnitTests\bin\Debug\Ninject.dll

@@ -38,3 +38,4 @@ D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\b
 D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.Web.Infrastructure.xml
 D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.dll
+D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.csprojResolveAssemblyReference.cache
