@@ -11,16 +11,17 @@ namespace ReviewProj.Domain.Entities
 {
     public class Resource
     {
-        Resource()
+        public Resource()
         {
             Type = ResourceType.SecondaryImage;
         }
 
-        Resource(Image image, bool isMain = false)
+        public Resource(Image image, bool isMain = false)
         {
             Type = isMain ? ResourceType.MainImage : ResourceType.SecondaryImage;
             // TODO: save image inside some local folder
             // and fill all other fields
+            throw new NotImplementedException();
         }
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]

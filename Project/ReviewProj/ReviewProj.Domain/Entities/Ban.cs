@@ -10,7 +10,7 @@ namespace ReviewProj.Domain.Entities
 {
     public class Ban
     {
-        Ban()
+        public Ban()
         {
             StartTime = DateTime.Now;
         }

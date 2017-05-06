@@ -10,7 +10,7 @@ namespace ReviewProj.Domain.Entities
 {
     public class Review
     {
-        Review()
+        public Review()
         {
             TotalRating = 0.0;
             Date = DateTime.Now;

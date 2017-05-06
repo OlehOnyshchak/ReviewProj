@@ -8,17 +8,19 @@ using ReviewProj.Domain.Entities;
 
 namespace ReviewProj.Domain.Concrete
 {
-    public class DBContext : IdentityDbContext<ApplicationUser>
+    public class AppDBContext : IdentityDbContext<ApplicationUser>
     {
-        public DBContext()
-            : base("ReviewProj_1.5", throwIfV1Schema: false)
-        { }
-
-        public static DBContext Create()
+        public AppDBContext()
+            : base("ReviewProj_2.0", throwIfV1Schema: false)
         {
-            return new DBContext();
         }
 
+        public static AppDBContext Create()
+        {
+            return new AppDBContext();
+        }
+
+        public virtual DbSet<Vote> Votes { get; set; }
         public virtual DbSet<Owner> Owners { get; set; }
         public virtual DbSet<Reviewer> Reviewers { get; set; }
         public virtual DbSet<Admin> Admins { get; set; }

@@ -10,9 +10,12 @@ namespace ReviewProj.Domain.Entities
 {
     public class Vote
     {
-        [Key, Column(Order = 0)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int VoteId { get; set; }
+
+        [Index("IX_Vote", 1, IsUnique = true)]
         public virtual Review Review { get; set; }
-        [Key, Column(Order = 0)]
+        [Index("IX_Vote", 2, IsUnique = true)]
         public virtual Reviewer Voter { get; set; }
 
         [Required]

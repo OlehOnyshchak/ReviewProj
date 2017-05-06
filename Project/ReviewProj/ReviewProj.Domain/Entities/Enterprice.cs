@@ -10,7 +10,7 @@ namespace ReviewProj.Domain.Entities
 {
     public class Enterprise
     {
-        Enterprise()
+        public Enterprise()
         {
             Rating = 2.5;
             Type = EnterpriceType.Restaurant;
