@@ -39,6 +39,6 @@ namespace ReviewProj.Domain.Entities
         [Required]
         public double Rating { get; set; }
 
-        public string AvatarPath { get; set; }
+        public List<Resource> Resources { get; set; }
     }
 }
