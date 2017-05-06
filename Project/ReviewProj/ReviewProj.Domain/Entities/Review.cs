@@ -21,14 +21,14 @@ namespace ReviewProj.Domain.Entities
 
         // fkeys
         [Required]
-        public Reviewer Reviewer { get; set; }
+        public virtual Reviewer Reviewer { get; set; }
 
         [Required]
-        public Enterprise Enterprise { get; set; }
+        public virtual Enterprise Enterprise { get; set; }
 
         // TODO: show amount of likes and dislikes on each review
         [InverseProperty("Review")]
-        public List<Vote> Votes;
+        public virtual List<Vote> Votes { get; set; }
 
         // reviewer feedback
         [Required]

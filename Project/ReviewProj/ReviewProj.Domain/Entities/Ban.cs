@@ -20,9 +20,9 @@ namespace ReviewProj.Domain.Entities
 
         // fkeys
         [Required]
-        public Admin Admin { get; set; }
+        public virtual Admin Admin { get; set; }
         [Required]
-        public ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         [Required]
         public DateTime StartTime { get; set; }

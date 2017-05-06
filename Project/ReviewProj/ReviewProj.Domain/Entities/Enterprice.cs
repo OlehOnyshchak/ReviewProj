@@ -22,16 +22,16 @@ namespace ReviewProj.Domain.Entities
 
         // fkeys
         [Required]
-        public Owner Owner { get; set; }
+        public virtual Owner Owner { get; set; }
 
-        public Address Address { get; set; }
+        public virtual Address Address { get; set; }
 
-        public List<string> Contacts { get; set; }
+        public virtual List<string> Contacts { get; set; }
 
-        public List<Resource> Resources { get; set; }
+        public virtual List<Resource> Resources { get; set; }
 
         [InverseProperty("Enterprise")]
-        public List<Review> Reviews { get; set; }
+        public virtual List<Review> Reviews { get; set; }
 
         public string Description { get; set; }
 

@@ -15,6 +15,7 @@ namespace ReviewProj.Domain.Entities
         {
             IsBanned = false;
         }
+
         public Owner(ApplicationUser user) :
             base(user)
         {
@@ -25,6 +26,6 @@ namespace ReviewProj.Domain.Entities
         public bool IsBanned { get; set; }
 
         [InverseProperty("Owner")]
-        public List<Enterprise> Enterprises { get; set; }
+        public virtual List<Enterprise> Enterprises { get; set; }
     }
 }

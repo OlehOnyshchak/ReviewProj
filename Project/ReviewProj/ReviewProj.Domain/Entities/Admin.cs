@@ -11,9 +11,13 @@ namespace ReviewProj.Domain.Entities
     [Table("Admins")]
     public class Admin : ApplicationUser
     {
-        public Admin() { }
+        public Admin()
+        {
+        }
+
         public Admin(ApplicationUser user) :
             base(user)
-        { }
+        {
+        }
     }
 }

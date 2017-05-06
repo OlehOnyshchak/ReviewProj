@@ -11,9 +11,9 @@ namespace ReviewProj.Domain.Entities
     public class Vote
     {
         [Key, Column(Order = 0)]
-        public Review Review { get; set; }
+        public virtual Review Review { get; set; }
         [Key, Column(Order = 0)]
-        public Reviewer Voter { get; set; }
+        public virtual Reviewer Voter { get; set; }
 
         [Required]
         public double VoteDelta { get; set; }
