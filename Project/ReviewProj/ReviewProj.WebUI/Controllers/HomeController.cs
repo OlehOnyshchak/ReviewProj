@@ -1,28 +1,23 @@
-﻿using System;
+﻿using ReviewProj.Domain.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ReviewProj.Domain.Concrete;
-using ReviewProj.Domain.Entities;
 
 namespace ReviewProj.WebUI.Controllers
 {
     public class HomeController : Controller
     {
+        private IEnterpriseRepository repository;
+
+        public HomeController(IEnterpriseRepository enterpriceRepository)
+        {
+            repository = enterpriceRepository;
+        }
         public ActionResult Index()
         {
-            using (var db = new AppDBContext())
-            {
-                Resource res = new Resource();
-                res.DataPath = "invalid";
-                res.Format = ResourceFormat.JPEG;
-
-                db.Resources.Add(res);
-                db.SaveChanges();
-            }
-
-            return View();
+            return View(repository.Enterprises);
         }
 
         public ActionResult About()

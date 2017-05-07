@@ -7,7 +7,7 @@ using ReviewProj.Domain.Entities;
 
 namespace ReviewProj.Domain.Abstract
 {
-    class IApplicationUserRepository
+    public interface IApplicationUserRepository
     {
         IQueryable<ApplicationUser> Users { get; }
     }

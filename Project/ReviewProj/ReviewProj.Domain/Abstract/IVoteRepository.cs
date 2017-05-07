@@ -7,7 +7,7 @@ using ReviewProj.Domain.Entities;
 
 namespace ReviewProj.Domain.Abstract
 {
-    class IVoteRepository
+    public interface IVoteRepository
     {
         IQueryable<Vote> Votes { get; }
     }

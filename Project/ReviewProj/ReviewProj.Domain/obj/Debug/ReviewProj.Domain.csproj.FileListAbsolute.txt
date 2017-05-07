@@ -1,66 +1,27 @@
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.dll.config
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.dll
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.pdb
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.dll
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.SqlServer.dll
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Mvc.dll
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.xml
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.SqlServer.xml
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.csprojResolveAssemblyReference.cache
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.dll
-D:\development\ReviewProj\Project\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.pdb
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.pdb
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.dll.config
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.dll
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.pdb
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.dll
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.SqlServer.dll
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Mvc.dll
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Razor.dll
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.Razor.dll
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.dll
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.Web.Infrastructure.dll
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.Deployment.dll
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.xml
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.SqlServer.xml
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Mvc.xml
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Razor.xml
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.Razor.xml
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.xml
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.Web.Infrastructure.xml
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.Deployment.xml
-D:\Projects\ReviewProj\SubProj\ReviewProj\Project\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.dll
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.dll.config
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.dll
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.pdb
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.dll
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.SqlServer.dll
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Mvc.dll
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Razor.dll
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.Razor.dll
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.dll
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.Web.Infrastructure.dll
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.Deployment.dll
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.xml
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.SqlServer.xml
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Mvc.xml
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Razor.xml
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.Razor.xml
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.xml
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.Web.Infrastructure.xml
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.Deployment.xml
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.csprojResolveAssemblyReference.cache
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.dll
-D:\Projects\University\ReviewProj\Project\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.pdb
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.dll
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.pdb
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Helpers.dll
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Mvc.dll
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Razor.dll
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.dll
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Helpers.xml
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Mvc.xml
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.Razor.xml
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.xml
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.dll
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\obj\Debug\ReviewProj.Domain.pdb
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\ReviewProj.Domain.dll.config
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.dll
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.xml
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Volodymyr\Desktop\Final Sprint\ReviewProj\ReviewProj.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml

@@ -1,0 +1,32 @@
+﻿@model ReviewProj.WebUI.Models.AddPhotoModelEnterprise
+
+@{
+    ViewBag.Title = "AddPhoto";
+}
+
+<h2>AddPhoto</h2>
+@using (Html.BeginForm("AddPhoto", "RegisterEnterprice", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>AddPhotoModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Photo, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+
+                <input type="file" name="photo1" id="photo1" accept=".png,.jpg,.jpeg,.gif,.tif" />
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+                @Html.ActionLink("Cansel", "RegistPart3", "RegisterEnterprice", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

@@ -7,7 +7,7 @@ using ReviewProj.Domain.Entities;
 
 namespace ReviewProj.Domain.Abstract
 {
-    class IOwnerRepository
+    public interface IOwnerRepository
     {
         IQueryable<Owner> Owners { get; }
     }

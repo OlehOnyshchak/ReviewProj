@@ -7,7 +7,7 @@ using ReviewProj.Domain.Entities;
 
 namespace ReviewProj.Domain.Abstract
 {
-    class IAdminRepository
+    public interface IAdminRepository
     {
         IQueryable<Admin> Admins { get; }
     }

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ReviewProj.Domain.Abstract
 {
-    interface IEnterpriseRepository
+    public interface IEnterpriseRepository
     {
         IQueryable<Enterprise> Enterprises { get; }
     }

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ReviewProj.WebUI.Models;
+using ReviewProj.Domain.Entities;
 
 namespace ReviewProj.WebUI.Controllers
 {
