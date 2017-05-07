@@ -19,16 +19,6 @@ namespace ReviewProj.WebUI.Controllers
         }
         public ActionResult Index()
         {
-            using (var db = new AppDbContext())
-            {
-                Resource rc = new Resource();
-                rc.DataPath = ".";
-                rc.Format = ResourceFormat.BMP;
-
-                db.Resources.Add(rc);
-                db.SaveChanges();
-            }
-
             return View(repository.Enterprises);
         }
 
