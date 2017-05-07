@@ -11,7 +11,7 @@ namespace ReviewProj.Domain.Concrete
     public class AppDBContext : IdentityDbContext<ApplicationUser>
     {
         public AppDBContext()
-            : base("ReviewProj_2.0", throwIfV1Schema: false)
+            : base("ReviewProj_2.1", throwIfV1Schema: false)
         {
         }
 
