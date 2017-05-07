@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ReviewProj", "ReviewProj\ReviewProj.shproj", "{C93F0221-4E49-475A-92DB-426A703B844E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReviewProj.Domain", "ReviewProj.Domain\ReviewProj.Domain.csproj", "{B87FC21E-366C-4837-9511-AF195D5875ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReviewProj.WebUI", "ReviewProj.WebUI\ReviewProj.WebUI.csproj", "{56701B86-D2A6-4AE9-A5D9-53F0A6ACE1C7}"
@@ -12,9 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReviewProj.UnitTests", "ReviewProj.UnitTests\ReviewProj.UnitTests.csproj", "{470B013D-60DD-4D48-8C91-21661135A434}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		ReviewProj\ReviewProj.projitems*{c93f0221-4e49-475a-92db-426a703b844e}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

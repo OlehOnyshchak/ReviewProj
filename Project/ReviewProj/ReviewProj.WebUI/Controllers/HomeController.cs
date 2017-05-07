@@ -19,7 +19,7 @@ namespace ReviewProj.WebUI.Controllers
         }
         public ActionResult Index()
         {
-            using (var db = new AppDBContext())
+            using (var db = new AppDbContext())
             {
                 Resource rc = new Resource();
                 rc.DataPath = ".";

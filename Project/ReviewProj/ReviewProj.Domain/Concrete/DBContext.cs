@@ -8,16 +8,16 @@ using ReviewProj.Domain.Entities;
 
 namespace ReviewProj.Domain.Concrete
 {
-    public class AppDBContext : IdentityDbContext<ApplicationUser>
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
-        public AppDBContext()
+        public AppDbContext()
             : base("ReviewProj_2.1", throwIfV1Schema: false)
         {
         }
 
-        public static AppDBContext Create()
+        public static AppDbContext Create()
         {
-            return new AppDBContext();
+            return new AppDbContext();
         }
 
         public virtual DbSet<Vote> Votes { get; set; }

@@ -10,7 +10,7 @@ namespace ReviewProj.Domain.Concrete
 {
     public class EFEnterpriceRepository : IEnterpriseRepository
     {
-        private AppDBContext context = new AppDBContext();
+        private AppDbContext context = new AppDbContext();
         public IQueryable<Enterprise> Enterprises
         {
             get { return context.Enterprises; }
