@@ -219,9 +219,34 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\index_style.css" />
     <Content Include="Content\ratingStyle.css" />
-    <Content Include="Content\Resources\noImg.png" />
-    <Content Include="Content\Resources\no_image_available.png" />
+    <Content Include="Content\AppResources\noImg.png" />
+    <Content Include="Content\AppResources\no_image_available.png" />
     <Content Include="Content\styles.css" />
+    <Content Include="Content\UserResources\0001.jpg" />
+    <Content Include="Content\UserResources\0002.jpg" />
+    <Content Include="Content\UserResources\0003.jpg" />
+    <Content Include="Content\UserResources\0004.jpg" />
+    <Content Include="Content\UserResources\0005.jpg" />
+    <Content Include="Content\UserResources\0006.jpg" />
+    <Content Include="Content\UserResources\0007.jpg" />
+    <Content Include="Content\UserResources\0008.jpg" />
+    <Content Include="Content\UserResources\0009.jpg" />
+    <Content Include="Content\UserResources\0010.jpg" />
+    <Content Include="Content\UserResources\0011.jpg" />
+    <Content Include="Content\UserResources\0012.jpg" />
+    <Content Include="Content\UserResources\0013.png" />
+    <Content Include="Content\UserResources\0014.png" />
+    <Content Include="Content\UserResources\0015.jpg" />
+    <Content Include="Content\UserResources\0016.jpg" />
+    <Content Include="Content\UserResources\0017.jpg" />
+    <Content Include="Content\UserResources\0018.jpg" />
+    <Content Include="Content\UserResources\0019.jpg" />
+    <Content Include="Content\UserResources\0020.jpg" />
+    <Content Include="Content\UserResources\0021.jpg" />
+    <Content Include="Content\UserResources\0022.jpg" />
+    <Content Include="Content\UserResources\0023.jpg" />
+    <Content Include="Content\UserResources\0024.jpg" />
+    <Content Include="Content\UserResources\0025.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -288,7 +313,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Resources\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

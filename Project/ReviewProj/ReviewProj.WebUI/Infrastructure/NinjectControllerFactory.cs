@@ -31,16 +31,16 @@ namespace ReviewProj.WebUI.Infrastructure
 
         private void AddBindings()
         {
-            Mock<IEnterpriseRepository> mock = new Mock<IEnterpriseRepository>();
-            mock.Setup(m => m.Enterprises).Returns(new List<Enterprise>
-            {
-                new Enterprise { Name = "Enterprise", Description = "Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   " },
-                new Enterprise {Name = "Enterprise 2", Description = "Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2..." }
+            //Mock<IEnterpriseRepository> mock = new Mock<IEnterpriseRepository>();
+            //mock.Setup(m => m.Enterprises).Returns(new List<Enterprise>
+            //{
+            //    new Enterprise { Name = "Enterprise", Description = "Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   Description...   " },
+            //    new Enterprise {Name = "Enterprise 2", Description = "Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2...Description 2..." }
 
-            }.AsQueryable());
-            ninjectKernel.Bind<IEnterpriseRepository>().ToConstant(mock.Object);
+            //}.AsQueryable());
+            //ninjectKernel.Bind<IEnterpriseRepository>().ToConstant(mock.Object);
 
-            //ninjectKernel.Bind<IEnterpriseRepository>().To<EFEnterpriceRepository>();
+            ninjectKernel.Bind<IEnterpriseRepository>().To<EFEnterpriseRepository>();
         }
     }
 }
