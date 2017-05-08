@@ -19,13 +19,12 @@
                 <!-- Picture -->
                 @try
                 {
-                    Resource res = ent.Resources.First();
-                    throw new Exception();
-                    //<img height="120" src="@imgSrc" />
+                    Resource res = ent.Resources.First(r => r.Type == ResourceType.MainImage);
+                    <img height="120" src="~/Content/UserResources/@res.DataPath" /> 
                 }
                 catch
                 {
-                    <img height="120" src="~/Content/Resources/no_image_available.png"/>
+                    <img height="120" src="~/Content/AppResources/no_image_available.png"/>
                 }
 
                 <div class="collection-text">
