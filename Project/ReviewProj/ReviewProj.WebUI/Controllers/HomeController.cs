@@ -8,20 +8,35 @@ using ReviewProj.Domain.Concrete;
 using ReviewProj.Domain.Entities;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
+using ReviewProj.WebUI.Models;
 
 namespace ReviewProj.WebUI.Controllers
 {
     public class HomeController : Controller
     {
         private IEnterpriseRepository repository;
-
+        public int PageSize = 20;
         public HomeController(IEnterpriseRepository enterpriceRepository)
         {
             repository = enterpriceRepository;
         }
-        public ActionResult Index()
+        public ViewResult Index(int page = 1)
         {
-            return View(repository.Enterprises);
+            EnterpriseListViewModel model = new EnterpriseListViewModel
+            {
+                Enterprises = repository.Enterprises
+                .OrderBy(e => e.Rating)
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = repository.Enterprises.Count()
+                }
+            };
+
+            return View(model);
         }
 
 

@@ -1,5 +1,5 @@
 ﻿@using ReviewProj.Domain.Entities
-@model IEnumerable<Enterprise>
+@model ReviewProj.WebUI.Models.EnterpriseListViewModel
 @{
     ViewBag.Title = "Index";
 }
@@ -8,7 +8,7 @@
 <h2 class="collection-title">Top Institutions</h2>
 
 <div class="collections">
-    @foreach (Enterprise ent in @Model)
+    @foreach (Enterprise ent in Model.Enterprises)
     {
         <div class="collection-item-outer">
             <div class="collection-item">
@@ -36,4 +36,8 @@
             </div>
         </div>
     }
+
+    <div class="pager">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+    </div>
 </div>
