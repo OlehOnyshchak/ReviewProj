@@ -310,6 +310,7 @@
     <Content Include="Views\RegisterEnterprise\Register.cshtml" />
     <Content Include="Views\RegisterEnterprise\RegistPart2.cshtml" />
     <Content Include="Views\RegisterEnterprise\RegistPart3.cshtml" />
+    <Content Include="Views\Home\Roles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
