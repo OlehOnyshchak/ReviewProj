@@ -7,6 +7,15 @@
 
 <h2 class="collection-title">Top Institutions</h2>
 
+<div>
+    <section id="search">
+        <form method="get">
+            <input type="text" value="@Model.SearchString" name="search" />
+            <input type="submit" value="Search" />
+        </form>
+    </section>
+</div>
+
 <div class="collections">
     @foreach (Enterprise ent in Model.Enterprises)
     {
@@ -35,7 +44,7 @@
                 </div>
             </div>
         </div>
-    }
+        }
 
     <div class="pager">
         @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))

@@ -10,5 +10,6 @@ namespace ReviewProj.WebUI.Models
     {
         public IEnumerable<Enterprise> Enterprises { get; set; }
         public PagingInfo PagingInfo { get; set; }
+        public string SearchString { get; set; }
     }
 }

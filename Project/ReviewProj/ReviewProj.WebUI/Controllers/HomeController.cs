@@ -20,25 +20,31 @@ namespace ReviewProj.WebUI.Controllers
         {
             repository = enterpriceRepository;
         }
-        public ViewResult Index(int page = 1)
+        public ViewResult Index(string search, int page = 1)
         {
+            IQueryable<Enterprise> enterprises = repository.Enterprises;
+            if (!String.IsNullOrEmpty(search))
+            {
+                enterprises = enterprises.Where(ent => ent.Name.Contains(search));
+            }
+
             EnterpriseListViewModel model = new EnterpriseListViewModel
             {
-                Enterprises = repository.Enterprises
-                .OrderBy(e => e.Rating)
+                Enterprises = enterprises
+                .OrderBy(e => -e.Rating)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems = repository.Enterprises.Count()
-                }
+                    TotalItems = enterprises.Count()
+                },
+                SearchString = search
             };
 
             return View(model);
         }
-
 
         // Перевіряємо ролі користувача
         public ActionResult Roles()
