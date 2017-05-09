@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -37,17 +38,17 @@ namespace ReviewProj.Domain.Concrete
     {
         protected override void Seed(AppDbContext context)
         {
-            List<Enterprise> Enterprises = new List<Enterprise>();
 
+            #region Add Users
+            //Add Owner
             context.Owners.Add(new Owner
             {
                 Email = "vmaryniak@ukr.net",
                 UserName = "Vova Maryniak",
                 IsBanned = false
             });
-            context.SaveChanges();
-            Owner owner = context.Owners.FirstOrDefaultAsync<Owner>().Result;
 
+            //Add Reviewer
             context.Reviewers.Add(new Reviewer
             {
                 Email = "oleg_onyschak@gmail.com",
@@ -55,10 +56,16 @@ namespace ReviewProj.Domain.Concrete
                 BirthDate = new DateTime(1971, 8, 10),
                 RegistrationDate = new DateTime(2014, 2, 15)
             });
-            context.SaveChanges();
-            Reviewer reviewer = context.Reviewers.FirstOrDefaultAsync<Reviewer>().Result;
 
-            #region
+            context.SaveChanges();
+
+            Owner owner = context.Owners.FirstOrDefaultAsync<Owner>().Result;
+            Reviewer reviewer = context.Reviewers.FirstOrDefaultAsync<Reviewer>().Result;
+            #endregion
+
+            #region Add Enterprises
+
+            List<Enterprise> Enterprises = new List<Enterprise>();
 
             Enterprises.Add(new Enterprise
             {
@@ -602,15 +609,16 @@ Enjoy with pleasure!And leave some for tomorrow!",
                 Owner = owner
             });
 
-            #endregion
-
             foreach (Enterprise ent in Enterprises)
             {
                 context.Enterprises.Add(ent);
             }
 
+            #endregion
 
             base.Seed(context);
         }
     }
+
+
 }

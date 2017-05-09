@@ -19,6 +19,7 @@ namespace ReviewProj.WebUI.Controllers
         }
         public ActionResult Index()
         {
+            IdentityConfig.RegisterAdmins();
             return View(repository.Enterprises);
         }
 

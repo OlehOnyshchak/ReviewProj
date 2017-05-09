@@ -16,6 +16,35 @@ using ReviewProj.Domain.Concrete;
 
 namespace ReviewProj.WebUI
 {
+    public static class IdentityConfig
+    {
+        public static void RegisterAdmins()
+        {
+            AppDbContext context = AppDbContext.Create();
+
+            Reviewer reviewer = context.Reviewers.FirstOrDefault(r => r.Email == "oleg_onyschak@gmail.com");
+            Owner owner = context.Owners.FirstOrDefault(o => o.Email == "vmaryniak@ukr.net");
+
+            ApplicationUserManager userManager =
+                new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+
+            RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            IdentityRole roleAdmin = new IdentityRole { Name = "admin" };
+            IdentityRole roleOwner = new IdentityRole { Name = "user" };
+            IdentityRole roleReviewer = new IdentityRole { Name = "reviewer" };
+
+            roleManager.Create(roleAdmin);
+            roleManager.Create(roleOwner);
+            roleManager.Create(roleReviewer);
+
+            userManager.AddToRole(reviewer.Id, roleAdmin.Name);
+            userManager.AddToRole(owner.Id, roleOwner.Name);
+
+            var a = reviewer.Roles;
+            context.SaveChanges();
+        }
+    }
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
@@ -42,7 +71,7 @@ namespace ReviewProj.WebUI
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<AppDbContext>()));
             // Configure validation logic for usernames
@@ -83,7 +112,7 @@ namespace ReviewProj.WebUI
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
