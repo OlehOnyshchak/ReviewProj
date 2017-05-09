@@ -12,7 +12,8 @@ namespace ReviewProj.Domain.Entities
     {
         public Review()
         {
-            TotalRating = 0.0;
+            TotalLikes = 0;
+            TotalDislikes = 0;
             Date = DateTime.Now;
         }
 
@@ -40,7 +41,10 @@ namespace ReviewProj.Domain.Entities
 
         // total like/dislike sum
         [Required]
-        public double TotalRating { get; set; }
+        public int TotalLikes { get; set; }
+
+        [Required]
+        public int TotalDislikes { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
