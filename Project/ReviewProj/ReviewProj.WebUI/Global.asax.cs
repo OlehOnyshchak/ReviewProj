@@ -18,6 +18,8 @@ namespace ReviewProj.WebUI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            IdentityConfig.RegisterUsers();
+
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
         }
     }

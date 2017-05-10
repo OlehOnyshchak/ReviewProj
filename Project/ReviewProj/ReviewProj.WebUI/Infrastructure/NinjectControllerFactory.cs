@@ -40,7 +40,8 @@ namespace ReviewProj.WebUI.Infrastructure
             //}.AsQueryable());
             //ninjectKernel.Bind<IEnterpriseRepository>().ToConstant(mock.Object);
 
-            ninjectKernel.Bind<IEnterpriseRepository>().To<EFEnterpriseRepository>();
+            ninjectKernel.Bind<IEnterpriseRepository>().To<EnterpriseRepository>();
+            ninjectKernel.Bind<IReviewerRepository>().To<ReviewerRepository>();
         }
     }
 }

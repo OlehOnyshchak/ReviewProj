@@ -14,7 +14,7 @@ namespace ReviewProj.Domain.Concrete
     public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         public AppDbContext()
-            : base("ReviewProj_2.2", throwIfV1Schema: false)
+            : base("ReviewProj_2.3", throwIfV1Schema: false)
         {
             Database.SetInitializer(new DBInitializer());
         }
@@ -118,7 +118,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "Very nice ambience! Efficient waiters. Tasty beer, tea, panacota. Alive band. Waiters speak English. English menu.",
                         Mark = 5,
                         Date = new DateTime(2017, 5, 7, 16, 34, 0),
-                        TotalRating = 2,
+                        TotalLikes = 2,
                         Reviewer = reviewer
                     },
                     new Review
@@ -126,7 +126,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "The place is a combination between souvenir shop, coffee store, cafe, and restaurant. The also have unique underground restaurant. I've been there twice for lunch and dinner. On some days, they have good live music.",
                         Mark = 4,
                         Date = new DateTime(2017, 5, 7, 12, 52, 0),
-                        TotalRating = 4,
+                        TotalLikes = 4,
                         Reviewer = reviewer
                     },
                     new Review
@@ -134,7 +134,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "Delicious coffee and desert in a beautiful cozy place. Everyone can find something he likes. I recomend to visit.",
                         Mark = 5,
                         Date = new DateTime(2017, 5, 5, 22, 54, 0),
-                        TotalRating = 6,
+                        TotalLikes = 6,
                         Reviewer = reviewer
                     },
                     new Review
@@ -142,7 +142,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "A place that has a number of coffee choices, including hot coffee cocktails. Deserts are good and the staff is friendly",
                         Mark = 5,
                         Date = new DateTime(2017, 5, 3, 11, 5, 0),
-                        TotalRating = 4,
+                        TotalLikes = 4,
                         Reviewer = reviewer
                     },
                     new Review
@@ -150,7 +150,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "Perfect place for cake and coffee. When you came in you smell aroma of different coffee. A lot of different in menu so everybody can choose something. There is also a shop when they sell coffee. We were satisfied.",
                         Mark = 5,
                         Date = new DateTime(2017, 5, 2, 19, 14, 0),
-                        TotalRating = 8,
+                        TotalLikes = 8,
                         Reviewer = reviewer
                     },
                     new Review
@@ -158,7 +158,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "I think this place is one of the famous and unusual for coffee lovers. Have visited this cafe/shop with excursion group and tried so-called sealed coffee, which is their specialty. It has an extraordinary idea for interior and spirit of fairy-tale",
                         Mark = 5,
                         Date = new DateTime(2017, 4, 28, 17, 41, 0),
-                        TotalRating = 11,
+                        TotalLikes = 11,
                         Reviewer = reviewer
                     },
                     new Review
@@ -166,7 +166,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "It is the reAl fun for educated person to hear how people around believe that the coffee is taken out of mine like coal. By the way the coffee itself is good enough.",
                         Mark = 5,
                         Date = new DateTime(2017, 2, 14, 16, 58, 0),
-                        TotalRating = 4,
+                        TotalLikes = 4,
                         Reviewer = reviewer
                     },
                     new Review
@@ -174,7 +174,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "Walked in to a warm and friendly environment with traditional coffee smells, paraphernalia and atmosphere. The staff were nice and quick to help. The coffee was good. Music in the background was not distracting and the wifi was working! Great job!",
                         Mark = 5,
                         Date = new DateTime(2017, 2, 13, 10, 38, 0),
-                        TotalRating = 3,
+                        TotalLikes = 3,
                         Reviewer = reviewer
                     },
                     new Review
@@ -182,7 +182,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "Nice place at the very center of the city, well decorated and clean. Coffee is excellent at a very reasonable prices. A lot of varieties of tea and cakes. Always a good option in Lviv!",
                         Mark = 4,
                         Date = new DateTime(2017, 1, 29, 19, 2, 0),
-                        TotalRating = 0,
+                        TotalLikes = 0,
                         Reviewer = reviewer
                     },
                     new Review
@@ -190,7 +190,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "Their coffee is consistent wherever you go. Helpful staff. They always have a nice variety of treats and souvenirs. They have a classic robust coffee flavor, but it's over roasted much like Starbucks. I don't think you will be disappointed, but you won't be amazed. Cheers,",
                         Mark = 3,
                         Date = new DateTime(2017, 1, 25, 13, 20, 0),
-                        TotalRating = -7,
+                        TotalLikes = -7,
                         Reviewer = reviewer
                     },
                     new Review
@@ -198,7 +198,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "If you visit Lviv you must to visit this factory. It is very interesting and different of others. At the same time you can enjoy a wonderful different coffees.",
                         Mark = 5,
                         Date = new DateTime(2017, 1, 19, 15, 16, 0),
-                        TotalRating = 4,
+                        TotalLikes = 4,
                         Reviewer = reviewer
                     },
                     new Review
@@ -206,7 +206,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "The place for the people who really liked the coffee ☕️! No jokes! If you are a person who takes the coffee at least once a day - you should visit the place named Coffee Manufacture and try out one of their special proportions! The coffee-fire-show will conquer you for sure)))",
                         Mark = 5,
                         Date = new DateTime(2017, 1, 18, 12, 56, 0),
-                        TotalRating = 1,
+                        TotalLikes = 1,
                         Reviewer = reviewer
                     },
                     new Review
@@ -214,7 +214,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "We came here for 15 minutes to drink coffee. It was wonderful, especially coffee with cinnamon and lemon. Next time we will definitely go and spend more time here!",
                         Mark = 4,
                         Date = new DateTime(2017, 1, 16, 19, 57, 0),
-                        TotalRating = 3,
+                        TotalLikes = 3,
                         Reviewer = reviewer
                     },
                     new Review
@@ -222,7 +222,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "Great location right on city square. MUST do tour of basement and order a coffee served with a blow torch to warm it.",
                         Mark = 5,
                         Date = new DateTime(2017, 1, 14, 14, 22, 0),
-                        TotalRating = 6,
+                        TotalLikes = 6,
                         Reviewer = reviewer
                     },
                     new Review
@@ -230,7 +230,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "One of the places where i take friends who come from other city to see Lviv. Cofffee is not the best in city but atmosphere is great and service is cool.",
                         Mark = 5,
                         Date = new DateTime(2016, 12, 26, 14, 0, 0),
-                        TotalRating = 2,
+                        TotalLikes = 2,
                         Reviewer = reviewer
                     },
                     new Review
@@ -238,7 +238,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "I enjoyed eating and drinking there, I even came back a few times. Every part of that place smelled amazing. There's a lot of different ways of drinking coffee here, they also have few interesting types of tea. And their ice cream is amazing! Staff (English-speaking) was really nice and we got our order quite fast.",
                         Mark = 5,
                         Date = new DateTime(2016, 12, 19, 9, 19, 0),
-                        TotalRating = 0,
+                        TotalLikes = 0,
                         Reviewer = reviewer
                     },
                     new Review
@@ -246,7 +246,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "The location is extraordinary with a cafe just build between two houses and a roof where you can see through!",
                         Mark = 5,
                         Date = new DateTime(2016, 10, 9, 15, 46, 0),
-                        TotalRating = 0,
+                        TotalLikes = 0,
                         Reviewer = reviewer
                     },
                     new Review
@@ -254,7 +254,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "Amazing place for coffee lovers. You can go downstairs to see the coffee mining process. They give you a special helmet with the light so that you can see what is happening around in spite of the dark atmosphere. You can find many touristic stuff to buy.",
                         Mark = 5,
                         Date = new DateTime(2016, 6, 10, 19, 51, 0),
-                        TotalRating = 0,
+                        TotalLikes = 0,
                         Reviewer = reviewer
                     },
                     new Review
@@ -262,7 +262,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "So nice place to drink many kind of coffee and to eat pastries.I highly commended to visit this place.",
                         Mark = 5,
                         Date = new DateTime(2016, 2, 10, 13, 24, 0),
-                        TotalRating = -1,
+                        TotalLikes = -1,
                         Reviewer = reviewer
                     },
                     new Review
@@ -270,7 +270,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "Nice coffee house with its own, unique atmosphere. One of 'must see' places in Lviv. U can drink a great coffee. U can go underground there and see how the coffee is being mined :D",
                         Mark = 5,
                         Date = new DateTime(2015, 11, 24, 19, 47, 0),
-                        TotalRating = 3,
+                        TotalLikes = 3,
                         Reviewer = reviewer
                     },
                     new Review
@@ -278,7 +278,7 @@ namespace ReviewProj.Domain.Concrete
                         Description = "There is a little cafe and a shop with gifts and different types of coffee you can buy according to the weight. But as for me the most interesting part was downstairs. There is a guest who can take you on a short tour to the 'manufacture', where you will be given a helmet (watch your head there!) and find some more places to seat and try coffee from a can which will be unsealed with a flame right in front of you!",
                         Mark = 5,
                         Date = new DateTime(2015, 1, 5, 20, 25, 0),
-                        TotalRating = 5,
+                        TotalLikes = 5,
                         Reviewer = reviewer
                     },
                     new Review
@@ -294,7 +294,7 @@ Their roasted coffees are priced out of the world(around usd 40 per kilo) - one 
 Visited January 2017",
                         Mark = 3,
                         Date = new DateTime(2014, 10, 15, 14, 31, 0),
-                        TotalRating = -9,
+                        TotalLikes = -9,
                         Reviewer = reviewer
                     }
                 },
@@ -334,21 +334,21 @@ Enjoy with pleasure!And leave some for tomorrow!",
                         Mark = 5,
                         Reviewer = reviewer,
                         Date = DateTime.Now,
-                        TotalRating = 3
+                        TotalLikes = 3
                     },
                     new Review
                     {
                         Mark = 4,
                         Reviewer = reviewer,
                         Date = DateTime.Now,
-                        TotalRating = 3
+                        TotalLikes = 3
                     },
                     new Review
                     {
                         Mark = 4,
                         Reviewer = reviewer,
                         Date = DateTime.Now,
-                        TotalRating = 3
+                        TotalLikes = 3
                     }
                 },
                 Rating = 4.34,

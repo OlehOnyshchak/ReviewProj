@@ -18,30 +18,45 @@ namespace ReviewProj.WebUI
 {
     public static class IdentityConfig
     {
-        public static void RegisterAdmins()
+        public static void RegisterUsers()
         {
             AppDbContext context = AppDbContext.Create();
 
-            Reviewer reviewer = context.Reviewers.FirstOrDefault(r => r.Email == "oleg_onyschak@gmail.com");
-            Owner owner = context.Owners.FirstOrDefault(o => o.Email == "vmaryniak@ukr.net");
-
+            //List<Enterprise> list = context.Enterprises.ToList();
             ApplicationUserManager userManager =
                 new ApplicationUserManager(new UserStore<ApplicationUser>(context));
 
-            RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            RoleManager<IdentityRole> roleManager = 
+                new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            // Admin 
+            Admin admin = new Admin { Email = "admin@gmail.com", UserName = "admin@gmail.com",
+            EmailConfirmed = true };
+            string password = "Pa$$word0";
+            var result = userManager.Create(admin, password);
+
+            // Reviewer
+            Reviewer reviewer = new Reviewer { Email = "reviewer@gmail.com", UserName = "reviewer@gmail.com",
+            BirthDate = new DateTime(1993, 10, 24) };
+            userManager.Create(reviewer, password);
+
+            // Owner
+            Owner owner = new Owner { Email = "owner@gmail.com", UserName = "owner@gmail.com" };
+            userManager.Create(owner, password);
 
             IdentityRole roleAdmin = new IdentityRole { Name = "admin" };
-            IdentityRole roleOwner = new IdentityRole { Name = "user" };
+            IdentityRole roleOwner = new IdentityRole { Name = "owner" };
             IdentityRole roleReviewer = new IdentityRole { Name = "reviewer" };
 
             roleManager.Create(roleAdmin);
             roleManager.Create(roleOwner);
             roleManager.Create(roleReviewer);
 
-            userManager.AddToRole(reviewer.Id, roleAdmin.Name);
+            userManager.AddToRole(reviewer.Id, roleReviewer.Name);
             userManager.AddToRole(owner.Id, roleOwner.Name);
+            userManager.AddToRole(admin.Id, roleAdmin.Name);
 
-            var a = reviewer.Roles;
+
             context.SaveChanges();
         }
     }

@@ -85,7 +85,8 @@
     <Compile Include="Abstract\IReviewRepository.cs" />
     <Compile Include="Abstract\IVoteRepository.cs" />
     <Compile Include="Concrete\DBContext.cs" />
-    <Compile Include="Concrete\EFEnterpriseRepository.cs" />
+    <Compile Include="Concrete\EnterpriseRepository.cs" />
+    <Compile Include="Concrete\ReviewerRepository.cs" />
     <Compile Include="Entities\Admin.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Ban.cs" />
@@ -96,11 +97,21 @@
     <Compile Include="Entities\Review.cs" />
     <Compile Include="Entities\Reviewer.cs" />
     <Compile Include="Entities\Vote.cs" />
+    <Compile Include="Migrations\201705091931191_LikesSupportForReview.cs" />
+    <Compile Include="Migrations\201705091931191_LikesSupportForReview.Designer.cs">
+      <DependentUpon>201705091931191_LikesSupportForReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705091931191_LikesSupportForReview.resx">
+      <DependentUpon>201705091931191_LikesSupportForReview.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,14 +1,26 @@
 ﻿@using ReviewProj.Domain.Entities
-@model IEnumerable<Enterprise>
+@using ReviewProj.WebUI.Models
+@model ReviewProj.WebUI.Models.EnterpriseListViewModel
 @{
     ViewBag.Title = "Index";
 }
 <link href="~/Content/index_style.css" type="text/css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" type="text/css" rel="stylesheet" />
 
 <h2 class="collection-title">Top Institutions</h2>
 
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.TextBox("Search", Model.SearchString)
+        <input type="hidden" name="page" value="1" />
+        <input type="submit" name="search" value="Search" />
+    }
+</div>
+
 <div class="collections">
-    @foreach (Enterprise ent in @Model)
+    @foreach (Enterprise ent in Model.Enterprises)
     {
         <div class="collection-item-outer">
             <div class="collection-item">
@@ -35,5 +47,8 @@
                 </div>
             </div>
         </div>
-    }
+        }
+    <div class="pager">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x, search = Model.SearchString }))
+    </div>
 </div>

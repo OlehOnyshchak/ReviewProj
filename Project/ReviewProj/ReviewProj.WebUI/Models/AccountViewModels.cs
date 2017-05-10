@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ReviewProj.WebUI.Models
 {
+    public enum Role { Guest, Reviewer, Owner, Admin }
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

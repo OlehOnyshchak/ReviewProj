@@ -9,6 +9,7 @@ namespace ReviewProj.Domain.Abstract
 {
     public interface IReviewerRepository
     {
-        IQueryable<Resource> Resources { get; }
+        IQueryable<Reviewer> Reviewers { get; }
+        Reviewer FindByEmail(string email);
     }
 }

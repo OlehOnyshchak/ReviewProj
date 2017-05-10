@@ -201,14 +201,17 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstitutionDetailsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProfileViewController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegisterEnterpriseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PagingInfo.cs" />
+    <Compile Include="Models\EnterpriseListViewModel.cs" />
     <Compile Include="Models\ProfileViewModels.cs" />
     <Compile Include="Models\RegisterEnterpriseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -302,14 +305,15 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\InstitutionDetails\Index.cshtml" />
-    <Content Include="Views\ProfileView\AddPhoto.cshtml" />
-    <Content Include="Views\ProfileView\EditProfile.cshtml" />
-    <Content Include="Views\ProfileView\Index.cshtml" />
+    <Content Include="Views\Profile\AddPhoto.cshtml" />
+    <Content Include="Views\Profile\EditProfile.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\RegisterEnterprise\AddContacts.cshtml" />
     <Content Include="Views\RegisterEnterprise\AddPhoto.cshtml" />
     <Content Include="Views\RegisterEnterprise\Register.cshtml" />
     <Content Include="Views\RegisterEnterprise\RegistPart2.cshtml" />
     <Content Include="Views\RegisterEnterprise\RegistPart3.cshtml" />
+    <Content Include="Views\Home\Roles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
