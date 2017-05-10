@@ -8,12 +8,12 @@
 <h2 class="collection-title">Top Institutions</h2>
 
 <div>
-    <section id="search">
-        <form method="get">
-            <input type="text" value="@Model.SearchString" name="search" />
-            <input type="submit" value="Search" />
-        </form>
-    </section>
+    @using (Html.BeginForm())
+    {
+        @Html.TextBox("Search", Model.SearchString)
+        <input type="hidden" name="page" value="1" />
+        <input type="submit" name="search" value="Search" />
+    }
 </div>
 
 <div class="collections">
@@ -47,6 +47,6 @@
         }
 
     <div class="pager">
-        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x, search = Model.SearchString }))
     </div>
 </div>

@@ -8,9 +8,10 @@ using ReviewProj.Domain.Entities;
 
 namespace ReviewProj.Domain.Concrete
 {
-    public class EFEnterpriseRepository : IEnterpriseRepository
+    public class EnterpriseRepository : IEnterpriseRepository
     {
         private AppDbContext context = new AppDbContext();
+
         public IQueryable<Enterprise> Enterprises
         {
             get { return context.Enterprises; }

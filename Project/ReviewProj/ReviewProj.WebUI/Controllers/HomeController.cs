@@ -36,7 +36,7 @@ namespace ReviewProj.WebUI.Controllers
                 .Take(PageSize),
                 PagingInfo = new PagingInfo
                 {
-                    CurrentPage = page,
+                    CurrentPage = enterprises.Count() > PageSize * (page - 1) ? page : 1,
                     ItemsPerPage = PageSize,
                     TotalItems = enterprises.Count()
                 },
