@@ -21,40 +21,21 @@
             
             @if (Model.Resources != null)
             {
-                int  i = 0;
-                bool hasClosedPhotosBlock = false;
+                int i = 0;
 
                 foreach (Resource res in Model.Resources)
                 {
-                    string imgSrc = getImageSrcFromResource(res);
-                    if (i == 0)
+                    if (res.Type == ResourceType.MainImage)
                     {
-                        <img class="thumbnail" src=imageSrc />
-                    } else
-                    {
-                        if(i % 4 == 1)
-                        {
-                            <div class="row small-up-4">
-                        }
-
-                        <div class="column">
-                            <img class="thumbnail" src=@imgSrc">
-                        </div>
-
-                        if(i % 4 == 0) {
-                            </div>
-                            hasClosedPhotosBlock = true;
-                        }  
+                        string imgSrc = "~/Content/UserResources/" + @res.DataPath;
+                        <img class="thumbnail" src="@Url.Content(imgSrc)">
                     }
+                    else
+                    {
 
-                    ++i;
-                }
-
-                @if(i > 1 && !hasClosedPhotosBlock) {
-                     </div>
+                    }
                 }
             }
-
 
 
             <div class="row small-up-4">
@@ -82,65 +63,35 @@
             <div class="tabs-content" data-tabs-content="example-tabs">
                 <div class="tabs-panel is-active" id="panel1">
                     <h4>Reviews</h4>
-                    <div class="media-object stack-for-small">
-                        <div class="media-object-section">
-                            <img class="thumbnail" src="https://urplaneta.ru/img/avatar_placeholder_sq.png" alt="https://urplaneta.ru/img/avatar_placeholder_sq.png" height="100" width="100">
-                        </div>
-                        <div class="media-object-section">
-                            <div class="rate">
-                                <input type="radio" id="star5" name="rate" value="5" checked="1" />
-                                <label for="star5" title="text">5 stars</label>
-                                <input type="radio" id="star4" name="rate" value="4"/>
-                                <label for="star4" title="text">4 stars</label>
-                                <input type="radio" id="star3" name="rate" value="3"/>
-                                <label for="star3" title="text">3 stars</label>
-                                <input type="radio" id="star2" name="rate" value="2" />
-                                <label for="star2" title="text">2 stars</label>
-                                <input type="radio" id="star1" name="rate" value="1" />
-                                <label for="star1" title="text">1 star</label>
+
+                        @foreach (Review review in Model.Reviews)
+                        {
+                            Reviewer reviewer = review.Reviewer;
+
+                            string reviewerAvatar = "~/Content/AppResources/no_image_available.png";
+                            if (reviewer.Resources.Count > 0)
+                            {
+                                reviewerAvatar = "~/Content/UserResources/" + @review.Reviewer.Resources.First().DataPath;
+                            }
+
+                            <div class="media-object stack-for-small">
+                                <div class="media-object-section">
+                                    <img class="thumbnail" src="@Url.Content(reviewerAvatar)" height="100" width="100">
+                                </div>
+                                <div class="media-object-section">
+                                    <div class="rating">
+                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                    </div>
+                                    <h5>@reviewer.UserName</h5>
+                                    <p>@review.Description</p>
+                                </div>
                             </div>
-                            <br />
-                            <h5>Mike Stevenson</h5>
-                            <p>I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you.</p>
-                        </div>
-                    </div>
-                    <div class="media-object stack-for-small">
-                        <div class="media-object-section">
-                            <img class="thumbnail" src="https://pp.userapi.com/c629405/v629405258/39399/nqDM15H_pWw.jpg" alt="https://urplaneta.ru/img/avatar_placeholder_sq.png" height="100" width="100">
-                        </div>
-                        <div class="media-object-section">
-                            <h5>Mike Stevenson</h5>
-                            <p>I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you. I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you.</p>
-                        </div>
-                    </div>
-                </div>
-                <label>
-                    My Review
-                    <textarea placeholder="Please type in your review"></textarea>
-                </label>
+                        }
 
-
-                <button class="button">Submit Review</button>
+               <textarea placeholder="Please type in your review"></textarea>
+               <button class="button">Submit Review</button>
             </div>
         </div>
     </div>
-
 </body>
 </html>
-
-@functions{
-    public string getImageSrcFromResource(Resource res)
-    {
-        try
-                {
-            string base64 = Convert.ToBase64String(res.Data);
-            string imgSrc = String.Format("data:image/{0};base64,{1}", res.Format, base64);
-            return imgSrc;
-        }
-
-        catch
-        {
-            return "~/Content/images/no_image_available.png";
-        }
-    }
-}
