@@ -7,10 +7,11 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("GoTo Profile", "Index", "ProfileView", routeValues: null, htmlAttributes: new { title = "ProfileView" })
+                @Html.ActionLink("GoTo Profile", "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Profile" })
             </li>
             <li>
-                <img src="@Url.Action("UserPhotos", "ProfileView" )" height="48" width="48" />
+
+                <img src=@Url.Action("PhotoPath", "Profile") height="48" width="48" />
             </li>
             <li>
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })

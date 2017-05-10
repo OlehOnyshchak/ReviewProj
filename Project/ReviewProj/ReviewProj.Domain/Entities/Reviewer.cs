@@ -22,6 +22,8 @@ namespace ReviewProj.Domain.Entities
         {
             IsBanned = false;
             RegistrationDate = DateTime.Now;
+            
+            BirthDate = new DateTime(1920, 1, 1);
             Rating = 0.0;
         }
 

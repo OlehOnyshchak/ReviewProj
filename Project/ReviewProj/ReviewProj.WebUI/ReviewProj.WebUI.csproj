@@ -201,7 +201,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstitutionDetailsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProfileViewController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegisterEnterpriseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -305,9 +305,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\InstitutionDetails\Index.cshtml" />
-    <Content Include="Views\ProfileView\AddPhoto.cshtml" />
-    <Content Include="Views\ProfileView\EditProfile.cshtml" />
-    <Content Include="Views\ProfileView\Index.cshtml" />
+    <Content Include="Views\Profile\AddPhoto.cshtml" />
+    <Content Include="Views\Profile\EditProfile.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\RegisterEnterprise\AddContacts.cshtml" />
     <Content Include="Views\RegisterEnterprise\AddPhoto.cshtml" />
     <Content Include="Views\RegisterEnterprise\Register.cshtml" />

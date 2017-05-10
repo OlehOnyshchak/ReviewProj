@@ -6,16 +6,13 @@ using System;
 
 namespace ReviewProj.WebUI.Models
 {
-    public class ProfileViewData
+    public class ProfileViewModel
     {
-        public bool HasPassword { get; set; }
         public bool IsBanned { get; set; }
         public string Nationality { get; set; }
         public DateTime BirthDate { get; set; }
         public double Rating { get; set; }
         public bool HasPhoto { get; set; }
-
-
     }
 
     public class AddPhotoModel

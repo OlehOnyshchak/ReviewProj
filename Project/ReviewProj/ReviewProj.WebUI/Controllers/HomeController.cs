@@ -22,11 +22,34 @@ namespace ReviewProj.WebUI.Controllers
         }
         public ViewResult Index(string search, int page = 1)
         {
+            ViewBag.UserRole = Role.Guest;
+            ApplicationUserManager userManager = HttpContext.GetOwinContext()
+                                                    .GetUserManager<ApplicationUserManager>();
+            ApplicationUser user = userManager.FindByEmail(User.Identity.Name);
+            if (user != null)
+            {
+                switch (userManager.GetRoles(user.Id).FirstOrDefault())
+                {
+                    case "reviewer":
+                        ViewBag.UserRole = Role.Reviewer;
+                        break;
+                    case "owner":
+                        ViewBag.UserRole = Role.Owner;
+                        break;
+                    case "admin":
+                        ViewBag.UserRole = Role.Admin;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             IQueryable<Enterprise> enterprises = repository.Enterprises;
             if (!String.IsNullOrEmpty(search))
             {
                 enterprises = enterprises.Where(ent => ent.Name.Contains(search));
             }
+
 
             EnterpriseListViewModel model = new EnterpriseListViewModel
             {
@@ -36,7 +59,7 @@ namespace ReviewProj.WebUI.Controllers
                 .Take(PageSize),
                 PagingInfo = new PagingInfo
                 {
-                    CurrentPage = enterprises.Count() > PageSize * (page - 1) ? page : 1,
+                    CurrentPage = enterprises.Count(),
                     ItemsPerPage = PageSize,
                     TotalItems = enterprises.Count()
                 },
