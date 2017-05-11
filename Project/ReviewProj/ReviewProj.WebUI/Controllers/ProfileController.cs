@@ -121,7 +121,6 @@ namespace ReviewProj.WebUI.Controllers
             string contentType = "image/" + fileName.Substring(fileName.LastIndexOf('.') + 1);
 
             return File(imageData, contentType);
-
         }
 
         [Authorize(Roles = "reviewer")]

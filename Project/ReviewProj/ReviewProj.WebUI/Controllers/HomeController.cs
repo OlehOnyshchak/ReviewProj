@@ -9,7 +9,7 @@ using ReviewProj.Domain.Entities;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
 using ReviewProj.WebUI.Models;
-
+using System.IO;
 namespace ReviewProj.WebUI.Controllers
 {
     public class HomeController : Controller
@@ -74,18 +74,6 @@ namespace ReviewProj.WebUI.Controllers
             return View(model);
         }
 
-        // Перевіряємо ролі користувача
-        public ActionResult Roles()
-        {
-            IList<string> roles = new List<string> { "Роль не определена" };
-            ApplicationUserManager userManager = HttpContext.GetOwinContext()
-                                                    .GetUserManager<ApplicationUserManager>();
-            ApplicationUser user = userManager.FindByEmail(User.Identity.Name);
-            if (user != null)
-                roles = userManager.GetRoles(user.Id);
-            return View((object)(roles == null ? "" : roles.First()));
-        }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -98,6 +86,32 @@ namespace ReviewProj.WebUI.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpGet]
+        public FileContentResult GetImage(string fileName)
+        {
+            string filePath;
+            if (fileName != null && fileName != "")
+            {
+                filePath = HttpContext.Server.MapPath("~") +
+                    "App_Data/UserResources/" + fileName;
+            }
+            else
+            {
+                filePath = HttpContext.Server.MapPath("~") + "Content/AppResources/no_image_available.png";
+            }
+
+            byte[] imageData = null;
+            FileInfo fileInfo = new FileInfo(filePath);
+            long imageFileLength = fileInfo.Length;
+            FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            imageData = br.ReadBytes((int)imageFileLength);
+
+            string contentType = "image/" + filePath.Substring(filePath.LastIndexOf('.') + 1);
+
+            return File(imageData, contentType);
         }
     }
 }
