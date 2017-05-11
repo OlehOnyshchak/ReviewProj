@@ -132,7 +132,7 @@ namespace ReviewProj.WebUI.Controllers
             {
                 Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
 
-                Resource res = new Resource(file, ResourceType.MainImage, Server.MapPath("~/App_Data/UserResources"));
+                Resource res = new Resource(file, ResourceType.MainImage, Server.MapPath("~/Content/UserResources"));
                
                 repository.UpdateMainPhoto(reviewer, res);
                 
@@ -160,7 +160,7 @@ namespace ReviewProj.WebUI.Controllers
             if (resource != null)
             {
                 fileName = HttpContext.Server.MapPath("~") + 
-                    "App_Data/UserResources/" + resource.DataPath;
+                    "Context/UserResources/" + resource.DataPath;
             }
             else
             {
