@@ -46,7 +46,7 @@ namespace ReviewProj.Domain.Entities
                     break;
             }
 
-            this.DataPath = Guid.NewGuid().ToString();
+            this.DataPath = Guid.NewGuid().ToString() + fmt;
             string path = Path.Combine(parentDir, this.DataPath);
             file.SaveAs(path);
 
