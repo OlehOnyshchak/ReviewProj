@@ -10,5 +10,6 @@ namespace ReviewProj.Domain.Abstract
     public interface IOwnerRepository
     {
         IQueryable<Owner> Owners { get; }
+        Owner FindByEmail(string email);
     }
 }

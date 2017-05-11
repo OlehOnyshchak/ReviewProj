@@ -86,6 +86,7 @@
     <Compile Include="Abstract\IVoteRepository.cs" />
     <Compile Include="Concrete\DBContext.cs" />
     <Compile Include="Concrete\EnterpriseRepository.cs" />
+    <Compile Include="Concrete\OwnerRepository.cs" />
     <Compile Include="Concrete\ReviewerRepository.cs" />
     <Compile Include="Entities\Admin.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />

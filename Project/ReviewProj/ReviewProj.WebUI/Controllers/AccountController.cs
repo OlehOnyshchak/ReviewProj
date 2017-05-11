@@ -243,7 +243,7 @@ namespace ReviewProj.WebUI.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Register", "RegisterEnterprise");
                 }
                 AddErrors(result);
             }

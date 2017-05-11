@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using ReviewProj.WebUI.Models;
 using Microsoft.AspNet.Identity.Owin;
 using ReviewProj.Domain.Entities;
+using ReviewProj.Domain.Concrete;
+using ReviewProj.Domain.Abstract;
 
 namespace ReviewProj.WebUI.Controllers
 {
@@ -14,7 +16,14 @@ namespace ReviewProj.WebUI.Controllers
         [Authorize(Roles ="owner")]
         public class RegisterEnterpriseController : Controller
         {
-            private ApplicationSignInManager _signInManager;
+        private IEnterpriseRepository repository1;
+
+        public RegisterEnterpriseController(IEnterpriseRepository enterpriseRepository)
+        {
+            repository1 = enterpriseRepository;
+        }
+
+        private ApplicationSignInManager _signInManager;
             private ApplicationUserManager _userManager;
             public static EnterpriseView enter = new EnterpriseView();
             static int index = 0;
@@ -159,7 +168,7 @@ namespace ReviewProj.WebUI.Controllers
 
             }
             */
-            public string SaveDataset()
+            public ActionResult SaveDataset()
             {
                 //need to save in db
                 var enterprise = new Enterprise();
@@ -174,10 +183,22 @@ namespace ReviewProj.WebUI.Controllers
                     Address = enter.Address,
                     Resources = enter.Resources
                 };
-                string f = enterprise.Name + enterprise.Address.City + enterprise.Address.HouseNumber + enterprise.Contacts.LastOrDefault();
-                //return RedirectToAction("Index", "Home");
-                return f;
-            }
+
+            /* using (var db = new AppDbContext())
+             {
+                 if ( != null)
+                 {
+                     //може вилетіти якщо ввести не коректні дані
+                     db.Reviewers.Where(x => x.Id == reviewer.Id).FirstOrDefault().BirthDate = Model.BirthDate;
+                     db.Reviewers.Where(x => x.Id == reviewer.Id).FirstOrDefault().Nationality = Model.Nationality;
+                     db.SaveChanges();
+                 }
+                 else RedirectToAction("About", "Home");
+             }
+             return RedirectToAction("Index", "Home");
+             return f;*/
+            return RedirectToAction("Index", "Home");
+        }
 
             private EnterpriseView GetModel()
             {
