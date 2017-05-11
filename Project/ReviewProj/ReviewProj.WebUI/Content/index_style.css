@@ -8,14 +8,20 @@
     width: 960px;
 }
 
-#IndexSearch {
-    padding-top:15px;
+#IndexSearchBox {
+    padding-top: 15px;
     padding-bottom:10px;
+}
+
+#IndexSearchButton {
+    padding-top: 15px;
+    float: left;
 }
 
 #IndexWrapper {
     width: auto;
     overflow: hidden; /* will contain if #first is longer than #second */
+    padding-top: 15px;
 }
 
 #Category {

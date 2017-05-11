@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Web.Mvc;
 using ReviewProj.Domain.Entities;
 
 namespace ReviewProj.WebUI.Models
@@ -11,7 +11,14 @@ namespace ReviewProj.WebUI.Models
         public IEnumerable<Enterprise> Enterprises { get; set; }
         public PagingInfo PagingInfo { get; set; }
         public string SearchString { get; set; }
-        public List<string> AvailableCategories { get; set; }
-        public List<string> SelectedCategories { get; set; }
+        public IList<SelectListItem> RatingCategories { get; set; }
+        public IList<SelectListItem> TypeCategories { get; set; }
+
+        public EnterpriseListViewModel()
+        {
+            Enterprises = new List<Enterprise>();
+            RatingCategories = new List<SelectListItem>();
+            TypeCategories = new List<SelectListItem>();
+        }
     }
 }
