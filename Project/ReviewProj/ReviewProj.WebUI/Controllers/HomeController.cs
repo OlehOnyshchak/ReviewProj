@@ -199,7 +199,7 @@ namespace ReviewProj.WebUI.Controllers
             if (fileName != null && fileName != "")
             {
                 filePath = HttpContext.Server.MapPath("~") +
-                    "App_Data/UserResources/" + fileName;
+                    "Content/UserResources/" + fileName;
             }
             else
             {

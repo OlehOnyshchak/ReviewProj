@@ -93,8 +93,12 @@
 
                 @if (ViewBag.UserRole == Role.Reviewer)
                 {
-                    <textarea placeholder="Please type in your review"></textarea>
-                    <button class="button">Submit Review</button>
+                    using (Html.BeginForm("AddReview", "InstitutionDetails", FormMethod.Get))
+                    {
+                        <input type="hidden" name="entId" value="@Model.EntId" />
+                        <textarea placeholder="Please type in your review" name="reviewText"></textarea>
+                        <button class="button" type="submit">Submit Review</button>
+                    }
                 }
             </div>
         </div>

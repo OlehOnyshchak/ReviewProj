@@ -51,5 +51,11 @@ namespace ReviewProj.WebUI.Controllers
 
             return View(ent);
         }
+
+        public ActionResult AddReview(int entId, string reviewText)
+        {
+
+            return RedirectToAction("Index");
+        }
     }
 }
