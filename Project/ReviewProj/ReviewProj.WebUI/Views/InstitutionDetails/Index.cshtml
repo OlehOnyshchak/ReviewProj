@@ -23,7 +23,7 @@
                 {
                     if (res.Type == ResourceType.MainImage)
                     {
-                        string imgSrc = "~/App_Data/UserResources/" + @res.DataPath;
+                        string imgSrc = "~/Content/UserResources/" + @res.DataPath;
                         <a target="_blank" href="@Url.Content(imgSrc)">
                             <img class="thumbnail" src="@Url.Content(imgSrc)">
                         </a>
@@ -35,10 +35,12 @@
                     @foreach (Resource res in Model.Resources)
                     {
                         if (res.Type == ResourceType.SecondaryImage)
-                        {   
-                            string imgSrc = "~/App_Data/UserResources/" + @res.DataPath;
+                        {
+                            string imgSrc = "~/Content/UserResources/" + @res.DataPath;
                             <div class="column">
-                                <img class="thumbnail" src="@Url.Content(imgSrc)">
+                                <a target="_blank" href="@Url.Content(imgSrc)">
+                                    <img class="thumbnail" src="@Url.Content(imgSrc)">
+                                </a>
                             </div>
                         }
                     }
@@ -66,7 +68,7 @@
                             string reviewerAvatar = "~/Content/AppResources/avatar_placeholder.png";
                             if (reviewer.Resources.Count > 0)
                             {
-                                reviewerAvatar = "~/App_Data/UserResources/" + @review.Reviewer.Resources.First().DataPath;
+                                reviewerAvatar = "~/Content/UserResources/" + @review.Reviewer.Resources.First().DataPath;
                             }
 
                             <div class="media-object stack-for-small">
