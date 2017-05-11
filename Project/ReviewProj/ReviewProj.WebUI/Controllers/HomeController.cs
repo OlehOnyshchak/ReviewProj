@@ -26,6 +26,7 @@ namespace ReviewProj.WebUI.Controllers
             ApplicationUserManager userManager = HttpContext.GetOwinContext()
                                                     .GetUserManager<ApplicationUserManager>();
             ApplicationUser user = userManager.FindByEmail(User.Identity.Name);
+            // it shouldn't be here. It should be moved into some helper method, e.g. in UsersRepository clas
             if (user != null)
             {
                 switch (userManager.GetRoles(user.Id).FirstOrDefault())
@@ -44,6 +45,7 @@ namespace ReviewProj.WebUI.Controllers
                 }
             }
 
+            // also should have specific method for this
             IQueryable<Enterprise> enterprises = repository.Enterprises;
             if (!String.IsNullOrEmpty(search))
             {
@@ -63,7 +65,10 @@ namespace ReviewProj.WebUI.Controllers
                     ItemsPerPage = PageSize,
                     TotalItems = enterprises.Count()
                 },
-                SearchString = search
+                SearchString = search,
+                AvailableCategories = new List<string> {
+                    "5 stars", "4 stars", "3 stars", "2 stars", "1 star"
+                }
             };
 
             return View(model);

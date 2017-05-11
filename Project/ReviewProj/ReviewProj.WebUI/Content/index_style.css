@@ -8,8 +8,23 @@
     width: 960px;
 }
 
-.collections {
-    overflow: auto;
+#IndexSearch {
+    padding-top:15px;
+    padding-bottom:10px;
+}
+
+#IndexWrapper {
+    width: auto;
+    overflow: hidden; /* will contain if #first is longer than #second */
+}
+
+#Category {
+    width: 20%;
+    float: left; /* add this */}
+
+#Collections {
+    width: auto;
+    overflow: hidden;
 }
 
 .collection-title {
@@ -19,40 +34,31 @@
 }
 
 .collection-item-outer {
-    display: inline-block;
-    float: left;
     padding-left: 5px;
     padding-right: 5px;
     width: 50%;
     box-sizing: border-box;
+    overflow: hidden;
+    float: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
-/*
-.collections > div:first-child {
-    padding-left: 0;
-    padding-right: 5px;
-}
-
-.collections > div:last-child {
-    padding-right: 0;
-    padding-left: 5px;
-}
-
-    */
 
 .collection-item {
     border: 1px solid #959595;
 }
 
     .collection-item img {
-        float: left;
-        width: 40%;
-        margin: 0 5px;
+        width: 100%;
+        height: 200px;
         border: 1px double;
-        border-color: gray;
+        border-color: transparent;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 
 .collection-text {
-    padding: 0 20px 20px 20px;
+    padding: 10px 20px 20px 20px;
 }
 
 .institution-title {
@@ -73,4 +79,14 @@
     border: 1px solid transparent;
     border-radius: 5px;
     outline: none;
+}
+
+.pager {
+    width:100%;
+    overflow: hidden;
+}
+
+.pager a {
+    border: thin solid grey;
+    margin-right: 3px;
 }

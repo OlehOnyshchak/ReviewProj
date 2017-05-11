@@ -7,10 +7,10 @@
 <link href="~/Content/index_style.css" type="text/css" rel="stylesheet" />
 <link href="~/Content/bootstrap.css" type="text/css" rel="stylesheet" />
 
-<h2 class="collection-title">Top Institutions</h2>
+<!--<h2 class="collection-title">Top Institutions</h2> -->
 
 
-<div>
+<div id="IndexSearch">
     @using (Html.BeginForm())
     {
         @Html.TextBox("Search", Model.SearchString)
@@ -19,36 +19,54 @@
     }
 </div>
 
-<div class="collections">
-    @foreach (Enterprise ent in Model.Enterprises)
-    {
-        <div class="collection-item-outer">
-            <div class="collection-item">
-                <h4 class="institution-title">
-                    <a href="/InstitutionDetails/Index/@ent.EntId">@ent.Name</a>
-                </h4>
+<div id="IndexWrapper">
+    <div id="Category">
+        <h4>Rating</h4>
+        @foreach (string str in Model.AvailableCategories)
+        {
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                           name="SelectedFruits"
+                           value="@str" />
+                    @str
+                </label>
+            </div>
+        }
+    </div>
 
-                <!-- Picture -->
-                @try
-                {
-                    Resource res = ent.Resources.First(r => r.Type == ResourceType.MainImage);
-                    <img height="120" src="~/Content/UserResources/@res.DataPath" /> 
-                }
-                catch
-                {
-                    <img height="120" src="~/Content/AppResources/no_image_available.png"/>
-                }
+    <div id="Collections">
 
-                <div class="collection-text">
-                    <p>
-                        @ent.Description
-                    </p>
-                    <button>Read more</button>
+        @foreach (Enterprise ent in Model.Enterprises)
+        {
+            <div class="collection-item-outer">
+                <div class="collection-item">
+                    <h4 class="institution-title">
+                        <a href="/InstitutionDetails/Index/@ent.EntId">@ent.Name</a>
+                    </h4>
+
+                    <!-- Picture -->
+                    @try
+                    {
+                        Resource res = ent.Resources.First(r => r.Type == ResourceType.MainImage);
+                            <img height="120" src="~/Content/UserResources/@res.DataPath" />
+                    }
+                    catch
+                    {
+                        <img height="120" src="~/Content/AppResources/no_image_available.png" />
+                    }   
+
+                    <div class="collection-text">
+                        <p>
+                            @ent.Description
+                        </p>
+                        <button>Read more</button>
+                    </div>
                 </div>
             </div>
-        </div>
         }
-    <div class="pager">
-        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x, search = Model.SearchString }))
+        <div class="pager">
+            @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x, search = Model.SearchString }))
+        </div>
     </div>
 </div>

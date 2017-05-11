@@ -11,5 +11,7 @@ namespace ReviewProj.WebUI.Models
         public IEnumerable<Enterprise> Enterprises { get; set; }
         public PagingInfo PagingInfo { get; set; }
         public string SearchString { get; set; }
+        public List<string> AvailableCategories { get; set; }
+        public List<string> SelectedCategories { get; set; }
     }
 }
