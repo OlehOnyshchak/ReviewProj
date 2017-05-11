@@ -68,7 +68,7 @@
                         {
                             Reviewer reviewer = review.Reviewer;
 
-                            string reviewerAvatar = "~/Content/AppResources/no_image_available.png";
+                            string reviewerAvatar = "~/Content/AppResources/avatar_placeholder.png";
                             if (reviewer.Resources.Count > 0)
                             {
                                 reviewerAvatar = "~/Content/UserResources/" + @review.Reviewer.Resources.First().DataPath;
@@ -79,7 +79,7 @@
                                     <img class="thumbnail" src="@Url.Content(reviewerAvatar)" height="100" width="100">
                                 </div>
                                 <div class="media-object-section">
-                                    <div class="rating">
+                                    <div class="star">
                                         <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
                                     </div>
                                     <h5>@reviewer.UserName</h5>
