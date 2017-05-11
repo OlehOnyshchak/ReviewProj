@@ -13,5 +13,7 @@ namespace ReviewProj.Domain.Abstract
         Reviewer FindByEmail(string email);
         void UpdateMainPhoto(Reviewer reviewer, Resource fileName);
         void RemoveMainPhoto(Reviewer reviewer);
+
+        Reviewer UpdateEntry(Reviewer existing, Reviewer updated);
     }
 }

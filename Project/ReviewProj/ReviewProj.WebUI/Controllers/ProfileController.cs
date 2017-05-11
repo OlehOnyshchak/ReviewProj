@@ -39,24 +39,52 @@ namespace ReviewProj.WebUI.Controllers
             return View(model);
         }
 
+        //[HttpPost]
+        //[Authorize(Roles = "reviewer")]
+        //public ActionResult SaveChanges(string newNationality, DateTime newBirthDate)
+        //{
+        //    Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
+        //    // Save
+        //    Resource resource = reviewer.Resources.FirstOrDefault(res => res.Type == ResourceType.MainImage);
+
+        //    ProfileViewModel model = new ProfileViewModel()
+        //    {
+        //        BirthDate = newBirthDate,
+        //        Nationality = newNationality,
+        //        Rating = reviewer.Rating,
+        //        HasPhoto = resource != null
+        //    };
+
+        //    return View(model);
+
+        //}
+
         [HttpPost]
         [Authorize(Roles = "reviewer")]
-        public ActionResult Index(string newNationality, DateTime newBirthDate)
+        public ActionResult EditResult(ProfileViewModel model, string option)
         {
             Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
-            // Save
-            Resource resource = reviewer.Resources.FirstOrDefault(res => res.Type == ResourceType.MainImage);
 
-            ProfileViewModel model = new ProfileViewModel()
+            if (option == "Save")
             {
-                BirthDate = newBirthDate,
-                Nationality = newNationality,
+                Reviewer newReviewer = new Reviewer {
+                    Nationality = model.Nationality,
+                    BirthDate = model.BirthDate
+                };
+
+                repository.UpdateEntry(reviewer, newReviewer);
+            }
+
+            Resource resource = reviewer.Resources.FirstOrDefault(res => res.Type == ResourceType.MainImage);
+            ProfileViewModel newModel = new ProfileViewModel()
+            {
+                BirthDate = reviewer.BirthDate,
+                Nationality = reviewer.Nationality,
                 Rating = reviewer.Rating,
                 HasPhoto = resource != null
             };
 
-            return View(model);
-
+            return View("Index", newModel);
         }
 
         [HttpGet]
