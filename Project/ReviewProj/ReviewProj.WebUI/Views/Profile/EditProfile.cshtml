@@ -1,4 +1,4 @@
-﻿@model ReviewProj.WebUI.Models.ProfileViewData
+﻿@model ReviewProj.WebUI.Models.ProfileViewModel
 
 @{
     ViewBag.Title = "EditProfile";
@@ -34,7 +34,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
-                @Html.ActionLink("Cansel", "Index", "ProfileView", null, new { @class = "btn btn-default" })
+                @Html.ActionLink("Cansel", "Index", "Profile", null, new { @class = "btn btn-default" })
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
 }
 
 <h2>AddPhoto</h2>
-@using (Html.BeginForm("AddPhoto", "RegisterEnterprice", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("AddPhoto", "RegisterEnterprise", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -25,7 +25,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Submit" class="btn btn-default" />
-                @Html.ActionLink("Cansel", "RegistPart3", "RegisterEnterprice", null, new { @class = "btn btn-default" })
+                @Html.ActionLink("Cansel", "RegistPart3", "RegisterEnterprise", null, new { @class = "btn btn-default" })
             </div>
         </div>
     </div>

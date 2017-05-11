@@ -9,11 +9,10 @@ using ReviewProj.Domain.Entities;
 
 namespace ReviewProj.WebUI.Controllers
 {
-    public class RegisterEnterpriseController : Controller
-    {
+  
 
-        [Authorize]
-        public class RegisterEnterpriceController : Controller
+        [Authorize(Roles ="owner")]
+        public class RegisterEnterpriseController : Controller
         {
             private ApplicationSignInManager _signInManager;
             private ApplicationUserManager _userManager;
@@ -21,11 +20,11 @@ namespace ReviewProj.WebUI.Controllers
             static int index = 0;
 
 
-            public RegisterEnterpriceController()
+            public RegisterEnterpriseController()
             {
             }
 
-            public RegisterEnterpriceController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+            public RegisterEnterpriseController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
             {
                 UserManager = userManager;
                 SignInManager = signInManager;
@@ -54,10 +53,10 @@ namespace ReviewProj.WebUI.Controllers
                     _userManager = value;
                 }
             }
-            // GET: RegisterEnterprice
+            // GET: RegisterEnterprise
             public ActionResult Index()
             {
-                return RedirectToAction("Register", "RegisterEnterprice");
+                return RedirectToAction("Register", "RegisterEnterprise");
             }
             public ActionResult Register()
             {
@@ -71,7 +70,7 @@ namespace ReviewProj.WebUI.Controllers
                 enter.Name = model.Name;
                 enter.Address = model.Address;
                 enter.Type = model.Type;
-                return RedirectToAction("AddContacts", "RegisterEnterprice");
+                return RedirectToAction("AddContacts", "RegisterEnterprise");
             }
 
             public ActionResult RegistPart2()
@@ -94,18 +93,18 @@ namespace ReviewProj.WebUI.Controllers
             {
                 enter.Contacts.Add(model.contact);
                 enter.Contacts.IndexOf("");
-                return RedirectToAction("RegistPart2", "RegisterEnterprice");
+                return RedirectToAction("RegistPart2", "RegisterEnterprise");
             }
 
             public ActionResult Edit(string itemName)
             {
                 enter.Contacts.Remove(itemName);
-                return RedirectToAction("AddContacts", "RegisterEnterprice", itemName);
+                return RedirectToAction("AddContacts", "RegisterEnterprise", itemName);
             }
             public ActionResult Delete(string itemName)
             {
                 enter.Contacts.Remove(itemName);
-                return RedirectToAction("RegistPart2", "RegisterEnterprice");
+                return RedirectToAction("RegistPart2", "RegisterEnterprise");
             }
 
             public ActionResult RegistPart3()
@@ -141,7 +140,7 @@ namespace ReviewProj.WebUI.Controllers
                 //db.Rewievers.Where(x => x.Id == reviewer.Id).FirstOrDefault().Name = "s";
 
 
-                return RedirectToAction("RegistPart3", "RegisterEnterprice");
+                return RedirectToAction("RegistPart3", "RegisterEnterprise");
             }
 
             // changes in database
@@ -185,7 +184,7 @@ namespace ReviewProj.WebUI.Controllers
 
                 Enterprise ent = new Enterprise();
                 //changes in DB
-                //ent = GetEnterprice();
+                //ent = GetEnterprise();
                 var model = new EnterpriseView
                 {
                     Address = ent.Address,
@@ -202,7 +201,7 @@ namespace ReviewProj.WebUI.Controllers
 
             // changes in DB
             /*
-            private Enterprise GetEnterprice()
+            private Enterprise GetEnterprise()
             {
                 ApplicationUser user = UserManager.FindByEmail(User.Identity.Name);
                 Enterprise reviewer = new Enterprise();
@@ -218,5 +217,5 @@ namespace ReviewProj.WebUI.Controllers
             }
             */
         }
-    }
+    
 }
