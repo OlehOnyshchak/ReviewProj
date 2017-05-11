@@ -1,10 +1,6 @@
-﻿
-
+﻿@using ReviewProj.WebUI.Models;
 @using ReviewProj.Domain.Entities
 @model Enterprise
-@{
-    ViewBag.Title = "Index";
-}
 
 <!doctype html>
 <html class="no-js" lang="en">
@@ -95,8 +91,11 @@
                             </div>
                         }
 
-               <textarea placeholder="Please type in your review"></textarea>
-               <button class="button">Submit Review</button>
+                @if (ViewBag.UserRole == Role.Reviewer)
+                {
+                    <textarea placeholder="Please type in your review"></textarea>
+                    <button class="button">Submit Review</button>
+                }
             </div>
         </div>
     </div>
