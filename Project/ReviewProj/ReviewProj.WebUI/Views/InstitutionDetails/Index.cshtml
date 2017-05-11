@@ -1,4 +1,6 @@
-﻿@using ReviewProj.Domain.Entities
+﻿
+
+@using ReviewProj.Domain.Entities
 @model Enterprise
 @{
     ViewBag.Title = "Index";
@@ -67,6 +69,7 @@
                         @foreach (Review review in Model.Reviews)
                         {
                             Reviewer reviewer = review.Reviewer;
+                            double mark = Math.Round(review.Mark);
 
                             string reviewerAvatar = "~/Content/AppResources/avatar_placeholder.png";
                             if (reviewer.Resources.Count > 0)
@@ -80,7 +83,11 @@
                                 </div>
                                 <div class="media-object-section">
                                     <div class="star">
-                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                        @for (int i = 1; i <= 5; ++i) // 5 = max rating possible
+                                        {
+                                            string starStyle = RatingHelper.styleForStarIndexWithRating(i, mark);
+                                            <span class=@starStyle>☆</span>
+                                        }
                                     </div>
                                     <h5>@reviewer.UserName</h5>
                                     <p>@review.Description</p>

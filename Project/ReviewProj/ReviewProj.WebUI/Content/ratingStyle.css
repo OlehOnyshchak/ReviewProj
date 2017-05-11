@@ -2,26 +2,25 @@
 	Ratings Stars
 	(with as little code as possible)
 */
+
 .star {
     unicode-bidi: bidi-override;
-    direction: rtl;
     text-align: left;
 }
+
 .star > span {
   display: inline-block;
   position: relative;
-  width: 1.1em;
-}
-.star > span:hover,
-.star > span:hover ~ span {
-  color: transparent;
-}
-.star > span:hover:before,
-.star > span:hover ~ span:before {
-   content: "\2605";
-   position: absolute;
-   left: 0; 
-   color: gold;
+  width: 1em;
 }
 
-body { padding: 100px; }
+.yellow-star:before {
+    content: "\2605";
+    position: absolute;
+    left: 0;
+    color: gold;
+}
+
+.transparent-star:before {
+    color: transparent;
+}
