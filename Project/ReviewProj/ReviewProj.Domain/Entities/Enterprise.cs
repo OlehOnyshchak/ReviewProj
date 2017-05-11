@@ -49,6 +49,10 @@ namespace ReviewProj.Domain.Entities
 
     public enum EnterpriceType
     {
-        Restaurant
+        Restaurant,
+        Hotel,
+        FastFood,
+        Club,
+        Cafe
     }
 }

@@ -10,29 +10,41 @@
 <!--<h2 class="collection-title">Top Institutions</h2> -->
 
 
-<div id="IndexSearch">
-    @using (Html.BeginForm())
-    {
-        @Html.TextBox("Search", Model.SearchString)
-        <input type="hidden" name="page" value="1" />
-        <input type="submit" name="search" value="Search" />
-    }
-</div>
-
 <div id="IndexWrapper">
-    <div id="Category">
-        <h4>Rating</h4>
-        @foreach (string str in Model.AvailableCategories)
-        {
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"
-                           name="SelectedFruits"
-                           value="@str" />
-                    @str
-                </label>
+     <div id="Category">
+         @using (Html.BeginForm("FilterList", "Home"))
+         {
+            <div id="IndexSearchBox">
+                @Html.TextBoxFor(m => Model.SearchString)
             </div>
-        }
+
+            <h4>Rating</h4>
+             for (int i = 0; i < Model.RatingCategories.Count; ++i)
+             {
+                <div id="Checkbox">
+                    @Html.CheckBoxFor(m => Model.RatingCategories[i].Selected)
+                    @Html.DisplayFor(m => Model.RatingCategories[i].Text)
+                    @Html.HiddenFor(m => Model.RatingCategories[i].Text)
+                    @Html.HiddenFor(m => Model.RatingCategories[i].Value)
+                    <br />
+                </div>
+             }
+
+            <h4>Type</h4>
+             for (int i = 0; i < Model.TypeCategories.Count; ++i)
+             {
+                <div id="Checkbox">
+                    @Html.CheckBoxFor(m => Model.TypeCategories[i].Selected)
+                    @Html.DisplayFor(m => Model.TypeCategories[i].Text)
+                    @Html.HiddenFor(m => Model.TypeCategories[i].Text)
+                    @Html.HiddenFor(m => Model.TypeCategories[i].Value)
+                    <br />
+                </div>
+             }
+            <div id="IndexSearchButton">
+                <input type="submit" value="Search" />
+            </div>
+         }
     </div>
 
     <div id="Collections">
@@ -66,7 +78,7 @@
             </div>
         }
         <div class="pager">
-            @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x, search = Model.SearchString }))
+            @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x, model = Model }))
         </div>
     </div>
 </div>
