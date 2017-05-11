@@ -11,7 +11,7 @@ namespace ReviewProj.Domain.Abstract
     {
         IQueryable<Reviewer> Reviewers { get; }
         Reviewer FindByEmail(string email);
-        void UpdateMainPhoto(Reviewer reviewer, string fileName);
+        void UpdateMainPhoto(Reviewer reviewer, Resource fileName);
         void RemoveMainPhoto(Reviewer reviewer);
     }
 }

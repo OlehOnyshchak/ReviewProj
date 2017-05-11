@@ -17,15 +17,12 @@ namespace ReviewProj.Domain.Concrete
             get { return context.Reviewers; }
         }
 
-        public void UpdateMainPhoto(Reviewer reviewer, string fileName)
+        public void UpdateMainPhoto(Reviewer reviewer, Resource resource)
         {
-            reviewer.Resources.ForEach(res => res.Type = ResourceType.SecondaryImage);
-            reviewer.Resources.Add(new Resource
-            {
-                DataPath = fileName,
-                Type = ResourceType.MainImage
-            });
+            List<Resource> mainImages = reviewer.Resources.Where(res => res.Type == ResourceType.MainImage).ToList();
+            mainImages.ForEach(res => res.Type = ResourceType.SecondaryImage);
 
+            reviewer.Resources.Add(resource);
             context.SaveChanges();
         }
 

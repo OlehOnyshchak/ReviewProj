@@ -70,17 +70,14 @@ namespace ReviewProj.WebUI.Controllers
         [Authorize(Roles = "reviewer")]
         public ActionResult AddPhoto(HttpPostedFileBase file)
         {
-            if (file != null)
+            if (file != null && file.ContentLength > 0)
             {
                 Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
 
-                if (file.ContentLength > 0)
-                {
-                    string fileName = Path.GetFileName(file.FileName);
-                    string path = Path.Combine(Server.MapPath("~/App_Data/UserResources"), fileName);
-                    file.SaveAs(path);
-                    repository.UpdateMainPhoto(reviewer, fileName);
-                }
+                Resource res = new Resource(file, ResourceType.MainImage, Server.MapPath("~/App_Data/UserResources"));
+               
+                repository.UpdateMainPhoto(reviewer, res);
+                
             }
 
             return RedirectToAction("Index");
