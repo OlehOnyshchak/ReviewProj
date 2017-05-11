@@ -27,7 +27,6 @@ namespace ReviewProj.Domain.Concrete
             });
 
             context.SaveChanges();
-
         }
 
         public Reviewer FindByEmail(string email)

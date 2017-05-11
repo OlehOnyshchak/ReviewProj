@@ -148,8 +148,18 @@ namespace ReviewProj.WebUI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, string ButtonType)
         {
+            switch (ButtonType)
+            {
+                case "Register as Reviewer":
+                    break;
+                case "Register as Owner":
+                    break;
+                default:
+                    break;
+            }
+
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
