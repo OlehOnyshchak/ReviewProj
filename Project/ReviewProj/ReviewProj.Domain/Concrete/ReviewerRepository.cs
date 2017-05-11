@@ -17,9 +17,28 @@ namespace ReviewProj.Domain.Concrete
             get { return context.Reviewers; }
         }
 
+        public void UpdateMainPhoto(Reviewer reviewer, string fileName)
+        {
+            reviewer.Resources.ForEach(res => res.Type = ResourceType.SecondaryImage);
+            reviewer.Resources.Add(new Resource
+            {
+                DataPath = fileName,
+                Type = ResourceType.MainImage
+            });
+
+            context.SaveChanges();
+
+        }
+
         public Reviewer FindByEmail(string email)
         {
             return context.Reviewers.FirstOrDefault(r => r.Email == email);
+        }
+
+        public void RemoveMainPhoto(Reviewer reviewer)
+        {
+            reviewer.Resources.RemoveAll(res => res.Type == ResourceType.MainImage);
+            context.SaveChanges();
         }
     }
 }

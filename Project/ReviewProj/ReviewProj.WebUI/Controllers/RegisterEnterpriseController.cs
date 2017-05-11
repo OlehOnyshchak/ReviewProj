@@ -121,28 +121,28 @@ namespace ReviewProj.WebUI.Controllers
 
             }
 
-            [HttpPost]
-            [Authorize]
-            [ValidateAntiForgeryToken]
-            public ActionResult AddPhoto(AddPhotoModel model, HttpPostedFileBase photo1)
-            {
-                Resource res = new Resource();
-                if (photo1 != null)
-                {
-                    model.Photo = new byte[photo1.ContentLength];
-                    photo1.InputStream.Read(model.Photo, 0, photo1.ContentLength);
-                    // Now we store in the database path to the resource
-                    //res.Data = model.Photo;
-                    res.ResourceId = index;
-                    index++;
-                    enter.Resources.Add(res);
-                }
+            //[HttpPost]
+            //[Authorize]
+            //[ValidateAntiForgeryToken]
+            //public ActionResult AddPhoto(AddPhotoModel model, HttpPostedFileBase photo1)
+            //{
+            //    Resource res = new Resource();
+            //    if (photo1 != null)
+            //    {
+            //        model.Photo = new byte[photo1.ContentLength];
+            //        photo1.InputStream.Read(model.Photo, 0, photo1.ContentLength);
+            //        // Now we store in the database path to the resource
+            //        //res.Data = model.Photo;
+            //        res.ResourceId = index;
+            //        index++;
+            //        enter.Resources.Add(res);
+            //    }
 
-                //db.Rewievers.Where(x => x.Id == reviewer.Id).FirstOrDefault().Name = "s";
+            //    //db.Rewievers.Where(x => x.Id == reviewer.Id).FirstOrDefault().Name = "s";
 
 
-                return RedirectToAction("RegistPart3", "RegisterEnterprice");
-            }
+            //    return RedirectToAction("RegistPart3", "RegisterEnterprice");
+            //}
 
             // changes in database
             /*

@@ -3,24 +3,24 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System;
+using System.IO;
 
 namespace ReviewProj.WebUI.Models
 {
     public class ProfileViewModel
     {
-        public bool IsBanned { get; set; }
         public string Nationality { get; set; }
         public DateTime BirthDate { get; set; }
         public double Rating { get; set; }
         public bool HasPhoto { get; set; }
     }
 
-    public class AddPhotoModel
-    {
-        [Required]
-        [Display(Name = "Photo")]
-        public byte[] Photo { get; set; }
-    }
+    //public class AddPhotoModel
+    //{
+    //    [Required]
+    //    [Display(Name = "Photo")]
+    //    public byte[] Photo { get; set; }
+    //}
 
 
 
