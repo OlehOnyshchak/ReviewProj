@@ -10,6 +10,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ReviewProj.WebUI.Models;
 using ReviewProj.Domain.Entities;
+using ReviewProj.Domain.Concrete;
+using System.Data.Entity.Validation;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ReviewProj.WebUI.Controllers
 {
@@ -148,38 +151,102 @@ namespace ReviewProj.WebUI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model, string ButtonType)
+        public ActionResult Register(RegisterViewModel model,string asReviewer,string asOwner)
         {
-            switch (ButtonType)
-            {
-                case "Register as Reviewer":
-                    break;
-                case "Register as Owner":
-                    break;
-                default:
-                    break;
-            }
-
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                if (!string.IsNullOrEmpty(asReviewer))
+                {
+                    return RedirectToAction("RegisterAsReviewer", "Account", model);
+                }
+                if (!string.IsNullOrEmpty(asOwner))
+                {
+                    return RedirectToAction("RegisterAsOwner", "Account", model);
+                }
+            }
+            return View(model);
+        
+        }
+        [AllowAnonymous]
+        public async Task<ActionResult> RegisterAsReviewer(RegisterViewModel model)
+        {
+            IdentityRole roleReviewer = new IdentityRole { Name = "reviewer" };
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+            using (var db = new AppDbContext())
+            {
+                var query = from b in db.Reviewers
+                            select b;
+                var q = query.ToArray();
+                Reviewer rv = new Reviewer(user);
+                db.Reviewers.Add(rv);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in entityValidationErrors.ValidationErrors)
+                        {
+                            Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                        }
+                    }
+                }
+                //може вилетіти якщо вже існує користувач з таким логіном
+                var result = await UserManager.AddPasswordAsync(user.Id, model.Password);
+                await UserManager.AddToRoleAsync(user.Id, roleReviewer.Name);
+
+
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    return RedirectToAction("Index", "Profile");
+                }
+                AddErrors(result);
+            }
+            return View(model);
+        }
+        [AllowAnonymous]
+        public async Task<ActionResult> RegisterAsOwner(RegisterViewModel model)
+        {
+            IdentityRole roleOwner = new IdentityRole { Name = "owner" };
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
+            using (var db = new AppDbContext())
+            {
+                var query = from b in db.Owners
+                            select b;
+                var q = query.ToArray();
+                Owner ow = new Owner(user);
+                db.Owners.Add(ow);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in entityValidationErrors.ValidationErrors)
+                        {
+                            Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                        }
+                    }
+                }
+                //може вилетіти якщо вже існує користувач з таким логіном
+                var result = await UserManager.AddPasswordAsync(user.Id, model.Password);
+                await UserManager.AddToRoleAsync(user.Id, roleOwner.Name);
+
+
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
-
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
