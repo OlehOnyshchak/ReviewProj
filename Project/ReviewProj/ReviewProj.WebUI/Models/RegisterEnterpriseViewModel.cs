@@ -13,7 +13,7 @@ namespace ReviewProj.WebUI.Models
         public List<String> Contacts = new List<String>();
         public List<Resource> Resources = new List<Resource>();
         public List<Review> Reviews = new List<Review>();
-
+        public string Description { get; set; }
         public string Name { get; set; }
         public double Rating { get; set; }
         public int Type { get; set; }

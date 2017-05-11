@@ -6,6 +6,10 @@ using System.Web.Mvc;
 using ReviewProj.WebUI.Models;
 using Microsoft.AspNet.Identity.Owin;
 using ReviewProj.Domain.Entities;
+using ReviewProj.Domain.Concrete;
+using ReviewProj.Domain.Abstract;
+using System.Data.Entity.Validation;
+using Microsoft.AspNet.Identity;
 
 namespace ReviewProj.WebUI.Controllers
 {
@@ -14,7 +18,14 @@ namespace ReviewProj.WebUI.Controllers
         [Authorize(Roles ="owner")]
         public class RegisterEnterpriseController : Controller
         {
-            private ApplicationSignInManager _signInManager;
+        private IEnterpriseRepository repository1;
+
+        public RegisterEnterpriseController(IEnterpriseRepository enterpriseRepository)
+        {
+            repository1 = enterpriseRepository;
+        }
+
+        private ApplicationSignInManager _signInManager;
             private ApplicationUserManager _userManager;
             public static EnterpriseView enter = new EnterpriseView();
             static int index = 0;
@@ -137,58 +148,90 @@ namespace ReviewProj.WebUI.Controllers
             //        enter.Resources.Add(res);
             //    }
 
-            //    //db.Rewievers.Where(x => x.Id == reviewer.Id).FirstOrDefault().Name = "s";
-
-
-            //    return RedirectToAction("RegistPart3", "RegisterEnterprise");
-            //}
-
-
-            //[HttpPost]
-            //[Authorize]
-            //[ValidateAntiForgeryToken]
-            //public ActionResult AddPhoto(AddPhotoModel model, HttpPostedFileBase photo1)
-            //{
-            //    Resource res = new Resource();
-            //    if (photo1 != null)
-            //    {
-            //        model.Photo = new byte[photo1.ContentLength];
-            //        photo1.InputStream.Read(model.Photo, 0, photo1.ContentLength);
-            //        // Now we store in the database path to the resource
-            //        //res.Data = model.Photo;
-            //        res.ResourceId = index;
-            //        index++;
-            //        enter.Resources.Add(res);
-            //    }
-
-            //    //db.Rewievers.Where(x => x.Id == reviewer.Id).FirstOrDefault().Name = "s";
-
-
-            //    return RedirectToAction("RegistPart3", "RegisterEnterprice");
-            //}
-
-            // changes in database
-            /*
-            public FileContentResult GetChoosedPhotos(int ID)
+            [HttpPost]
+            [Authorize]
+            [ValidateAntiForgeryToken]
+            public ActionResult AddPhoto(AddPhotoModelEnterprise model, HttpPostedFileBase photo1)
             {
-                foreach (Resource res in enter.Resources)
+                Resource res = new Resource();
+                if (photo1 != null)
                 {
-                    if (res.ResourceId == ID)
-                    {
-                        return new FileContentResult(res.Data, "image/jpeg");
-                    }
-
+                    model.Photo = new byte[photo1.ContentLength];
+                    photo1.InputStream.Read(model.Photo, 0, photo1.ContentLength);
+                    // Now we store in the database path to the resource
+                    //res.Data = model.Photo;
+                    res.ResourceId = index;
+                    index++;
+                    enter.Resources.Add(res);
                 }
-                return new FileContentResult(enter.Resources[0].Data, "image/jpeg");
+
+            //db.Rewievers.Where(x => x.Id == reviewer.Id).FirstOrDefault().Name = "s";
+
+
+            return RedirectToAction("RegistPart3", "RegisterEnterprise");
+        }
+
+
+             
+        public ActionResult RegistPart4()
+        {
+            return View(enter);
+        }
+
+        [HttpPost]
+        public ActionResult RegistPart4(EnterpriseView model)
+        {
+            enter.Description = model.Description;
+            return RedirectToAction("SaveDataset", "RegisterEnterprise");
+        }
+        //[HttpPost]
+        //[Authorize]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult AddPhoto(AddPhotoModel model, HttpPostedFileBase photo1)
+        //{
+        //    Resource res = new Resource();
+        //    if (photo1 != null)
+        //    {
+        //        model.Photo = new byte[photo1.ContentLength];
+        //        photo1.InputStream.Read(model.Photo, 0, photo1.ContentLength);
+        //        // Now we store in the database path to the resource
+        //        //res.Data = model.Photo;
+        //        res.ResourceId = index;
+        //        index++;
+        //        enter.Resources.Add(res);
+        //    }
+
+        //    //db.Rewievers.Where(x => x.Id == reviewer.Id).FirstOrDefault().Name = "s";
+
+
+        //    return RedirectToAction("RegistPart3", "RegisterEnterprice");
+        //}
+
+        // changes in database
+        /*
+        public FileContentResult GetChoosedPhotos(int ID)
+        {
+            foreach (Resource res in enter.Resources)
+            {
+                if (res.ResourceId == ID)
+                {
+                    return new FileContentResult(res.Data, "image/jpeg");
+                }
 
             }
-            */
-            public string SaveDataset()
+            return new FileContentResult(enter.Resources[0].Data, "image/jpeg");
+
+        }
+        */
+        public ActionResult SaveDataset()
             {
-                //need to save in db
-                var enterprise = new Enterprise();
+            //зберігання в бд без ресурсів
+            ApplicationUser user = UserManager.FindByEmail(User.Identity.Name);
+            Owner own = new Owner();
+            var enterprise = new Enterprise();
                 enterprise.Contacts = new List<string>();
                 enterprise.Resources = new List<Resource>();
+            Enterprise g = new Enterprise();
                 enterprise = new Enterprise
                 {
                     Name = enter.Name,
@@ -196,12 +239,21 @@ namespace ReviewProj.WebUI.Controllers
                     //Type = enter.Type,
                     Contacts = enter.Contacts,
                     Address = enter.Address,
-                    Resources = enter.Resources
+                   // Resources = enter.Resources,
+                    Description=enter.Description,
                 };
-                string f = enterprise.Name + enterprise.Address.City + enterprise.Address.HouseNumber + enterprise.Contacts.LastOrDefault();
-                //return RedirectToAction("Index", "Home");
-                return f;
+
+             using (var db = new AppDbContext())
+             {
+               own = db.Owners.Where(x => x.Id == user.Id).FirstOrDefault();
+                enterprise.Owner = own;
+                db.Enterprises.Add(enterprise);
+
+                    db.SaveChanges();
+               
             }
+             return RedirectToAction("Index", "Home");
+        }
 
             private EnterpriseView GetModel()
             {
