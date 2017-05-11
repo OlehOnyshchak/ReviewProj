@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ReviewProj.Domain.Abstract;
 using ReviewProj.WebUI.Models;
 using ReviewProj.Domain.Concrete;
+using System.IO;
 
 namespace ReviewProj.WebUI.Controllers
 {
@@ -21,7 +22,7 @@ namespace ReviewProj.WebUI.Controllers
             repository = reviewerRepository;
         }
 
-        // GET: ProfileView
+        [HttpGet]
         [Authorize(Roles = "reviewer")]
         public ActionResult Index()
         {            
@@ -77,25 +78,98 @@ namespace ReviewProj.WebUI.Controllers
         public ProfileViewModel GetModel()
         {
             Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
-
             Resource resource = reviewer.Resources.FirstOrDefault(res => res.Type == ResourceType.MainImage);
-
-            string fileName = null;
-            if (resource != null)
-            {
-                fileName = resource.DataPath;
-            }
 
             ProfileViewModel model = new ProfileViewModel()
             {
                 BirthDate = reviewer.BirthDate,
-                IsBanned = reviewer.IsBanned,
                 Nationality = reviewer.Nationality,
                 Rating = reviewer.Rating,
-                HasPhoto = reviewer.Resources.FirstOrDefault(
-                    res => res.Type == ResourceType.MainImage) != null
+                HasPhoto = resource != null
             };
+
             return model;
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "reviewer")]
+        public ActionResult Index(string newNationality, DateTime newBirthDate)
+        {
+            Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
+            // Save
+            Resource resource = reviewer.Resources.FirstOrDefault(res => res.Type == ResourceType.MainImage);
+
+            ProfileViewModel model = new ProfileViewModel()
+            {
+                BirthDate = newBirthDate,
+                Nationality = newNationality,
+                Rating = reviewer.Rating,
+                HasPhoto = resource != null
+            };
+
+            return View(model);
+
+        }
+
+        [HttpGet]
+        [Authorize (Roles = "reviewer")]
+        public ActionResult AddPhoto()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "reviewer")]
+        public ActionResult AddPhoto(HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
+
+                Resource res = new Resource(file, ResourceType.MainImage, Server.MapPath("~/App_Data/UserResources"));
+               
+                repository.UpdateMainPhoto(reviewer, res);
+                
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "reviewer")]
+        public ActionResult DeletePhoto()
+        {
+            Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
+            repository.RemoveMainPhoto(reviewer);
+
+            return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "reviewer")]
+        public FileContentResult Photo()
+        {
+            Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
+
+            Resource resource = reviewer.Resources.FirstOrDefault(res => res.Type == ResourceType.MainImage);
+            string fileName;
+            if (resource != null)
+            {
+                fileName = HttpContext.Server.MapPath("~") + 
+                    "App_Data/UserResources/" + resource.DataPath;
+            }
+            else
+            {
+                fileName = HttpContext.Server.MapPath("~") + "Content/AppResources/noImg.png";
+            }
+            byte[] imageData = null;
+            FileInfo fileInfo = new FileInfo(fileName);
+            long imageFileLength = fileInfo.Length;
+            FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            imageData = br.ReadBytes((int)imageFileLength);
+
+            string contentType = "image/" + fileName.Substring(fileName.LastIndexOf('.') + 1);
+
+            return File(imageData, contentType);
         }
     }
 }

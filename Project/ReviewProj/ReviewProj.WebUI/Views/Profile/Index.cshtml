@@ -6,7 +6,7 @@
 
 <div>
     <h1>
-        <img src="~/Content/AppResources/noImg.png" style="width:160px;height:160px; background: #FFFFFF;
+        <img src="@Url.Action("Photo")" style="width:160px;height:160px; background: #FFFFFF;
          margin: auto;
         -moz-border-radius: 60px;
         border-radius: 100px;
@@ -38,16 +38,21 @@
             @Html.DisplayNameFor(model => model.Nationality)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nationality)
-        </dd>
+        @if (Model.Nationality == null)
+        {
+            <dd>not specified</dd>
+        }
+        else
+        {
+            <dd>@Html.DisplayFor(model => model.Nationality)</dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.BirthDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BirthDate)
+            @Model.BirthDate.ToShortDateString()
         </dd>
 
         <dt>
@@ -58,14 +63,12 @@
             @Html.DisplayFor(model => model.Rating)
         </dd>
 
-
-        <dt>Password:</dt>
         <dd>
-            [@Html.ActionLink("Change", "ChangePassword")]
+            [@Html.ActionLink("Change Password", "ChangePassword", "Manage")]
         </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "EditProfile", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "EditProfile")
 </p>

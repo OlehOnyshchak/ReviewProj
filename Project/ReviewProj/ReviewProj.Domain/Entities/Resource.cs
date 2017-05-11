@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
+using System.Web;
+using System.IO;
+using System.Web.Mvc;
 
 namespace ReviewProj.Domain.Entities
 {
@@ -16,12 +19,38 @@ namespace ReviewProj.Domain.Entities
             Type = ResourceType.SecondaryImage;
         }
 
-        public Resource(Image image, bool isMain = false)
+        public Resource(HttpPostedFileBase file, ResourceType type, string parentDir)
         {
-            Type = isMain ? ResourceType.MainImage : ResourceType.SecondaryImage;
-            // TODO: save image inside some local folder
-            // and fill all other fields
-            throw new NotImplementedException();
+            if (file == null)
+                throw new ArgumentException("public Resource(HttpPostedFileBase file, ResourceType type)");
+
+
+            string fmt = Path.GetExtension(file.FileName);
+            fmt = fmt.ToLower();
+            switch (fmt)
+            {
+                case "png":
+                    this.Format = ResourceFormat.PNG;
+                    break;
+                case "tiff":
+                    this.Format = ResourceFormat.TIFF;
+                    break;
+                case "bmp":
+                    this.Format = ResourceFormat.BMP;
+                    break;
+                case "gif":
+                    this.Format = ResourceFormat.GIF;
+                    break;
+                default:
+                    this.Format = ResourceFormat.JPEG;
+                    break;
+            }
+
+            this.DataPath = Guid.NewGuid().ToString() + fmt;
+            string path = Path.Combine(parentDir, this.DataPath);
+            file.SaveAs(path);
+
+            this.Type = type;
         }
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
