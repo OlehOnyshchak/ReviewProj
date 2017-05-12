@@ -53,9 +53,9 @@ namespace ReviewProj.WebUI.Controllers
             return View(ent);
         }
 
-        public ActionResult AddReview(int entId, string reviewText)
+        public ActionResult AddReview(int entId, string reviewText, string rating)
         {
-            int mark = 0;
+            int mark = Convert.ToInt32(rating);
             repository.AddReview(entId, User.Identity.Name, new Review
             {
                 Description = reviewText,
