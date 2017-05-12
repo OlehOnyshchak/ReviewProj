@@ -1,84 +1,96 @@
 ﻿@using ReviewProj.Domain.Entities
 @using ReviewProj.WebUI.Models
-@model ReviewProj.WebUI.Models.EnterpriseListViewModel
-@{
-    ViewBag.Title = "Index";
-}
+
 <link href="~/Content/index_style.css" type="text/css" rel="stylesheet" />
-<link href="~/Content/bootstrap.css" type="text/css" rel="stylesheet" />
+<link href="~/Content/custom.css" type="text/css" rel="stylesheet" />
+@*<link href="~/Content/bootstrap.css" type="text/css" rel="stylesheet" />*@
+@*<h2 class="collection-title"><br></h2>
+<p>Check it</p>
+<p>Check it</p>
+<p>Check it</p>
+<p>Check it</p>*@
+@model ReviewProj.WebUI.Models.EnterpriseListViewModel
 
-<!--<h2 class="collection-title">Top Institutions</h2> -->
+		@*@{
+			ViewBag.Title = "Index";
+		}
+	<h2>@ViewBag.Title.</h2*@
+	@*<img class="img-responsive center-block" src="~/Content/AppResources/AdobeStock_76218229_LVIV.jpeg" alt="">*@
+
+		<div id="IndexWrapper">
+
+			<div id="Category">
+				@using (Html.BeginForm("FilterList", "Home"))
+				{
+					<div id="IndexSearchBox">
+						@Html.TextBoxFor(m => Model.SearchString)
+					</div>
+
+							<h4>Rating</h4>
+					for (int i = 0; i < Model.RatingCategories.Count; ++i)
+					{
+						<div id="Checkbox">
+							@Html.CheckBoxFor(m => Model.RatingCategories[i].Selected)
+							@Html.DisplayFor(m => Model.RatingCategories[i].Text)
+							@Html.HiddenFor(m => Model.RatingCategories[i].Text)
+							@Html.HiddenFor(m => Model.RatingCategories[i].Value)
+							<br />
+						</div>
+					}
 
 
-<div id="IndexWrapper">
-     <div id="Category">
-         @using (Html.BeginForm("FilterList", "Home"))
-         {
-            <div id="IndexSearchBox">
-                @Html.TextBoxFor(m => Model.SearchString)
-            </div>
+					<h4>Type</h4>
+					for (int i = 0; i < Model.TypeCategories.Count; ++i)
+					{
+						<div id="Checkbox">
+							@Html.CheckBoxFor(m => Model.TypeCategories[i].Selected)
+							@Html.DisplayFor(m => Model.TypeCategories[i].Text)
+							@Html.HiddenFor(m => Model.TypeCategories[i].Text)
+							@Html.HiddenFor(m => Model.TypeCategories[i].Value)
+							<br />
+						</div>
+					}
+					<div id="IndexSearchButton">
+						<input type="submit" value="Search" />
+					</div>
+				}
+			</div>
 
-            <h4>Rating</h4>
-             for (int i = 0; i < Model.RatingCategories.Count; ++i)
-             {
-                <div id="Checkbox">
-                    @Html.CheckBoxFor(m => Model.RatingCategories[i].Selected)
-                    @Html.DisplayFor(m => Model.RatingCategories[i].Text)
-                    @Html.HiddenFor(m => Model.RatingCategories[i].Text)
-                    @Html.HiddenFor(m => Model.RatingCategories[i].Value)
-                    <br />
-                </div>
-             }
+					
 
-            <h4>Type</h4>
-             for (int i = 0; i < Model.TypeCategories.Count; ++i)
-             {
-                <div id="Checkbox">
-                    @Html.CheckBoxFor(m => Model.TypeCategories[i].Selected)
-                    @Html.DisplayFor(m => Model.TypeCategories[i].Text)
-                    @Html.HiddenFor(m => Model.TypeCategories[i].Text)
-                    @Html.HiddenFor(m => Model.TypeCategories[i].Value)
-                    <br />
-                </div>
-             }
-            <div id="IndexSearchButton">
-                <input type="submit" value="Search" />
-            </div>
-         }
-    </div>
+			<div id="Collections">
+				@foreach (Enterprise ent in Model.Enterprises)
+				{
+					<div class="collection-item-outer">
+						<div class="collection-item">
+							<h4 class="institution-title">
+								<a href="/InstitutionDetails/Index/@ent.EntId">@ent.Name</a>
+							</h4>
+							<!-- Picture -->
+							@try
+							{
+								Resource res = ent.Resources.First(r => r.Type == ResourceType.MainImage);
+								<img height="120" src="@Url.Action("GetImage", new { fileName = res.DataPath })" />
+							}
+							catch
+							{
+								<img height="120" src="@Url.Action("GetImage", new { fileName = "" } )" />
+							}
+							<div class="collection-text">
+								<p>
+									@ent.Description
+								</p>
+								@*<button>Read more</button>*@
+							</div>
+						</div>
+					</div>
+				}
+				<div class="pager">
+					@Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x, model = Model }))
+				</div>
+			</div>
+		</div>
+		
 
-    <div id="Collections">
-
-        @foreach (Enterprise ent in Model.Enterprises)
-        {
-            <div class="collection-item-outer">
-                <div class="collection-item">
-                    <h4 class="institution-title">
-                        <a href="/InstitutionDetails/Index/@ent.EntId">@ent.Name</a>
-                    </h4>
-
-                    <!-- Picture -->
-                    @try
-                    {
-                        Resource res = ent.Resources.First(r => r.Type == ResourceType.MainImage);
-                            <img height="120" src="@Url.Action("GetImage", new { fileName = res.DataPath })" />
-                    }
-                    catch
-                    {
-                        <img height="120" src="@Url.Action("GetImage", new { fileName = "" } )" />
-                    }   
-
-                    <div class="collection-text">
-                        <p>
-                            @ent.Description
-                        </p>
-                        <button>Read more</button>
-                    </div>
-                </div>
-            </div>
-        }
-        <div class="pager">
-            @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x, model = Model }))
-        </div>
-    </div>
-</div>
+	
+			

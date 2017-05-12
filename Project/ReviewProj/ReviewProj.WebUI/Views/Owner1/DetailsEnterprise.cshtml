@@ -1,0 +1,86 @@
+﻿@model ReviewProj.WebUI.Models.Enterprise1
+
+@{
+    ViewBag.Title = "DetailsEnterprise";
+}
+
+<h2>DetailsEnterprise</h2>
+
+<div>
+    <h4>Enterprise</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.City)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.Street)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.Street)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.HouseNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.HouseNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contacts)
+        </dt>
+        <dd>[@Html.ActionLink("New", "AddContact")]</dd>
+        <!--  foreach (var item in Model.Contacts)
+          {
+              <dd>
+                  Html.DisplayFor(model => item)
+                  Html.ActionLink("Edit", "EditContact", new { itemName = item }) |
+                  Html.ActionLink("Delete", "DeleteContact", new { itemName = item })
+              </dd>
+          }-->
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditRestData", "Owner1", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Back to List", "EnterprisesList", "Owner1", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Save change", "SaveChange", "Owner1", null, new { @class = "btn btn-default" })
+</p>

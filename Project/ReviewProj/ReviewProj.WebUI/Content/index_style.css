@@ -4,7 +4,7 @@
 }
 
 .container {
-    margin: 0 auto;
+    margin: auto;
     width: 960px;
 }
 
@@ -17,11 +17,10 @@
     padding-top: 15px;
     float: left;
 }
-
 #IndexWrapper {
     width: auto;
-    overflow: hidden; /* will contain if #first is longer than #second */
-    padding-top: 15px;
+    overflow:auto;/* will contain if #first is longer than #second */
+    padding-top: 20px;
 }
 
 #Category {
@@ -76,7 +75,7 @@
 }
 
 .collection-text p {
-    max-height: 80px;
+    max-height: 99px;
     overflow: hidden;
 }
 

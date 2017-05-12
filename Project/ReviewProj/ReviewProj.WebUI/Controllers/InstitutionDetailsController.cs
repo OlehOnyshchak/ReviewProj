@@ -35,6 +35,7 @@ namespace ReviewProj.WebUI.Controllers
             // it shouldn't be here. It should be moved into some helper method, e.g. in UsersRepository clas
             if (user != null)
             {
+                ViewBag.User = user;
                 switch (userManager.GetRoles(user.Id).FirstOrDefault())
                 {
                     case "reviewer":
@@ -54,10 +55,9 @@ namespace ReviewProj.WebUI.Controllers
             return View(ent);
         }
 
-        [Authorize (Roles = "reviewer")]
-        public ActionResult AddReview(int entId, string reviewText)
+        public ActionResult AddReview(int entId, string reviewText, string rating)
         {
-            int mark = 0;
+            int mark = Convert.ToInt32(rating);
             repository.AddReview(entId, User.Identity.Name, new Review
             {
                 Description = reviewText,

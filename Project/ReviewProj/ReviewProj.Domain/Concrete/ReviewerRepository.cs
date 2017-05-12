@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ReviewProj.Domain.Abstract;
 using ReviewProj.Domain.Entities;
+using System.Data;
+using System.Data.Entity;
 
 namespace ReviewProj.Domain.Concrete
 {
@@ -32,6 +34,20 @@ namespace ReviewProj.Domain.Concrete
 
             reviewer.Resources.Add(resource);
             context.SaveChanges();
+        }
+
+
+        public Reviewer UpdateEntry(Reviewer existing, Reviewer updated)
+        {
+            context.Entry(existing).State = EntityState.Modified;
+            if (updated.BirthDate != DateTime.MinValue)
+                existing.BirthDate = updated.BirthDate;
+
+            existing.Nationality = updated.Nationality;
+
+            context.SaveChanges();
+
+            return existing;
         }
 
         public Reviewer FindByEmail(string email)

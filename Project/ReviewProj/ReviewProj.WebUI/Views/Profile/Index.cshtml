@@ -4,6 +4,9 @@
     ViewBag.Title = "Index";
 }
 
+
+<link href="~/Content/bootstrap.css" type="text/css" rel="stylesheet" />
+
 <div>
     <h1>
         <img src="@Url.Action("Photo")" style="width:160px;height:160px; background: #FFFFFF;
@@ -14,18 +17,17 @@
         box-shadow: 0px 0px 20px #888;" />
     </h1>
 
-    [
-    @if (Model.HasPhoto)
-    { 
-        @Html.ActionLink("Change", "AddPhoto")
-        @Html.Label(" | ")
-        @Html.ActionLink("Remove", "DeletePhoto")
-    }
-    else
-    {
-        @Html.ActionLink("Add Photo", "AddPhoto")
-    }
-    ]
+    <div class="btn-group">
+        @if (Model.HasPhoto)
+        {
+            @Html.ActionLink("Change", "AddPhoto", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Remove", "DeletePhoto", null, new { @class = "btn btn-primary" })
+        }
+        else
+        {
+            @Html.ActionLink("Add Photo", "AddPhoto", null, new { @class = "btn btn-primary" })
+        }
+    </div>
 </div>
 
 
@@ -62,13 +64,9 @@
         <dd>
             @Html.DisplayFor(model => model.Rating)
         </dd>
-
-        <dd>
-            [@Html.ActionLink("Change Password", "ChangePassword", "Manage")]
-        </dd>
-
     </dl>
+    <p class="btn-group btn-group-justified" top-padding="20px">
+        @Html.ActionLink("Change Password", "ChangePassword", "Manage", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Edit", "EditProfile", null, new { @class = "btn btn-primary" })
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "EditProfile")
-</p>

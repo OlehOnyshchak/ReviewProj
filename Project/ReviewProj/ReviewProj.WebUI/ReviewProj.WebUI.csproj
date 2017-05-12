@@ -201,6 +201,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstitutionDetailsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Owner1Controller.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegisterEnterpriseController.cs" />
     <Compile Include="Global.asax.cs">
@@ -211,6 +212,7 @@
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OwnerModels.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\EnterpriseListViewModel.cs" />
     <Compile Include="Models\ProfileViewModels.cs" />
@@ -219,7 +221,15 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AppResources\1.jpg" />
+    <Content Include="Content\AppResources\dislike.png" />
+    <Content Include="Content\AppResources\AdobeStock_76218229_LVIV.jpeg" />
     <Content Include="Content\AppResources\avatar_placeholder.png" />
+    <Content Include="Content\AppResources\DSC_0582-2.jpg" />
+    <Content Include="Content\AppResources\like.png" />
+    <Content Include="Content\AppResources\Nbi7bYI.jpg" />
+    <Content Include="Content\custom.css" />
+    <Content Include="Content\AppResources\df2ecedf2f1f43f3ccdebc4a9ea3dc82.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\index_style.css" />
@@ -315,6 +325,13 @@
     <Content Include="Views\RegisterEnterprise\Register.cshtml" />
     <Content Include="Views\RegisterEnterprise\RegistPart2.cshtml" />
     <Content Include="Views\RegisterEnterprise\RegistPart3.cshtml" />
+    <Content Include="Views\RegisterEnterprise\RegistPart4.cshtml" />
+    <Content Include="Views\Owner1\ProfileOwner.cshtml" />
+    <Content Include="Views\Owner1\EnterprisesList.cshtml" />
+    <Content Include="Views\Owner1\DetailsEnterprise.cshtml" />
+    <Content Include="Views\Owner1\AddContact.cshtml" />
+    <Content Include="Views\Owner1\EditContact.cshtml" />
+    <Content Include="Views\Owner1\EditRestData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
