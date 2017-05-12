@@ -15,11 +15,12 @@ namespace ReviewProj.WebUI.Controllers
     public class InstitutionDetailsController : Controller
     {
         private IEnterpriseRepository repository;
-        private IReviewerRepository reviewers;
-
-        public InstitutionDetailsController(IEnterpriseRepository enterpriseRepository)
+        private IReviewRepository reviewRepository;
+        public InstitutionDetailsController(IEnterpriseRepository enterpriseRepository, 
+            IReviewRepository revRepo)
         {
             repository = enterpriseRepository;
+            reviewRepository = revRepo;
         }
 
         // GET: InstitutionDetails
@@ -34,6 +35,7 @@ namespace ReviewProj.WebUI.Controllers
             // it shouldn't be here. It should be moved into some helper method, e.g. in UsersRepository clas
             if (user != null)
             {
+                ViewBag.User = user;
                 switch (userManager.GetRoles(user.Id).FirstOrDefault())
                 {
                     case "reviewer":
@@ -62,6 +64,13 @@ namespace ReviewProj.WebUI.Controllers
                 Mark = mark
             });
 
+            return RedirectToAction("Index", new { id = entId });
+        }
+
+        [Authorize (Roles = "admin")]
+        public ActionResult DeleteReview(int reviewId, int entId)
+        {
+            reviewRepository.DeleteById(reviewId);
             return RedirectToAction("Index", new { id = entId });
         }
     }

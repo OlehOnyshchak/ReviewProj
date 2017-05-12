@@ -98,8 +98,33 @@
                                     </div>
                                     <h5>@reviewer.UserName</h5>
                                     <p>@review.Description</p>
+
+                                    @{
+                                        ApplicationUser user = ViewBag.User;
+                                        bool enableButton = false;
+                                        if (user != null)
+                                        {
+                                            if (ViewBag.UserRole == Role.Reviewer)
+                                            {
+                                                enableButton = true;
+                                            }
+                                        }
+                                            <button type="submit" @(enableButton ? "" : "disabled") name="like"><img class="thumbnail" src="@Url.Content("~/Content/AppResources/like.png")" height="40" width="40" />@review.TotalLikes</button>
+                                            <button type="submit" @(enableButton ? "" : "disabled") name="dislike"><img class="thumbnail" src="@Url.Content("~/Content/AppResources/dislike.png")" height="40" width="40">@review.TotalDislikes</button>
+                                    }
                                 </div>
                             </div>
+                            if (ViewBag.UserRole == Role.Admin)
+                            {
+                                <div>
+                                    @using (Html.BeginForm("DeleteReview", "InstitutionDetails"))
+                                    {
+                                        <input type="hidden" name="reviewId" value="@review.ReviewId" />
+                                        <input type="hidden" name="entId" value="@Model.EntId" />
+                                        <input type="submit" value="Delete review" />
+                                    }
+                                </div>
+                            }
                         }
 
                 @if (ViewBag.UserRole == Role.Reviewer)
@@ -117,8 +142,8 @@
                         <input type="hidden" name="entId" value="@Model.EntId" />
                         <textarea placeholder="Please type in your review" name="reviewText"></textarea>
                         <button class="button" type="submit">Submit Review</button>
+                        }
                     }
-                }
             </div>
         </div>
     </div>

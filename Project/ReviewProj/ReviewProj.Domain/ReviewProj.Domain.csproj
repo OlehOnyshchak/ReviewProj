@@ -92,6 +92,7 @@
     <Compile Include="Concrete\EnterpriseRepository.cs" />
     <Compile Include="Concrete\OwnerRepository.cs" />
     <Compile Include="Concrete\ReviewerRepository.cs" />
+    <Compile Include="Concrete\ReviewRepository.cs" />
     <Compile Include="Entities\Admin.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Ban.cs" />

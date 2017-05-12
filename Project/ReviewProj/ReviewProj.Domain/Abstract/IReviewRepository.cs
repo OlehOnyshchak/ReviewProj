@@ -9,6 +9,11 @@ namespace ReviewProj.Domain.Abstract
 {
     public interface IReviewRepository
     {
-        IQueryable<Review> Reviews { get; }
+
+        IEnumerable<Review> Reviews { get; }
+
+        Review GetById(int reviewId);
+
+        void DeleteById(int reviewId);
     }
 }

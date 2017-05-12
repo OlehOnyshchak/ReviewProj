@@ -24,5 +24,7 @@ namespace ReviewProj.Domain.Abstract
         Enterprise GetEnterpriseById(int id);
 
         void AddReview(int entId, string reviewerEmail, Review review);
+
+        //void DeleteReview(int entId, int reviewId);
     }
 }
