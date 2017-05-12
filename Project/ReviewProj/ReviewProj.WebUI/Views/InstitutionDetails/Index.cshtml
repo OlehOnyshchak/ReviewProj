@@ -87,6 +87,17 @@
                                     <p>@review.Description</p>
                                 </div>
                             </div>
+                            if (ViewBag.UserRole == Role.Admin)
+                            {
+                                <div>
+                                    @using (Html.BeginForm("DeleteReview", "InstitutionDetails"))
+                                    {
+                                        <input type="hidden" name="reviewId" value="@review.ReviewId" />
+                                        <input type="hidden" name="entId" value="@Model.EntId" />
+                                        <input type="submit" value="Delete review" />
+                                    }
+                                </div>
+                            }
                         }
 
                 @if (ViewBag.UserRole == Role.Reviewer)
@@ -96,8 +107,8 @@
                         <input type="hidden" name="entId" value="@Model.EntId" />
                         <textarea placeholder="Please type in your review" name="reviewText"></textarea>
                         <button class="button" type="submit">Submit Review</button>
+                        }
                     }
-                }
             </div>
         </div>
     </div>

@@ -15,11 +15,12 @@ namespace ReviewProj.WebUI.Controllers
     public class InstitutionDetailsController : Controller
     {
         private IEnterpriseRepository repository;
-        private IReviewerRepository reviewers;
-
-        public InstitutionDetailsController(IEnterpriseRepository enterpriseRepository)
+        private IReviewRepository reviewRepository;
+        public InstitutionDetailsController(IEnterpriseRepository enterpriseRepository, 
+            IReviewRepository revRepo)
         {
             repository = enterpriseRepository;
+            reviewRepository = revRepo;
         }
 
         // GET: InstitutionDetails
@@ -53,6 +54,7 @@ namespace ReviewProj.WebUI.Controllers
             return View(ent);
         }
 
+        [Authorize (Roles = "reviewer")]
         public ActionResult AddReview(int entId, string reviewText)
         {
             int mark = 0;
@@ -62,6 +64,13 @@ namespace ReviewProj.WebUI.Controllers
                 Mark = mark
             });
 
+            return RedirectToAction("Index", new { id = entId });
+        }
+
+        [Authorize (Roles = "admin")]
+        public ActionResult DeleteReview(int reviewId, int entId)
+        {
+            reviewRepository.DeleteById(reviewId);
             return RedirectToAction("Index", new { id = entId });
         }
     }

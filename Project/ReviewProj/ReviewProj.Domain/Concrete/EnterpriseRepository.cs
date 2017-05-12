@@ -71,6 +71,14 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
+        
+        //public void DeleteReview(int entId, int reviewId)
+        //{
+        //    Review review = GetEnterpriseById(entId).Reviews.FirstOrDefault(rev => rev.ReviewId == reviewId);
+        //    GetEnterpriseById(entId).Reviews.RemoveAll(rev => rev.ReviewId == reviewId);
+        //    context.SaveChanges();
+        //}
+
         public IQueryable<Enterprise> Enterprises
         {
             get { return context.Enterprises; }
