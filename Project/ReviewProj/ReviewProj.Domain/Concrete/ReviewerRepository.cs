@@ -12,6 +12,14 @@ namespace ReviewProj.Domain.Concrete
     {
         private AppDbContext context = new AppDbContext();
 
+        public ReviewerRepository()
+        { }
+
+        public ReviewerRepository(AppDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
         public IQueryable<Reviewer> Reviewers
         {
             get { return context.Reviewers; }

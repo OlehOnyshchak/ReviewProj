@@ -102,7 +102,7 @@ namespace ReviewProj.WebUI.Controllers
             if (resource != null)
             {
                 fileName = HttpContext.Server.MapPath("~") + 
-                    "Context/UserResources/" + resource.DataPath;
+                    "Content/UserResources/" + resource.DataPath;
             }
             else
             {
