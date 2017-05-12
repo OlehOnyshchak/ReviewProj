@@ -15,6 +15,7 @@ namespace ReviewProj.WebUI.Controllers
     public class InstitutionDetailsController : Controller
     {
         private IEnterpriseRepository repository;
+        private IReviewerRepository reviewers;
 
         public InstitutionDetailsController(IEnterpriseRepository enterpriseRepository)
         {
@@ -52,10 +53,16 @@ namespace ReviewProj.WebUI.Controllers
             return View(ent);
         }
 
-        public ActionResult AddReview(int entId, string reviewText)
+        public ActionResult AddReview(int entId, string reviewText, string rating)
         {
+            int mark = Convert.ToInt32(rating);
+            repository.AddReview(entId, User.Identity.Name, new Review
+            {
+                Description = reviewText,
+                Mark = mark
+            });
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = entId });
         }
     }
 }
