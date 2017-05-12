@@ -224,38 +224,40 @@ namespace ReviewProj.WebUI.Controllers
         }
         */
         public ActionResult SaveDataset()
-            {
+        {
             //зберігання в бд без ресурсів
             ApplicationUser user = UserManager.FindByEmail(User.Identity.Name);
             Owner own = new Owner();
             var enterprise = new Enterprise();
-                enterprise.Contacts = new List<string>();
-                enterprise.Resources = new List<Resource>();
+            enterprise.Contacts = new List<string>();
+            enterprise.Resources = new List<Resource>();
             Enterprise g = new Enterprise();
-                enterprise = new Enterprise
-                {
-                    Name = enter.Name,
-                    // changes in database
-                    //Type = enter.Type,
-                    Contacts = enter.Contacts,
-                    Address = enter.Address,
-                   // Resources = enter.Resources,
-                    Description=enter.Description,
-                };
+            enterprise = new Enterprise
+            {
+                Name = enter.Name,
+                // changes in database
+                //Type = enter.Type,
+                Contacts = enter.Contacts,
+                Address = enter.Address,
+                // Resources = enter.Resources,
+                Description = enter.Description,
+            };
 
-             using (var db = new AppDbContext())
-             {
-               own = db.Owners.Where(x => x.Id == user.Id).FirstOrDefault();
+            using (var db = new AppDbContext())
+            {
+                own = db.Owners.Where(x => x.Id == user.Id).FirstOrDefault();
                 enterprise.Owner = own;
                 db.Enterprises.Add(enterprise);
 
-                    db.SaveChanges();
-               
+                db.SaveChanges();
+
             }
-             return RedirectToAction("Index", "Home");
+            enter = new EnterpriseView();
+            index = 0;
+            return RedirectToAction("Index", "Home");
         }
 
-            private EnterpriseView GetModel()
+        private EnterpriseView GetModel()
             {
 
                 Enterprise ent = new Enterprise();

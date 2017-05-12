@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ReviewProj.WebUI.Models.Enterprise1>
+
+@{
+    ViewBag.Title = "EnterprisesList";
+}
+
+<h2>GetEnterprises</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "SaveId", new { id = item.EntId })
+                <!--Html.ActionLink("Delete", "Delete", new { id=item.EntId })-->
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Register New", "Register", "RegisterEnterprise", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Back", "Index", "Owner1", null, new { @class = "btn btn-default" })
+</p>
