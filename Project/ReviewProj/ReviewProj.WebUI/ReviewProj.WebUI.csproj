@@ -207,6 +207,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
+    <Compile Include="HtmlHelpers\RatingHelper.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -218,6 +219,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AppResources\1.jpg" />
+    <Content Include="Content\AppResources\AdobeStock_76218229_LVIV.jpeg" />
+    <Content Include="Content\AppResources\avatar_placeholder.png" />
+    <Content Include="Content\AppResources\DSC_0582-2.jpg" />
+    <Content Include="Content\AppResources\Nbi7bYI.jpg" />
+    <Content Include="Content\custom.css" />
+    <Content Include="Content\AppResources\df2ecedf2f1f43f3ccdebc4a9ea3dc82.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\index_style.css" />
