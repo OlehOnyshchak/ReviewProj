@@ -14,19 +14,19 @@ namespace ReviewProj.WebUI.Controllers
 {
     public class InstitutionDetailsController : Controller
     {
-        private IEnterpriseRepository repository;
+        private IEnterpriseRepository entRepository;
         private IReviewRepository reviewRepository;
         public InstitutionDetailsController(IEnterpriseRepository enterpriseRepository, 
             IReviewRepository revRepo)
         {
-            repository = enterpriseRepository;
+            entRepository = enterpriseRepository;
             reviewRepository = revRepo;
         }
 
         // GET: InstitutionDetails
         public ActionResult Index(int id)
         {
-            Enterprise ent = repository.Enterprises.FirstOrDefault(e => e.EntId == id);
+            Enterprise ent = entRepository.Enterprises.FirstOrDefault(e => e.EntId == id);
 
             ViewBag.UserRole = Role.Guest;
             ApplicationUserManager userManager = HttpContext.GetOwinContext()
@@ -52,13 +52,31 @@ namespace ReviewProj.WebUI.Controllers
                 }
             }
 
+            entRepository.ChangeRating(ent, this.RecalculateEnterpriceRating(ent));
+
             return View(ent);
+        }
+
+        private double RecalculateEnterpriceRating(Enterprise ent)
+        {
+            double denumerator = 0.0;
+            double numerator = 0 ;
+
+            foreach (var rev in ent.Reviews)
+            {
+                double mark = rev.Mark;
+                double weight = Math.Pow(2, rev.TotalLikes) * Math.Pow(0.5, rev.TotalDislikes);
+                numerator += mark * weight;
+                denumerator += weight;
+            }
+
+            return  numerator / denumerator;
         }
 
         public ActionResult AddReview(int entId, string reviewText, string rating)
         {
             int mark = Convert.ToInt32(rating);
-            repository.AddReview(entId, User.Identity.Name, new Review
+            entRepository.AddReview(entId, User.Identity.Name, new Review
             {
                 Description = reviewText,
                 Mark = mark

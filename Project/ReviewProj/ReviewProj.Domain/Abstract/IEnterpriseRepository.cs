@@ -11,6 +11,8 @@ namespace ReviewProj.Domain.Abstract
     {
         IEnumerable<Enterprise> GetByName(string subName);
 
+        void ChangeRating(Enterprise ent, double rating);
+
         IEnumerable<Enterprise> GetByType(EnterpriceType type);
 
         IEnumerable<Enterprise> GetByRating(int rating);
@@ -19,12 +21,13 @@ namespace ReviewProj.Domain.Abstract
 
         IEnumerable<Enterprise> GetFiltratedByName(IList<int> ratings, IList<EnterpriceType> types, string subName);
 
-        IQueryable<Enterprise> Enterprises { get; }
-
         Enterprise GetEnterpriseById(int id);
 
         void AddReview(int entId, string reviewerEmail, Review review);
 
         //void DeleteReview(int entId, int reviewId);
+
+        IQueryable<Enterprise> Enterprises { get; }
+
     }
 }
