@@ -1,44 +1,34 @@
 ﻿@model ReviewProj.WebUI.Models.ProfileViewModel
+
 @{
     ViewBag.Title = "Edit Profile";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("EditResult", "Profile"))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Nationality, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => Model.Nationality, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Nationality, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nationality, "", new { @class = "text-danger" })
+                @Html.EditorFor(mod => Model.Nationality, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(mod => Model.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(mod => Model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                @using (Html.BeginForm("Index", "Profile", new
-                {
-                    newNationality = Model.Nationality,
-                    newBirthDate = Model.BirthDate
-                }, FormMethod.Post))
-                {
-                    <input type="submit" value="Save" name="save" class="btn btn-default" />
-                    @Html.ActionLink("Save", "Index", new { newNationality = Model.Nationality, newBirthDate = Model.BirthDate })
-                    @Html.ActionLink("Cancel", "Index", "Profile", null, new { @class = "btn btn-default" })
-                }
+                <input type="submit" name="option" value="Save" />
+                <input type="submit" name="option" value="Cancel" />
             </div>
         </div>
     </div>

@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
 using ReviewProj.WebUI.Models;
 using System.IO;
+
 namespace ReviewProj.WebUI.Controllers
 {
     public class HomeController : Controller
@@ -198,7 +199,7 @@ namespace ReviewProj.WebUI.Controllers
             if (fileName != null && fileName != "")
             {
                 filePath = HttpContext.Server.MapPath("~") +
-                    "App_Data/UserResources/" + fileName;
+                    "Content/UserResources/" + fileName;
             }
             else
             {

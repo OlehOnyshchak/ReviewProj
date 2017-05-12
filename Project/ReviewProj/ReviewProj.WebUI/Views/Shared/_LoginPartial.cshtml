@@ -6,16 +6,30 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("GoTo Profile", "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Profile" })
-            </li>
-            <li>
+@if (User.IsInRole("reviewer"))
+{
+    <li>
+        @Html.ActionLink("GoTo Profile", "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Profile" })
+    </li>
 
+            <li>
                 <img src="@Url.Action("Photo", "Profile")" height="48" width="48" />
             </li>
-            <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            </li>
+
+                <li>
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </li>
+}
+@if (User.IsInRole("owner"))
+{
+    <li>
+        @Html.ActionLink("My Profile", "Index", "Owner", routeValues: null, htmlAttributes: new { title = "Profile" })
+    </li>
+
+                <li>
+                    @Html.ActionLink("Welcome " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </li>
+}
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
     }

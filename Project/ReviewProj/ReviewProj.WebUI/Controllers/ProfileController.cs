@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ReviewProj.Domain.Abstract;
 using ReviewProj.WebUI.Models;
+using ReviewProj.Domain.Concrete;
 using System.IO;
 
 namespace ReviewProj.WebUI.Controllers
@@ -24,6 +25,55 @@ namespace ReviewProj.WebUI.Controllers
         [HttpGet]
         [Authorize(Roles = "reviewer")]
         public ActionResult Index()
+        {   
+            return View(GetModel());
+        }
+
+        public ActionResult EditProfile()
+        {
+            return View(GetModel());
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult EditProfile(ProfileViewModel Model)
+        //{
+        //    Reviewer reviewer = new Reviewer();
+        //    reviewer = repository.FindByEmail(User.Identity.Name);
+        //    using (var db = new AppDbContext())
+        //    {
+        //        if (reviewer != null)
+        //        {
+        //            //може вилетіти якщо ввести не коректні дані
+        //            db.Reviewers.Where(x => x.Id == reviewer.Id).FirstOrDefault().BirthDate = Model.BirthDate;
+        //            db.Reviewers.Where(x => x.Id == reviewer.Id).FirstOrDefault().Nationality = Model.Nationality;
+        //            db.SaveChanges();
+        //        }
+        //        else RedirectToAction("About", "Home");
+        //    }
+
+        //    return RedirectToAction("Index", "Profile");
+        //}
+
+        [Authorize(Roles = "reviewer")]
+        public string PhotoPath()
+        {
+            Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
+
+            if (reviewer != null)
+            {
+                Resource resource = reviewer.Resources.FirstOrDefault(res => res.Type == ResourceType.MainImage);
+
+                if (resource != null)
+                {
+                    return "~Content/UserResources/" + resource.DataPath;
+                }
+            }
+
+            return "~Context/AppResources/noImg.png";
+        }
+
+        public ProfileViewModel GetModel()
         {
             Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
             Resource resource = reviewer.Resources.FirstOrDefault(res => res.Type == ResourceType.MainImage);
@@ -36,27 +86,35 @@ namespace ReviewProj.WebUI.Controllers
                 HasPhoto = resource != null
             };
 
-            return View(model);
+            return model;
         }
 
         [HttpPost]
         [Authorize(Roles = "reviewer")]
-        public ActionResult Index(string newNationality, DateTime newBirthDate)
+        public ActionResult EditResult(ProfileViewModel model, string option)
         {
             Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
-            // Save
-            Resource resource = reviewer.Resources.FirstOrDefault(res => res.Type == ResourceType.MainImage);
 
-            ProfileViewModel model = new ProfileViewModel()
+            if (option == "Save")
             {
-                BirthDate = newBirthDate,
-                Nationality = newNationality,
+                Reviewer newReviewer = new Reviewer {
+                    Nationality = model.Nationality,
+                    BirthDate = model.BirthDate
+                };
+
+                repository.UpdateEntry(reviewer, newReviewer);
+            }
+
+            Resource resource = reviewer.Resources.FirstOrDefault(res => res.Type == ResourceType.MainImage);
+            ProfileViewModel newModel = new ProfileViewModel()
+            {
+                BirthDate = reviewer.BirthDate,
+                Nationality = reviewer.Nationality,
                 Rating = reviewer.Rating,
                 HasPhoto = resource != null
             };
 
-            return View(model);
-
+            return View("Index", newModel);
         }
 
         [HttpGet]
@@ -74,7 +132,7 @@ namespace ReviewProj.WebUI.Controllers
             {
                 Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
 
-                Resource res = new Resource(file, ResourceType.MainImage, Server.MapPath("~/App_Data/UserResources"));
+                Resource res = new Resource(file, ResourceType.MainImage, Server.MapPath("~/Content/UserResources"));
                
                 repository.UpdateMainPhoto(reviewer, res);
                 
@@ -102,7 +160,7 @@ namespace ReviewProj.WebUI.Controllers
             if (resource != null)
             {
                 fileName = HttpContext.Server.MapPath("~") + 
-                    "App_Data/UserResources/" + resource.DataPath;
+                    "Context/UserResources/" + resource.DataPath;
             }
             else
             {
@@ -118,24 +176,6 @@ namespace ReviewProj.WebUI.Controllers
             string contentType = "image/" + fileName.Substring(fileName.LastIndexOf('.') + 1);
 
             return File(imageData, contentType);
-        }
-
-        [Authorize(Roles = "reviewer")]
-        public ActionResult EditProfile()
-        {
-            Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
-            Resource resource = reviewer.Resources.FirstOrDefault(res => res.Type == ResourceType.MainImage);
-
-            ProfileViewModel model = new ProfileViewModel()
-            {
-                BirthDate = reviewer.BirthDate,
-                Nationality = reviewer.Nationality,
-                Rating = reviewer.Rating,
-                HasPhoto = reviewer.Resources.FirstOrDefault(
-                    res => res.Type == ResourceType.MainImage) != null
-            };
-
-            return View(model);
         }
     }
 }
