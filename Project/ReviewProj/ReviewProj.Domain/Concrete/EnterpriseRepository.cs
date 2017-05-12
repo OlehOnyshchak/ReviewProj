@@ -59,6 +59,18 @@ namespace ReviewProj.Domain.Concrete
             return result;
         }
 
+        public Enterprise GetEnterpriseById(int id)
+        {
+            return Enterprises.FirstOrDefault(ent => ent.EntId == id);
+        }
+
+        public void AddReview(int entId, string reviewerEmail, Review review)
+        {
+            review.Reviewer = new ReviewerRepository(context).FindByEmail(reviewerEmail);
+            GetEnterpriseById(entId).Reviews.Add(review);
+            context.SaveChanges();
+        }
+
         public IQueryable<Enterprise> Enterprises
         {
             get { return context.Enterprises; }

@@ -20,5 +20,9 @@ namespace ReviewProj.Domain.Abstract
         IEnumerable<Enterprise> GetFiltratedByName(IList<int> ratings, IList<EnterpriceType> types, string subName);
 
         IQueryable<Enterprise> Enterprises { get; }
+
+        Enterprise GetEnterpriseById(int id);
+
+        void AddReview(int entId, string reviewerEmail, Review review);
     }
 }
