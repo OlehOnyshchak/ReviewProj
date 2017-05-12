@@ -41,7 +41,8 @@ namespace ReviewProj.WebUI.Infrastructure
             //ninjectKernel.Bind<IEnterpriseRepository>().ToConstant(mock.Object);
 
             ninjectKernel.Bind<IEnterpriseRepository>().To<EnterpriseRepository>();
-            ninjectKernel.Bind<IReviewerRepository>().To<ReviewerRepository>();
+            ninjectKernel.Bind<IReviewerRepository>().To<ReviewerRepository>();            
+            ninjectKernel.Bind<IOwnerRepository>().To<OwnerRepository>();
             ninjectKernel.Bind<IReviewRepository>().To<ReviewRepository>();
         }
     }
