@@ -75,6 +75,7 @@
 }
 
 .collection-text p {
+    min-height: 99px;
     max-height: 99px;
     overflow: hidden;
 }

@@ -114,6 +114,7 @@ namespace ReviewProj.WebUI.Controllers
             tempNameContact = itemName;
             return View(Model);
         }
+
         [HttpPost]
         public ActionResult EditContact(AddContacts model)
         {
@@ -122,6 +123,7 @@ namespace ReviewProj.WebUI.Controllers
             tempNameContact = null;
             return RedirectToAction("DetailsEnterprise", "Owner1");
         }
+
         public ActionResult DeleteContact(string itemName)
         {
             entResult.Contacts.Remove(itemName);

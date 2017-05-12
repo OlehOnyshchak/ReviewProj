@@ -4,10 +4,12 @@
     ViewBag.Title = "RegistPart2";
 }
 
-<h2>RegistPart2</h2>
+<h2>Add Contacts</h2>
 
-<p>
-    @Html.ActionLink("Create New", "AddContacts")
+<link href="~/Content/bootstrap.css" type="text/css" rel="stylesheet" />
+
+<p class="btn-group-justified">
+    @Html.ActionLink("Add New Contact", "AddContacts", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -15,16 +17,22 @@
     </tr>
 
     @foreach (var item in Model)
-            {
+    {
         <tr>
             <td>
                 @Html.DisplayFor(model => item)
-                @Html.ActionLink("Edit", "Edit", new { itemName = item }) |
-                @Html.ActionLink("Delete", "Delete", new { itemName = item })
+            </td>
+            <td>
+                <p class="btn-group">
+                    @Html.ActionLink("Edit", "Edit", new { itemName = item }, new { @class = "btn btn-primary btn-xs" }) |
+                    @Html.ActionLink("Delete", "Delete", new { itemName = item }, new { @class = "btn btn-primary btn-xs" })
+                </p>
             </td>
         </tr>
     }
 
 
 </table>
-@Html.ActionLink("next", "RegistPart4")
+<p class="btn-group-justified">
+    @Html.ActionLink("next", "RegistPart4", null, new { @class = "btn btn-primary" })
+</p>

@@ -4,6 +4,8 @@
     ViewBag.Title = "AddContact";
 }
 
+
+<link href="~/Content/bootstrap.css" type="text/css" rel="stylesheet" />
 <h2>Add Contact</h2>
 
 @using (Html.BeginForm("AddContact", "Owner1", FormMethod.Post))
@@ -25,7 +27,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Submit" class="btn btn-default" />
-                @Html.ActionLink("Cansel", "DetailsEnterprise", "Owner1", null, new { @class = "btn btn-default" })
+                @Html.ActionLink("Cansel", "DetailsEnterprise", "Owner1", null, new { @class = "btn-primary" })
             </div>
         </div>
     </div>
