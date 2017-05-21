@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System;
 using ReviewProj.Domain.Entities;
+using System.Web;
 
 namespace ReviewProj.WebUI.Models
 {
@@ -37,5 +38,12 @@ namespace ReviewProj.WebUI.Models
     {
         [Required]
         public String contact { get; set; }
+    }
+
+    public class Image
+    {
+        public HttpPostedFileBase file { get; set; }
+        public int imageId { get; set; }
+        public byte[] Photo { get; set; }
     }
 }

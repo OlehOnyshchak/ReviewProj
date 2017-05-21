@@ -18,16 +18,17 @@ namespace ReviewProj.WebUI.Controllers
         [Authorize(Roles ="owner")]
         public class RegisterEnterpriseController : Controller
         {
-        private IEnterpriseRepository repository1;
+        private IEnterpriseRepository repository;
 
         public RegisterEnterpriseController(IEnterpriseRepository enterpriseRepository)
         {
-            repository1 = enterpriseRepository;
+            repository = enterpriseRepository;
         }
 
         private ApplicationSignInManager _signInManager;
             private ApplicationUserManager _userManager;
             public static EnterpriseView enter = new EnterpriseView();
+        private static List<Image> Images = new List<Image>();
             static int index = 0;
 
 
@@ -120,8 +121,9 @@ namespace ReviewProj.WebUI.Controllers
 
             public ActionResult RegistPart3()
             {
-                //enter.Contacts.Add("0965458741");
-                return View(enter.Resources);
+            //enter.Contacts.Add("0965458741");
+            // return View(enter.Resources);
+            return View(Images);
             }
 
             public ActionResult AddPhoto()
@@ -130,49 +132,81 @@ namespace ReviewProj.WebUI.Controllers
                 return View(photo);
 
             }
+       
+               public ActionResult DeletePhoto(int ID)
+        {
+            Image im = new Image();
+            im = Images.Where(x => x.imageId == ID).FirstOrDefault();
+           Images.Remove(im);
+            return RedirectToAction("RegistPart3", "RegisterEnterprise");
+        }
+        //[HttpPost]
+        //[Authorize]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult AddPhoto(AddPhotoModel model, HttpPostedFileBase photo1)
+        //{
+        //    Resource res = new Resource();
+        //    if (photo1 != null)
+        //    {
+        //        model.Photo = new byte[photo1.ContentLength];
+        //        photo1.InputStream.Read(model.Photo, 0, photo1.ContentLength);
+        //        // Now we store in the database path to the resource
+        //        //res.Data = model.Photo;
+        //        res.ResourceId = index;
+        //        index++;
+        //        enter.Resources.Add(res);
+        //    }
+        /*
+                    [HttpPost]
+                    [Authorize]
+                    [ValidateAntiForgeryToken]
+                    public ActionResult AddPhoto(AddPhotoModelEnterprise model, HttpPostedFileBase photo1)
+                    {
+                        Resource res = new Resource();
+                        if (photo1 != null)
+                        {
+                            model.Photo = new byte[photo1.ContentLength];
+                            photo1.InputStream.Read(model.Photo, 0, photo1.ContentLength);
+                            // Now we store in the database path to the resource
+                            //res.Data = model.Photo;
+                            res.ResourceId = index;
+                            index++;
+                            enter.Resources.Add(res);
+                        }
 
-            //[HttpPost]
-            //[Authorize]
-            //[ValidateAntiForgeryToken]
-            //public ActionResult AddPhoto(AddPhotoModel model, HttpPostedFileBase photo1)
-            //{
-            //    Resource res = new Resource();
-            //    if (photo1 != null)
-            //    {
-            //        model.Photo = new byte[photo1.ContentLength];
-            //        photo1.InputStream.Read(model.Photo, 0, photo1.ContentLength);
-            //        // Now we store in the database path to the resource
-            //        //res.Data = model.Photo;
-            //        res.ResourceId = index;
-            //        index++;
-            //        enter.Resources.Add(res);
-            //    }
+                    //db.Rewievers.Where(x => x.Id == reviewer.Id).FirstOrDefault().Name = "s";
 
-            [HttpPost]
-            [Authorize]
-            [ValidateAntiForgeryToken]
-            public ActionResult AddPhoto(AddPhotoModelEnterprise model, HttpPostedFileBase photo1)
-            {
-                Resource res = new Resource();
-                if (photo1 != null)
-                {
-                    model.Photo = new byte[photo1.ContentLength];
-                    photo1.InputStream.Read(model.Photo, 0, photo1.ContentLength);
-                    // Now we store in the database path to the resource
-                    //res.Data = model.Photo;
-                    res.ResourceId = index;
-                    index++;
-                    enter.Resources.Add(res);
+
+                    return RedirectToAction("RegistPart3", "RegisterEnterprise");
                 }
+                */
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddPhoto(AddPhotoModelEnterprise model, HttpPostedFileBase photo1)
+        {
+            Resource res = new Resource();
 
-            //db.Rewievers.Where(x => x.Id == reviewer.Id).FirstOrDefault().Name = "s";
+            if (photo1 != null)
+            {
+                model.Photo = new byte[photo1.ContentLength];
+                photo1.InputStream.Read(model.Photo, 0, photo1.ContentLength);
 
+                Image im = new Image
+                {
+                    file = photo1,
+                    Photo = model.Photo,
+                    imageId = index
+                };
+                index++;
+                Images.Add(im);
 
+            }
             return RedirectToAction("RegistPart3", "RegisterEnterprise");
         }
 
 
-             
+
         public ActionResult RegistPart4()
         {
             return View(enter);
@@ -223,14 +257,26 @@ namespace ReviewProj.WebUI.Controllers
 
         }
         */
+        public FileContentResult GetChoosedPhotos(int ID)
+        {
+            foreach (Image res in Images)
+            {
+                if (res.imageId == ID)
+                {
+                    return new FileContentResult(res.Photo, "image/jpeg");
+                }
+
+            }
+            return new FileContentResult(Images[0].Photo, "image/jpeg");
+
+        }
         public ActionResult SaveDataset()
         {
             //зберігання в бд без ресурсів
             ApplicationUser user = UserManager.FindByEmail(User.Identity.Name);
             Owner own = new Owner();
             var enterprise = new Enterprise();
-            enterprise.Contacts = new List<string>();
-            enterprise.Resources = new List<Resource>();
+            
             Enterprise g = new Enterprise();
             enterprise = new Enterprise
             {
@@ -242,7 +288,8 @@ namespace ReviewProj.WebUI.Controllers
                 // Resources = enter.Resources,
                 Description = enter.Description,
             };
-
+            enterprise.Contacts = new List<string>();
+            enterprise.Resources = new List<Resource>();
             using (var db = new AppDbContext())
             {
                 own = db.Owners.Where(x => x.Id == user.Id).FirstOrDefault();
@@ -252,9 +299,17 @@ namespace ReviewProj.WebUI.Controllers
                 db.SaveChanges();
 
             }
+            Enterprise fent = repository.GetEnterpriseById(enterprise.EntId);
+            foreach(Image im in Images)
+            {
+                SavePhoto(im.file,fent);
+            }
             enter = new EnterpriseView();
+            Images = new List<Image>();
             index = 0;
-            return RedirectToAction("Index", "Home");
+           // return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Owner1");
+            
         }
 
         private EnterpriseView GetModel()
@@ -277,23 +332,37 @@ namespace ReviewProj.WebUI.Controllers
                 return model;
             }
 
-            // changes in DB
-            /*
-            private Enterprise GetEnterprise()
+        [HttpPost]
+        [Authorize(Roles = "reviewer")]
+        public ActionResult SavePhoto(HttpPostedFileBase file,Enterprise ent)
+        {
+            if (file != null && file.ContentLength > 0)
             {
-                ApplicationUser user = UserManager.FindByEmail(User.Identity.Name);
-                Enterprise reviewer = new Enterprise();
-                using (ApplicationDbContext db = new ApplicationDbContext())
-                {
-                    // reviewer = db.Rewievers.Find(user.IndexOfRegister);
+                Resource res = new Resource(file, ResourceType.MainImage, Server.MapPath("~/Content/UserResources"));
 
-                    //backup plan
+                repository.UpdateMainPhoto(ent, res);
 
-                    // reviewer = db.Rewievers.Where(x => x.Email == user.Email).FirstOrDefault();
-                }
-                return reviewer;
             }
-            */
+
+            return RedirectToAction("Index");
         }
+        // changes in DB
+        /*
+        private Enterprise GetEnterprise()
+        {
+            ApplicationUser user = UserManager.FindByEmail(User.Identity.Name);
+            Enterprise reviewer = new Enterprise();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                // reviewer = db.Rewievers.Find(user.IndexOfRegister);
+
+                //backup plan
+
+                // reviewer = db.Rewievers.Where(x => x.Email == user.Email).FirstOrDefault();
+            }
+            return reviewer;
+        }
+        */
+    }
     
 }

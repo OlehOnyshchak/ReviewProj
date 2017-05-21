@@ -71,13 +71,28 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
-        
+
         //public void DeleteReview(int entId, int reviewId)
         //{
         //    Review review = GetEnterpriseById(entId).Reviews.FirstOrDefault(rev => rev.ReviewId == reviewId);
         //    GetEnterpriseById(entId).Reviews.RemoveAll(rev => rev.ReviewId == reviewId);
         //    context.SaveChanges();
         //}
+
+        public void UpdateMainPhoto(Enterprise enterprise, Resource resource)
+        {
+            List<Resource> mainImages = enterprise.Resources.Where(res => res.Type == ResourceType.MainImage).ToList();
+            mainImages.ForEach(res => res.Type = ResourceType.SecondaryImage);
+
+            enterprise.Resources.Add(resource);
+            context.SaveChanges();
+        }
+
+        public void RemoveMainPhoto(Enterprise enterprise)
+        {
+            enterprise.Resources.RemoveAll(res => res.Type == ResourceType.MainImage);
+            context.SaveChanges();
+        }
 
         public IQueryable<Enterprise> Enterprises
         {

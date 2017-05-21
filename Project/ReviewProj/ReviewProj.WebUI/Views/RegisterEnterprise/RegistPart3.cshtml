@@ -1,9 +1,9 @@
-﻿@model IEnumerable<ReviewProj.Domain.Entities.Resource>
+﻿@model IEnumerable<ReviewProj.WebUI.Models.Image>
 @{
     ViewBag.Title = "RegistPart3";
 }
 
-<h2>RegistPart3</h2>
+<h2>Add Photos</h2>
 
 <p>
     @Html.ActionLink("Create New", "AddPhoto")
@@ -18,16 +18,14 @@
         <tr>
             <td>
               <!-- <div style="background-image:url( data:image/jpeg;base64,Convert.ToBase64String(item.Data) )"><</div>--> 
-                <img src="@Url.Action("GetChoosedPhotos", "RegisterEnterprise",new { ID = item.ResourceId } )" height="48" width="48" />
-                @Html.ActionLink("Edit", "Edit", new { itemName = item }) |
-                @Html.ActionLink("Delete", "Delete", new { itemName = item })
+                <img src="@Url.Action("GetChoosedPhotos", "RegisterEnterprise",new { ID = item.imageId} )" height="48" width="48" />
+                @Html.ActionLink("Delete Photo", "DeletePhoto", new { ID = item.imageId })
             </td>
         </tr>
     }
 
 
 </table>
-@Html.ActionLink("finish", "SaveDataset")
 @Html.ActionLink("Back", "RegistPart2", "RegisterEnterprise", null, new { @class = "btn btn-default" })
-@Html.ActionLink("New", "AddPhoto", null, new { @class = "btn btn-default" })
+@Html.ActionLink("New Photo", "AddPhoto", null, new { @class = "btn btn-default" })
 @Html.ActionLink("Next", "RegistPart4", "RegisterEnterprise", null, new { @class = "btn btn-default" })
