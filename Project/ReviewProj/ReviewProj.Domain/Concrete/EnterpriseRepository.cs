@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReviewProj.Domain.Entities;
+using System.Data.Entity;
 
 namespace ReviewProj.Domain.Concrete
 {
@@ -70,6 +71,18 @@ namespace ReviewProj.Domain.Concrete
             GetEnterpriseById(entId).Reviews.Add(review);
             context.SaveChanges();
         }
+
+
+
+
+        public void ChangeRating(Enterprise ent, double rating)
+        {
+            context.Entry(ent).State = EntityState.Modified;
+            ent.Rating = rating;
+
+            context.SaveChanges();
+        }
+
 
 
         //public void DeleteReview(int entId, int reviewId)
