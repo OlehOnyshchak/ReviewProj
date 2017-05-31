@@ -16,8 +16,8 @@ namespace ReviewProj.WebUI.Controllers
   
 
         [Authorize(Roles ="owner")]
-        public class RegisterEnterpriseController : Controller
-        {
+        public class RegisterEnterpriseController : BaseController
+    {
         private IEnterpriseRepository repository;
 
         public RegisterEnterpriseController(IEnterpriseRepository enterpriseRepository)

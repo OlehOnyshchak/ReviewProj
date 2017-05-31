@@ -13,7 +13,7 @@ using System.IO;
 
 namespace ReviewProj.WebUI.Controllers
 {
-    public class ProfileController : Controller
+    public class ProfileController : BaseController
     {
         private IReviewerRepository repository;
 

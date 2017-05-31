@@ -117,10 +117,124 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutFirstPharKey" xml:space="preserve">
+    <value>Be usefull. Share your emotions and thoughts from a visited place. Dynamically innovate resource-leveling customer service for state of the art customer service. Provide information about favourite places, interesting spots. Rate other, share your advices and thoughts. Make someones' trip in Lviv easier and more comfortable.</value>
+  </data>
+  <data name="AboutHeaderKey" xml:space="preserve">
+    <value>Only best reviews of Lviv restaurants, shops and other places</value>
+  </data>
+  <data name="AboutKey" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutSecondPharKey" xml:space="preserve">
+    <value>Register as private enterpreneur and create a profile for your restaurant/shop/other to promote and recieve honest feedbacks. Broaden your business and be open and clear for your costumers. The more true information you give, the more attention and visitors you wil receive.</value>
+  </data>
+  <data name="AboutThirdPharKey" xml:space="preserve">
+    <value>You have ability not only to help other tourists to find their best destination, you can become a bit responsible for developing better and more tourist-friendly city infrostucture.</value>
+  </data>
+  <data name="CafeTypeKey" xml:space="preserve">
+    <value>Cafe</value>
+  </data>
+  <data name="ClubTypeKey" xml:space="preserve">
+    <value>Club</value>
+  </data>
+  <data name="ConfirmPasswordKey" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="ContactKey" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="CreateNewAccountKey" xml:space="preserve">
+    <value>Create a new account</value>
+  </data>
+  <data name="FastFoodTypeKey" xml:space="preserve">
+    <value>FastFood</value>
+  </data>
+  <data name="FeelFreeToContactKey" xml:space="preserve">
+    <value>Feel free to contact us in any time</value>
+  </data>
+  <data name="GoToProfileKey" xml:space="preserve">
+    <value>Go To Profile</value>
+  </data>
+  <data name="HelloKey" xml:space="preserve">
+    <value>Hello</value>
+  </data>
   <data name="HomeKey" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="HotelTypeKey" xml:space="preserve">
+    <value>Hotel</value>
+  </data>
+  <data name="LoginKey" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="LogOFFKey" xml:space="preserve">
+    <value>Log off</value>
+  </data>
+  <data name="LOG_IN_KEY" xml:space="preserve">
+    <value>LOG IN</value>
+  </data>
+  <data name="MarketingKey" xml:space="preserve">
+    <value>Marketing:</value>
+  </data>
+  <data name="MyProfileKey" xml:space="preserve">
+    <value>My profile</value>
+  </data>
+  <data name="PasswordKey" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PhoneKey" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="PleaseRateKey" xml:space="preserve">
+    <value>Please Rate:</value>
+  </data>
   <data name="RatingKey" xml:space="preserve">
     <value>Rating</value>
+  </data>
+  <data name="RegAsNewUserKey" xml:space="preserve">
+    <value>Register as a new user</value>
+  </data>
+  <data name="RegisterAsOwnerKey" xml:space="preserve">
+    <value>REGISTER AS OWNER</value>
+  </data>
+  <data name="RegisterAsReviewerKey" xml:space="preserve">
+    <value>REGISTER AS REVIEWER</value>
+  </data>
+  <data name="RegisterKey" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RemeberMeQuestionKey" xml:space="preserve">
+    <value>Remember me?</value>
+  </data>
+  <data name="RestaurantTypeKey" xml:space="preserve">
+    <value>Restaurant</value>
+  </data>
+  <data name="ReviewsKey" xml:space="preserve">
+    <value>Reviews</value>
+  </data>
+  <data name="SearchBtnTitleKey" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="StarNumberKey" xml:space="preserve">
+    <value>{0} stars</value>
+  </data>
+  <data name="SubmitReviewKey" xml:space="preserve">
+    <value>Submit Review</value>
+  </data>
+  <data name="SupportKey" xml:space="preserve">
+    <value>Support:</value>
+  </data>
+  <data name="TypeInReviewKey" xml:space="preserve">
+    <value>Please type in your review</value>
+  </data>
+  <data name="TypeKey" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="UseAccountToLogInKey" xml:space="preserve">
+    <value>Use local account to log in</value>
+  </data>
+  <data name="WelcomeKey" xml:space="preserve">
+    <value>Welcome</value>
   </data>
 </root>

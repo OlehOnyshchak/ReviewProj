@@ -61,6 +61,132 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, такую же, как Be usefull. Share your emotions and thoughts from a visited place. Dynamically innovate resource-leveling customer service for state of the art customer service. Provide information about favourite places, interesting spots. Rate other, share your advices and thoughts. Make someones&apos; trip in Lviv easier and more comfortable..
+        /// </summary>
+        internal static string AboutFirstPharKey {
+            get {
+                return ResourceManager.GetString("AboutFirstPharKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Only best reviews of Lviv restaurants, shops and other places.
+        /// </summary>
+        internal static string AboutHeaderKey {
+            get {
+                return ResourceManager.GetString("AboutHeaderKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как About.
+        /// </summary>
+        internal static string AboutKey {
+            get {
+                return ResourceManager.GetString("AboutKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Register as private enterpreneur and create a profile for your restaurant/shop/other to promote and recieve honest feedbacks. Broaden your business and be open and clear for your costumers. The more true information you give, the more attention and visitors you wil receive..
+        /// </summary>
+        internal static string AboutSecondPharKey {
+            get {
+                return ResourceManager.GetString("AboutSecondPharKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как You have ability not only to help other tourists to find their best destination, you can become a bit responsible for developing better and more tourist-friendly city infrostucture..
+        /// </summary>
+        internal static string AboutThirdPharKey {
+            get {
+                return ResourceManager.GetString("AboutThirdPharKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Cafe.
+        /// </summary>
+        internal static string CafeTypeKey {
+            get {
+                return ResourceManager.GetString("CafeTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Club.
+        /// </summary>
+        internal static string ClubTypeKey {
+            get {
+                return ResourceManager.GetString("ClubTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Confirm password.
+        /// </summary>
+        internal static string ConfirmPasswordKey {
+            get {
+                return ResourceManager.GetString("ConfirmPasswordKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Contact.
+        /// </summary>
+        internal static string ContactKey {
+            get {
+                return ResourceManager.GetString("ContactKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Create a new account.
+        /// </summary>
+        internal static string CreateNewAccountKey {
+            get {
+                return ResourceManager.GetString("CreateNewAccountKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как FastFood.
+        /// </summary>
+        internal static string FastFoodTypeKey {
+            get {
+                return ResourceManager.GetString("FastFoodTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Feel free to contact us in any time.
+        /// </summary>
+        internal static string FeelFreeToContactKey {
+            get {
+                return ResourceManager.GetString("FeelFreeToContactKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Go To Profile.
+        /// </summary>
+        internal static string GoToProfileKey {
+            get {
+                return ResourceManager.GetString("GoToProfileKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Hello.
+        /// </summary>
+        internal static string HelloKey {
+            get {
+                return ResourceManager.GetString("HelloKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, такую же, как Home.
         /// </summary>
         internal static string HomeKey {
@@ -70,11 +196,227 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, такую же, как Hotel.
+        /// </summary>
+        internal static string HotelTypeKey {
+            get {
+                return ResourceManager.GetString("HotelTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Log in.
+        /// </summary>
+        internal static string LoginKey {
+            get {
+                return ResourceManager.GetString("LoginKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Log off.
+        /// </summary>
+        internal static string LogOFFKey {
+            get {
+                return ResourceManager.GetString("LogOFFKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как LOG IN.
+        /// </summary>
+        internal static string LOG_IN_KEY {
+            get {
+                return ResourceManager.GetString("LOG_IN_KEY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Marketing:.
+        /// </summary>
+        internal static string MarketingKey {
+            get {
+                return ResourceManager.GetString("MarketingKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как My profile.
+        /// </summary>
+        internal static string MyProfileKey {
+            get {
+                return ResourceManager.GetString("MyProfileKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Password.
+        /// </summary>
+        internal static string PasswordKey {
+            get {
+                return ResourceManager.GetString("PasswordKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Phone.
+        /// </summary>
+        internal static string PhoneKey {
+            get {
+                return ResourceManager.GetString("PhoneKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Please Rate:.
+        /// </summary>
+        internal static string PleaseRateKey {
+            get {
+                return ResourceManager.GetString("PleaseRateKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, такую же, как Rating.
         /// </summary>
         internal static string RatingKey {
             get {
                 return ResourceManager.GetString("RatingKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Register as a new user.
+        /// </summary>
+        internal static string RegAsNewUserKey {
+            get {
+                return ResourceManager.GetString("RegAsNewUserKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как REGISTER AS OWNER.
+        /// </summary>
+        internal static string RegisterAsOwnerKey {
+            get {
+                return ResourceManager.GetString("RegisterAsOwnerKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как REGISTER AS REVIEWER.
+        /// </summary>
+        internal static string RegisterAsReviewerKey {
+            get {
+                return ResourceManager.GetString("RegisterAsReviewerKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Register.
+        /// </summary>
+        internal static string RegisterKey {
+            get {
+                return ResourceManager.GetString("RegisterKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Remember me?.
+        /// </summary>
+        internal static string RemeberMeQuestionKey {
+            get {
+                return ResourceManager.GetString("RemeberMeQuestionKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Restaurant.
+        /// </summary>
+        internal static string RestaurantTypeKey {
+            get {
+                return ResourceManager.GetString("RestaurantTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Reviews.
+        /// </summary>
+        internal static string ReviewsKey {
+            get {
+                return ResourceManager.GetString("ReviewsKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Search.
+        /// </summary>
+        internal static string SearchBtnTitleKey {
+            get {
+                return ResourceManager.GetString("SearchBtnTitleKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как {0} stars.
+        /// </summary>
+        internal static string StarNumberKey {
+            get {
+                return ResourceManager.GetString("StarNumberKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Submit Review.
+        /// </summary>
+        internal static string SubmitReviewKey {
+            get {
+                return ResourceManager.GetString("SubmitReviewKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Support:.
+        /// </summary>
+        internal static string SupportKey {
+            get {
+                return ResourceManager.GetString("SupportKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Please type in your review.
+        /// </summary>
+        internal static string TypeInReviewKey {
+            get {
+                return ResourceManager.GetString("TypeInReviewKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Type.
+        /// </summary>
+        internal static string TypeKey {
+            get {
+                return ResourceManager.GetString("TypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Use local account to log in.
+        /// </summary>
+        internal static string UseAccountToLogInKey {
+            get {
+                return ResourceManager.GetString("UseAccountToLogInKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Welcome.
+        /// </summary>
+        internal static string WelcomeKey {
+            get {
+                return ResourceManager.GetString("WelcomeKey", resourceCulture);
             }
         }
     }

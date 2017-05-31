@@ -16,8 +16,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ReviewProj.WebUI.Controllers
 {
+
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -30,6 +31,12 @@ namespace ReviewProj.WebUI.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+        }
+
+        //Localization
+        protected override bool DisableAsyncSupport
+        {
+            get { return false; }
         }
 
         public ApplicationSignInManager SignInManager
