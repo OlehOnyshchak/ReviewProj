@@ -25,6 +25,8 @@ namespace ReviewProj.Domain.Abstract
 
         void AddReview(int entId, string reviewerEmail, Review review);
 
+        void DeleteEnterprise(int id);
+
         void UpdateMainPhoto(Enterprise enterprise, Resource fileName);
         void RemoveMainPhoto(Enterprise enterprise);
 

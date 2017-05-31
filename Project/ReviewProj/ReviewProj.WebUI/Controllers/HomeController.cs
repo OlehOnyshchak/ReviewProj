@@ -217,5 +217,14 @@ namespace ReviewProj.WebUI.Controllers
 
             return File(imageData, contentType);
         }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public RedirectToRouteResult DeleteInstitution(int entId)
+        {
+            entRepository.DeleteEnterprise(entId);
+            return RedirectToAction("Index");
+        }
+
     }
 }

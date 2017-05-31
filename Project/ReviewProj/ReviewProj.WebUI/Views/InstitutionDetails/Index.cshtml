@@ -67,6 +67,16 @@
                 <p>@Model.Description.</p>
             }
         </div>
+        @if (ViewBag.UserRole == Role.Admin)
+        {
+        <div>
+            @using (Html.BeginForm("DeleteInstitution", "Home"))
+            {
+                <input type="hidden" name="entId" value="@Model.EntId" />
+                <input type="submit" value="Delete enterpeise" />
+            }
+        </div>
+        }
         <div class="column row">
             <hr>
             <div class="tabs-content" data-tabs-content="example-tabs">

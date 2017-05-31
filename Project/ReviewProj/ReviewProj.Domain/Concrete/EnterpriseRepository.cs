@@ -107,6 +107,31 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
+        public void DeleteEnterprise(int id)
+        {
+            Enterprise enterprise = GetEnterpriseById(id);
+
+            foreach (Review review in context.Reviews.ToList())
+            {
+                if (review.Enterprise.EntId == id)
+                {
+                    context.Reviews.Remove(review);
+                }
+            }
+
+            foreach (Resource resource in context.Resources.ToList())
+            {
+                if (enterprise.Resources.Select(r => r.ResourceId)
+                    .Contains(resource.ResourceId))
+                {
+                    context.Resources.Remove(resource);
+                }
+            }
+
+            context.Enterprises.Remove(enterprise);
+            context.SaveChanges();
+        }
+
         public IQueryable<Enterprise> Enterprises
         {
             get { return context.Enterprises; }
