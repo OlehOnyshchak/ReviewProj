@@ -283,13 +283,14 @@ namespace ReviewProj.WebUI.Controllers
                 Name = enter.Name,
                 // changes in database
                 //Type = enter.Type,
-                Contacts = enter.Contacts,
+               // Contacts = enter.Contacts,
                 Address = enter.Address,
                 // Resources = enter.Resources,
                 Description = enter.Description,
-            };
+            };           
             enterprise.Contacts = new List<string>();
             enterprise.Resources = new List<Resource>();
+            enterprise.Contacts = enter.Contacts;
             using (var db = new AppDbContext())
             {
                 own = db.Owners.Where(x => x.Id == user.Id).FirstOrDefault();
@@ -300,7 +301,12 @@ namespace ReviewProj.WebUI.Controllers
 
             }
             Enterprise fent = repository.GetEnterpriseById(enterprise.EntId);
-            foreach(Image im in Images)
+            repository.AddListContacts(fent);
+            foreach (string f in enterprise.Contacts)
+            {
+                repository.AddContact(fent,f);
+            }
+            foreach (Image im in Images)
             {
                 SavePhoto(im.file,fent);
             }
@@ -346,6 +352,8 @@ namespace ReviewProj.WebUI.Controllers
 
             return RedirectToAction("Index");
         }
+
+     
         // changes in DB
         /*
         private Enterprise GetEnterprise()

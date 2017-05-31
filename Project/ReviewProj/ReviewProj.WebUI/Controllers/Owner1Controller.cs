@@ -16,10 +16,11 @@ namespace ReviewProj.WebUI.Controllers
     public class Owner1Controller : Controller
     {
         private IOwnerRepository repository;
-
-        public Owner1Controller(IOwnerRepository ownerRepository)
+        private IEnterpriseRepository enterRepositority;
+        public Owner1Controller(IOwnerRepository ownerRepository, IEnterpriseRepository enterRepositority)
         {
             repository = ownerRepository;
+            this.enterRepositority = enterRepositority;
         }
 
         private ApplicationSignInManager _signInManager;
@@ -177,6 +178,13 @@ namespace ReviewProj.WebUI.Controllers
             Owner own = new Owner();
             own.Enterprises = new List<Enterprise>();
             own = repository.FindByEmail(user.Email);
+            foreach(Enterprise ent in own.Enterprises)
+            {
+                if(ent!=null)
+                {
+                    ent.Contacts = enterRepositority.getList(ent);
+                }
+            }
             /* using (var db = new AppDbContext())
              {
                  //почук власника вбд за емейлом користувача що наразі в мережі
@@ -230,6 +238,7 @@ namespace ReviewProj.WebUI.Controllers
         public List<Enterprise1> getModelList()
         {
             List<Enterprise1> newList = new List<Enterprise1>();
+
             foreach (Enterprise ent in GetOwner().Enterprises)
             {
                 Enterprise1 ent1 = getEnterprise(ent);
