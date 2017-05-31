@@ -13,6 +13,7 @@ using ReviewProj.Domain.Entities;
 using ReviewProj.Domain.Concrete;
 using System.Data.Entity.Validation;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ReviewProj.Domain.Abstract;
 
 namespace ReviewProj.WebUI.Controllers
 {
@@ -21,9 +22,14 @@ namespace ReviewProj.WebUI.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IReviewerRepository reviewerRepository;
+        private IOwnerRepository ownerRepository;
+        
 
-        public AccountController()
+        public AccountController(IReviewerRepository revRepo, IOwnerRepository ownRepo)
         {
+            reviewerRepository = revRepo;
+            ownerRepository = ownRepo;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -83,6 +89,20 @@ namespace ReviewProj.WebUI.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    {
+                        Owner owner = ownerRepository.FindByEmail(model.Email);
+                        if (owner != null)
+                        {
+                            if (owner.IsBanned)
+                            {
+                                // 
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

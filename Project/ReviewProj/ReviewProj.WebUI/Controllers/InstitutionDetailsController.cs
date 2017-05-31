@@ -16,11 +16,14 @@ namespace ReviewProj.WebUI.Controllers
     {
         private IEnterpriseRepository entRepository;
         private IReviewRepository reviewRepository;
+        private IOwnerRepository ownerRepository;
+
         public InstitutionDetailsController(IEnterpriseRepository enterpriseRepository, 
-            IReviewRepository revRepo)
+            IReviewRepository revRepo, IOwnerRepository ownerRepo)
         {
             entRepository = enterpriseRepository;
             reviewRepository = revRepo;
+            ownerRepository = ownerRepo;
         }
 
         // GET: InstitutionDetails
@@ -102,6 +105,29 @@ namespace ReviewProj.WebUI.Controllers
         {
             reviewRepository.VoteForReview(id, reviewerEmail, false);
             return RedirectToAction("Index", new { id = entId });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public RedirectToRouteResult DeleteInstitution(int entId)
+        {
+            entRepository.DeleteEnterprise(entId);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public RedirectToRouteResult BunOwner(int entId)
+        {
+            Enterprise enterprise = entRepository.GetEnterpriseById(entId);
+
+            ApplicationUserManager userManager = HttpContext.GetOwinContext()
+                                        .GetUserManager<ApplicationUserManager>();
+            ApplicationUser user = userManager.FindByEmail(User.Identity.Name);
+
+            ownerRepository.BanOwnerById(enterprise.Owner.Id, user.Id);
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

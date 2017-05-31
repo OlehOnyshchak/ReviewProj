@@ -10,5 +10,6 @@ namespace ReviewProj.Domain.Abstract
     public interface IBanRepository
     {
         IQueryable<Ban> Bans { get; }
+        bool IsUserBanned(string userId);
     }
 }
