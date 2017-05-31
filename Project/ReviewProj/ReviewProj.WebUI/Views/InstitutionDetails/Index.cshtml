@@ -111,16 +111,31 @@
 
                                     @{
                                         ApplicationUser user = ViewBag.User;
+
+                                        string userMail = "";
+
                                         bool enableButton = false;
                                         if (user != null)
                                         {
-                                            if (ViewBag.UserRole == Role.Reviewer)
+                                            userMail = user.Email;
+                                            bool didCurrentUserVoteForReview = false;
+
+                                            foreach(Vote vote in review.Votes)
+                                            {
+                                                if(vote.Voter.Id == user.Id)
+                                                {
+                                                    didCurrentUserVoteForReview = true;
+                                                }
+                                            }
+
+                                            bool canVote = (ViewBag.UserRole == Role.Reviewer) && (review.Reviewer.Id != user.Id) && (!didCurrentUserVoteForReview);
+                                            if (canVote)
                                             {
                                                 enableButton = true;
                                             }
                                         }
-                                            <button type="submit" @(enableButton ? "" : "disabled") name="like"><img class="thumbnail" src="@Url.Content("~/Content/AppResources/like.png")" height="40" width="40" />@review.TotalLikes</button>
-                                            <button type="submit" @(enableButton ? "" : "disabled") name="dislike"><img class="thumbnail" src="@Url.Content("~/Content/AppResources/dislike.png")" height="40" width="40">@review.TotalDislikes</button>
+                                            <button type="button" onclick="location.href='@Url.Action("UpvoteReview", "InstitutionDetails", new { id = review.ReviewId, reviewerEmail = userMail, entId = Model.EntId })'" @(enableButton ? "enabled" : "disabled") name="like"><img class="thumbnail" src="@Url.Content("~/Content/AppResources/like.png")" height="40" width="40" />@review.TotalLikes</button>
+                                            <button type="button" onclick="location.href='@Url.Action("DownvoteReview", "InstitutionDetails", new { id = review.ReviewId, reviewerEmail = userMail, entId = Model.EntId })'" @(enableButton ? "enabled" : "disabled") name="dislike"><img class="thumbnail" src="@Url.Content("~/Content/AppResources/dislike.png")" height="40" width="40">@review.TotalDislikes</button>
                                     }
                                 </div>
                             </div>

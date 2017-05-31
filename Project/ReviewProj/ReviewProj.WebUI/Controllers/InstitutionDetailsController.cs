@@ -91,5 +91,17 @@ namespace ReviewProj.WebUI.Controllers
             reviewRepository.DeleteById(reviewId);
             return RedirectToAction("Index", new { id = entId });
         }
+        
+        public ActionResult UpvoteReview(int id, string reviewerEmail, int entId)
+        {
+            reviewRepository.VoteForReview(id, reviewerEmail, true);
+            return RedirectToAction("Index", new { id = entId });
+        }
+
+        public ActionResult DownvoteReview(int id, string reviewerEmail, int entId)
+        {
+            reviewRepository.VoteForReview(id, reviewerEmail, false);
+            return RedirectToAction("Index", new { id = entId });
+        }
     }
 }
