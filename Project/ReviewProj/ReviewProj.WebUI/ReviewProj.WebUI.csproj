@@ -332,6 +332,7 @@
     <Content Include="Views\Owner1\AddContact.cshtml" />
     <Content Include="Views\Owner1\EditContact.cshtml" />
     <Content Include="Views\Owner1\EditRestData.cshtml" />
+    <Content Include="Views\Owner1\AddPhoto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,7 +8,7 @@
 
 <h2>DetailsEnterprise</h2>
 
-<div>
+<dd>
     <h4>Enterprise</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -55,14 +55,14 @@
             @Html.DisplayNameFor(model => model.Contacts)
         </dt>
         <dd>[@Html.ActionLink("New", "AddContact")]</dd>
-        <!--  foreach (var item in Model.Contacts)
-          {
-              <dd>
-                  Html.DisplayFor(model => item)
-                  Html.ActionLink("Edit", "EditContact", new { itemName = item }) |
-                  Html.ActionLink("Delete", "DeleteContact", new { itemName = item })
-              </dd>
-          }-->
+        @foreach (var item in Model.Contacts)
+        {
+            <dd>
+                @Html.DisplayFor(model => item)
+                @Html.ActionLink("Edit", "EditContact", new { itemName = item }) |
+                @Html.ActionLink("Delete", "DeleteContact", new { itemName = item })
+            </dd>
+        }
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -78,47 +78,60 @@
         <dd>
             @Html.DisplayFor(model => model.Type)
         </dd>
-        <div id="padding-style" class="row">
-            <div class="medium-6 columns">
-
-                @if (Model.Resources != null)
-            {
-                foreach (Resource res in Model.Resources)
-                {
-                    if (res.Type == ResourceType.MainImage)
-                    {
-                        string imgSrc = "~/Content/UserResources/" + @res.DataPath;
-                            <a target="_blank" href="@Url.Content(imgSrc)">
-                                <img class="thumbnail" src="@Url.Content(imgSrc)">
-                            </a>
-                            break;
-                        }
-                    }
-
-                    <div class="row small-up-4">
-                        @foreach (Resource res in Model.Resources)
-                        {
-                            if (res.Type == ResourceType.SecondaryImage)
-                            {
-                                string imgSrc = "~/Content/UserResources/" + @res.DataPath;
-                                <div class="column">
-                                    <a target="_blank" href="@Url.Content(imgSrc)">
-                                        <img class="thumbnail" src="@Url.Content(imgSrc)">
-                                    </a>
-                                </div>
-                            }
-                        }
-                    </div>
-
-                }
 
 
-            </div>
-</dl>
-</div>
+
+    </dl>
+    <table class="table">
+        <tr>
+            <th></th>
+        </tr>
+@if (Model.Resources != null)
+{
+    foreach (var item in Model.Resources)
+    {
+        if (item.Type == ResourceType.MainImage)
+        {
+            string imgSrc = "~/Content/UserResources/" + @item.DataPath;
+            <tr>
+                <td>
+                    <!-- <div style="background-image:url( data:image/jpeg;base64,Convert.ToBase64String(item.Data) )"><</div>-->
+                   MAIN
+                    <a target="_blank" href="@Url.Content(imgSrc)">
+                        <img class="thumbnail" src="@Url.Content(imgSrc)" height="100" width="100">
+                    </a>
+                    @Html.ActionLink("Delete Photo", "DeletePhoto", new { ID = item.ResourceId })
+                </td>
+            </tr>
+            break;
+        }
+    }
+    foreach (var item in Model.Resources)
+    {
+        if (item.Type == ResourceType.SecondaryImage)
+        {
+            string imgSrc = "~/Content/UserResources/" + @item.DataPath;
+            <tr>
+                <td>
+                    <!-- <div style="background-image:url( data:image/jpeg;base64,Convert.ToBase64String(item.Data) )"><</div>-->
+
+                    <a target="_blank" href="@Url.Content(imgSrc)">
+                        <img class="thumbnail" src="@Url.Content(imgSrc)" height="100" width="100">
+                    </a>
+                    @Html.ActionLink("Delete Photo", "DeletePhoto", new { ID = item.ResourceId })
+                    @Html.ActionLink("Appoint Main", "AppointMain", new { ID = item.ResourceId })
+                </td>
+            </tr>
+           
+        }
+    }
+}
+
+    </table>
+
 <p>
-    @Html.ActionLink("Edit", "EditRestData", "Owner1", null, new { @class = "btn btn-default" })
-    @Html.ActionLink("AddPhoto", "", "Owner1", null, new { @class = "btn btn-default" })
-    @Html.ActionLink("Back to List", "EnterprisesList", "Owner1", null, new { @class = "btn btn-default" })
-    @Html.ActionLink("Save change", "SaveChange", "Owner1", null, new { @class = "btn btn-default" })
-</p>
+        @Html.ActionLink("Edit", "EditRestData", "Owner1", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("AddPhoto", "AddPhoto", "Owner1", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Back to List", "EnterprisesList", "Owner1", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Save change", "SaveChange", "Owner1", null, new { @class = "btn btn-default" })
+    </p>

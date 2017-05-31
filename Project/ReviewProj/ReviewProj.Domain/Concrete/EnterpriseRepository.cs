@@ -72,10 +72,12 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
-
-        public void AddContact(Enterprise enterprise, string cont)
+        // INTEGRATION
+        public void AddContact(Enterprise enterprise, string emailOrPhone)
         {
-            enterprise.Contacts.Add(cont);
+            Contact contact = new Contact();
+            contact.EmailOrPhone = emailOrPhone;
+            enterprise.Contacts.Add(contact);
             context.SaveChanges();
         }
 
@@ -87,11 +89,12 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
-        public void AddListContacts(Enterprise ent)
-        {
-            ent.Contacts = new List<string>();
-            context.SaveChanges();
-        }
+        // INTEGRATION
+        //public void AddListContacts(Enterprise ent)
+        //{
+        //    ent.Contacts = new List<string>();
+        //    context.SaveChanges();
+        //}
 
 
         //public void DeleteReview(int entId, int reviewId)
@@ -110,9 +113,16 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
-        public void RemoveMainPhoto(Enterprise enterprise)
+        public void RemovePhoto(Enterprise enterprise, int id)
         {
-            enterprise.Resources.RemoveAll(res => res.Type == ResourceType.MainImage);
+            enterprise.Resources.RemoveAll(res => res.ResourceId == id);
+            context.SaveChanges();
+        }
+        public void AppointMain(Enterprise enterprise, int id)
+        {
+            List<Resource> mainImages = enterprise.Resources.Where(res => res.Type == ResourceType.MainImage).ToList();
+            mainImages.ForEach(res => res.Type = ResourceType.SecondaryImage);
+            enterprise.Resources.Where(res => res.ResourceId == id).FirstOrDefault().Type = ResourceType.MainImage;
             context.SaveChanges();
         }
 
@@ -120,11 +130,12 @@ namespace ReviewProj.Domain.Concrete
         {
             get { return context.Enterprises; }
         }
-        public List<string> getList(Enterprise enterprise)
-        {
-           
-            context.Entry(enterprise).Collection(e => e.Contacts).Load();
-            return enterprise.Contacts;
-        }
+
+        // INTEGRATION
+        //public List<string> GetEnterpriseContacts(Enterprise enterprise)
+        //{    
+        //    context.Entry(enterprise).Collection(e => e.Contacts).Load();
+        //    return enterprise.Contacts;
+        //}
     }
 }

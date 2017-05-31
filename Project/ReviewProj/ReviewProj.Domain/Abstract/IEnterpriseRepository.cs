@@ -26,10 +26,13 @@ namespace ReviewProj.Domain.Abstract
         void AddReview(int entId, string reviewerEmail, Review review);
 
         void UpdateMainPhoto(Enterprise enterprise, Resource fileName);
-        void AddContact(Enterprise enterprise, string cont);
-        void AddListContacts(Enterprise ent);
-        List<string> getList(Enterprise enterprise);
-        void RemoveMainPhoto(Enterprise enterprise);
+
+        // INTEGRATION
+        void AddContact(Enterprise enterprise, string emailOrPhone);
+        //void AddListContacts(Enterprise ent);
+        //List<string> GetEnterpriseContacts(Enterprise enterprise);
+        void RemovePhoto(Enterprise enterprise, int id);
+        void AppointMain(Enterprise enterprise, int id);
 
         //void DeleteReview(int entId, int reviewId);
 
