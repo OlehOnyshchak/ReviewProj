@@ -72,12 +72,12 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
-
-        public void AddContact(Enterprise enterprise, string cont)
-        {
-            enterprise.Contacts.Add(cont);
-            context.SaveChanges();
-        }
+        // INTEGRATION
+        //public void AddContact(Enterprise enterprise, string cont)
+        //{
+        //    enterprise.Contacts.Add(cont);
+        //    context.SaveChanges();
+        //}
 
         public void ChangeRating(Enterprise ent, double rating)
         {
@@ -87,11 +87,12 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
-        public void AddListContacts(Enterprise ent)
-        {
-            ent.Contacts = new List<string>();
-            context.SaveChanges();
-        }
+        // INTEGRATION
+        //public void AddListContacts(Enterprise ent)
+        //{
+        //    ent.Contacts = new List<string>();
+        //    context.SaveChanges();
+        //}
 
 
         //public void DeleteReview(int entId, int reviewId)
@@ -120,11 +121,12 @@ namespace ReviewProj.Domain.Concrete
         {
             get { return context.Enterprises; }
         }
-        public List<string> getList(Enterprise enterprise)
-        {
-           
-            context.Entry(enterprise).Collection(e => e.Contacts).Load();
-            return enterprise.Contacts;
-        }
+
+        // INTEGRATION
+        //public List<string> GetEnterpriseContacts(Enterprise enterprise)
+        //{    
+        //    context.Entry(enterprise).Collection(e => e.Contacts).Load();
+        //    return enterprise.Contacts;
+        //}
     }
 }

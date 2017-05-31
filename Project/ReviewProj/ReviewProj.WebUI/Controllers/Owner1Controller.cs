@@ -104,7 +104,7 @@ namespace ReviewProj.WebUI.Controllers
         [HttpPost]
         public ActionResult AddContact(AddContacts model)
         {
-            entResult.Contacts.Add(model.contact);
+            entResult.Contacts.Add(new Contact { EmailOrPhone = model.contact });
             return RedirectToAction("DetailsEnterprise", "Owner1");
         }
 
@@ -119,15 +119,17 @@ namespace ReviewProj.WebUI.Controllers
         [HttpPost]
         public ActionResult EditContact(AddContacts model)
         {
-            entResult.Contacts.Add(model.contact);
-            entResult.Contacts.Remove(tempNameContact);
+            entResult.Contacts.Add(new Contact { EmailOrPhone = model.contact });
+            // INTEGRATE
+  //          entResult.Contacts.Remove(tempNameContact);
             tempNameContact = null;
             return RedirectToAction("DetailsEnterprise", "Owner1");
         }
 
         public ActionResult DeleteContact(string itemName)
         {
-            entResult.Contacts.Remove(itemName);
+            // INTEGRATE
+           // entResult.Contacts.Remove(itemName);
             return RedirectToAction("DetailsEnterprise", "Owner1");
         }
         public ActionResult EditRestData()
@@ -178,11 +180,13 @@ namespace ReviewProj.WebUI.Controllers
             Owner own = new Owner();
             own.Enterprises = new List<Enterprise>();
             own = repository.FindByEmail(user.Email);
+
             foreach(Enterprise ent in own.Enterprises)
             {
-                if(ent!=null)
+                if(ent != null)
                 {
-                    ent.Contacts = enterRepositority.getList(ent);
+                    // INTEGRATE
+ //                   ent.Contacts = enterRepositority.GetEnterpriseContacts(ent);
                 }
             }
             /* using (var db = new AppDbContext())
@@ -227,7 +231,8 @@ namespace ReviewProj.WebUI.Controllers
         {
             Enterprise1 newent = new Enterprise1();
             newent.Address = ent.Address;
-            newent.Contacts = ent.Contacts;
+            // INTEGRATE
+   //         newent.Contacts = ent.Contacts;
             newent.Description = ent.Description;
             newent.Name = ent.Name;
             newent.Rating = ent.Rating;
@@ -235,6 +240,7 @@ namespace ReviewProj.WebUI.Controllers
 
             return newent;
         }
+
         public List<Enterprise1> getModelList()
         {
             List<Enterprise1> newList = new List<Enterprise1>();
@@ -244,8 +250,10 @@ namespace ReviewProj.WebUI.Controllers
                 Enterprise1 ent1 = getEnterprise(ent);
                 newList.Add(ent1);
             }
+
             return newList;
         }
+
         private bool HasPassword()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -255,7 +263,5 @@ namespace ReviewProj.WebUI.Controllers
             }
             return false;
         }
-
-
     }
 }
