@@ -88,6 +88,14 @@ namespace ReviewProj.Domain.Concrete
 
             context.SaveChanges();
         }
+       public void ChangeData(Enterprise entInDb, Enterprise entNewData)
+        {
+            entInDb.Address = entNewData.Address;
+            entInDb.Description = entNewData.Description;
+            entInDb.Name = entNewData.Name;
+
+            context.SaveChanges();
+        }
 
         // INTEGRATION
         //public void AddListContacts(Enterprise ent)

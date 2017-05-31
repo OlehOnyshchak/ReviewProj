@@ -33,6 +33,7 @@ namespace ReviewProj.Domain.Abstract
         //List<string> GetEnterpriseContacts(Enterprise enterprise);
         void RemovePhoto(Enterprise enterprise, int id);
         void AppointMain(Enterprise enterprise, int id);
+        void ChangeData(Enterprise entInDb, Enterprise entNewData);
 
         //void DeleteReview(int entId, int reviewId);
 

@@ -150,7 +150,8 @@ namespace ReviewProj.WebUI.Controllers
         {
             //потребує зберігання змін в бд для елемента Enterprise з індексом, що зберігається в статичній змінній id, з ліста даного власника
             //дані для зміни в статичній змінній entResult
-
+            Enterprise ent = enterRepositority.GetEnterpriseById(id);
+            enterRepositority.ChangeData(ent, entResult);
 
             //занулення статичних змінних
             id = 0;
