@@ -3,3 +3,5 @@ obj/
 *.mdf
 *.ldf
 *.suo
+.vs/config/applicationhost.config
+.vs/
