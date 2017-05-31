@@ -217,5 +217,30 @@ namespace ReviewProj.WebUI.Controllers
 
             return File(imageData, contentType);
         }
+
+        // Change language
+        public ActionResult ChangeLangToUA()
+        {
+            //
+            // Change the current culture for this user.
+            //
+            SiteSession.CurrentUICulture = 2; //set Ukrainian
+            //
+            // Cache the new current culture into the user HTTP session. 
+            //
+            Session["CurrentUICulture"] = 2;
+            //
+            // Redirect to the same page from where the request was made! 
+            //
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+
+        public ActionResult ChangeLangToEN()
+        {
+            SiteSession.CurrentUICulture = 1; //Set English
+            Session["CurrentUICulture"] = 1;
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }
