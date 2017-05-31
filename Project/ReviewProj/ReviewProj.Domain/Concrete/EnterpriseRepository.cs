@@ -72,9 +72,6 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
-
-
-
         public void ChangeRating(Enterprise ent, double rating)
         {
             context.Entry(ent).State = EntityState.Modified;

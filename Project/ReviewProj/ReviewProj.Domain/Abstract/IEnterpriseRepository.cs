@@ -28,8 +28,6 @@ namespace ReviewProj.Domain.Abstract
         void UpdateMainPhoto(Enterprise enterprise, Resource fileName);
         void RemoveMainPhoto(Enterprise enterprise);
 
-        //void DeleteReview(int entId, int reviewId);
-
         IQueryable<Enterprise> Enterprises { get; }
 
     }

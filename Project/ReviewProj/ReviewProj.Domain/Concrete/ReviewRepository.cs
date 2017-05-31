@@ -17,6 +17,24 @@ namespace ReviewProj.Domain.Concrete
             get { return context.Reviews; }
         }
 
+        public ReviewRepository(AppDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
+        public void VoteForReview(int reviewID, string reviewerEmail, bool isUpvote)
+        {
+            Review review = new ReviewRepository(context).GetById(reviewID);
+            Reviewer reviewer = new ReviewerRepository(context).FindByEmail(reviewerEmail);
+            Vote vote = new Vote();
+            vote.Review = review;
+            vote.Voter = reviewer;
+            vote.VoteDelta = (isUpvote) ? 1.0 : -1.0;
+
+            review.Votes.Add(vote);
+            context.SaveChanges();
+        }
+
         public void DeleteById(int reviewId)
         {
             context.Reviews.Remove(GetById(reviewId));
