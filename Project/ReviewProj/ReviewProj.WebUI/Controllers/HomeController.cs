@@ -61,6 +61,15 @@ namespace ReviewProj.WebUI.Controllers
             };
         }
 
+        private IList<SelectListItem> GetSortingItems()
+        {
+            return new List<SelectListItem>
+            {
+                   new SelectListItem {Text = "Name", Value = "Name", Selected = true },
+                   new SelectListItem {Text = "Rating", Value = "Rating" }
+            };
+        }
+
         private EnterpriceType GetEntType(string entType)
         {
             switch (entType)
@@ -105,6 +114,14 @@ namespace ReviewProj.WebUI.Controllers
                 string name = model.SearchString;
                 IEnumerable<Enterprise> query = ratings.Count == 0 && types.Count == 0 ?
                     entRepository.GetByName(name) : entRepository.GetFiltratedByName(ratings, types, name);
+                if (model.SelectedSortingCategory == "Name")
+                {
+                    query = query.OrderBy(ent => ent.Name);
+                }
+                else
+                {
+                    query = query.OrderBy(ent => ent.Rating);
+                }
 
                 model.Enterprises = new List<Enterprise>(query);
             }
@@ -135,7 +152,8 @@ namespace ReviewProj.WebUI.Controllers
                 },
                 SearchString = model.SearchString,
                 RatingCategories = this.GetRatingItems(),
-                TypeCategories = this.GetTypeItems()
+                TypeCategories = this.GetTypeItems(),
+                SortingCategories = this.GetSortingItems()
             };
         }
 

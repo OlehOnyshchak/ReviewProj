@@ -27,7 +27,7 @@
 						@Html.TextBoxFor(m => Model.SearchString)
 					</div>
 
-							<h4>Rating</h4>
+				    <h4>Rating</h4>
 					for (int i = 0; i < Model.RatingCategories.Count; ++i)
 					{
 						<div id="Checkbox">
@@ -50,7 +50,15 @@
 							@Html.HiddenFor(m => Model.TypeCategories[i].Value)
 							<br />
 						</div>
-					}
+                    }
+
+                    <h4>Sort</h4>
+
+                        <div id="ComboBox">
+                            @Html.DropDownListFor(m => Model.SelectedSortingCategory, Model.SortingCategories)
+                            <br />
+                        </div>
+
 					<div id="IndexSearchButton">
 						<input type="submit" value="Search" />
 					</div>
