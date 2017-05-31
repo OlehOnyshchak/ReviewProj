@@ -24,8 +24,15 @@ namespace ReviewProj.Domain.Concrete
 
         public void VoteForReview(int reviewID, string reviewerEmail, bool isUpvote)
         {
-            Review review = new ReviewRepository(context).GetById(reviewID);
-            Reviewer reviewer = new ReviewerRepository(context).FindByEmail(reviewerEmail);
+            Review review =  GetById(reviewID);
+            context.Reviews.Attach(review);
+
+            Reviewer reviewer = context.Reviewers
+                .Where(r => r.Email == reviewerEmail)
+                .First();
+            
+            context.Reviewers.Attach(reviewer);
+
             Vote vote = new Vote();
             vote.Review = review;
             vote.Voter = reviewer;
