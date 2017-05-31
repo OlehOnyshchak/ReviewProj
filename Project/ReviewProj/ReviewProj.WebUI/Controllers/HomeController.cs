@@ -16,7 +16,7 @@ namespace ReviewProj.WebUI.Controllers
     public class HomeController : Controller
     {
         private IEnterpriseRepository entRepository;
-        public int PageSize = 20;
+        public int PageSize = 10;
         public HomeController(IEnterpriseRepository enterpriceRepository)
         {
             entRepository = enterpriceRepository;
@@ -61,6 +61,15 @@ namespace ReviewProj.WebUI.Controllers
             };
         }
 
+        private IList<SelectListItem> GetSortingItems()
+        {
+            return new List<SelectListItem>
+            {
+                   new SelectListItem {Text = "Name", Value = "Name", Selected = true },
+                   new SelectListItem {Text = "Rating", Value = "Rating" }
+            };
+        }
+
         private EnterpriceType GetEntType(string entType)
         {
             switch (entType)
@@ -80,8 +89,23 @@ namespace ReviewProj.WebUI.Controllers
             }
         }
 
-        public ViewResult FilterList(EnterpriseListViewModel model)
+        public ViewResult FilterList(EnterpriseListViewModel model, int page = 1)
         {
+            // hack againts bug "Filter info is lost when we switch pages"
+            // don't know how to pass here actual model, so we will use previous one
+            if (model == null)
+            {
+                var cachedModel = Session["FilterModel"];
+                if (cachedModel == null)
+                {
+                    return View("Index", Index(null, page).Model);
+                }
+                else
+                {
+                    model = (EnterpriseListViewModel)cachedModel;
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 IList<EnterpriceType> types = new List<EnterpriceType>();
@@ -105,11 +129,21 @@ namespace ReviewProj.WebUI.Controllers
                 string name = model.SearchString;
                 IEnumerable<Enterprise> query = ratings.Count == 0 && types.Count == 0 ?
                     entRepository.GetByName(name) : entRepository.GetFiltratedByName(ratings, types, name);
+                if (model.SelectedSortingCategory == "Name")
+                {
+                    query = query.OrderBy(ent => ent.Name);
+                }
+                else
+                {
+                    query = query.OrderBy(ent => ent.Rating);
+                }
 
                 model.Enterprises = new List<Enterprise>(query);
             }
 
-            EnterpriseListViewModel newModel = UpdateModel(model, 1);
+            EnterpriseListViewModel newModel = UpdateModel(model, page);
+            model.PagingInfo = new PagingInfo(newModel.PagingInfo);
+            Session["FilterModel"] = new EnterpriseListViewModel(model);
 
             return View("Index", newModel);
         }
@@ -134,8 +168,12 @@ namespace ReviewProj.WebUI.Controllers
                     TotalItems = model.Enterprises.Count()
                 },
                 SearchString = model.SearchString,
-                RatingCategories = this.GetRatingItems(),
-                TypeCategories = this.GetTypeItems()
+                RatingCategories = model.RatingCategories.Count != 0 ? 
+                    model.RatingCategories : this.GetRatingItems(),
+                TypeCategories = model.TypeCategories.Count != 0 ?
+                    model.TypeCategories : this.GetTypeItems(),
+                SortingCategories = model.SortingCategories.Count != 0 ?
+                    model.SortingCategories : this.GetSortingItems()
             };
         }
 

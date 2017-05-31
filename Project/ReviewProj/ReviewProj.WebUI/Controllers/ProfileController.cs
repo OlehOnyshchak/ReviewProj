@@ -155,7 +155,7 @@ namespace ReviewProj.WebUI.Controllers
         {
             Reviewer reviewer = repository.FindByEmail(User.Identity.Name);
 
-            Resource resource = reviewer.Resources.FirstOrDefault(res => res.Type == ResourceType.MainImage);
+            Resource resource = reviewer != null ? reviewer.Resources.FirstOrDefault(res => res.Type == ResourceType.MainImage) : null;
             string fileName;
             if (resource != null)
             {

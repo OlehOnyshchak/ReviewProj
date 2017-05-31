@@ -16,14 +16,14 @@ namespace ReviewProj.WebUI.Controllers
     {
         private IEnterpriseRepository entRepository;
         private IReviewRepository reviewRepository;
-        private IOwnerRepository ownerRepository;
+        private IBanRepository banRepository;
 
         public InstitutionDetailsController(IEnterpriseRepository enterpriseRepository, 
-            IReviewRepository revRepo, IOwnerRepository ownerRepo)
+            IReviewRepository revRepo, IBanRepository banRepo)
         {
             entRepository = enterpriseRepository;
             reviewRepository = revRepo;
-            ownerRepository = ownerRepo;
+            banRepository = banRepo;
         }
 
         // GET: InstitutionDetails
@@ -123,9 +123,28 @@ namespace ReviewProj.WebUI.Controllers
 
             ApplicationUserManager userManager = HttpContext.GetOwinContext()
                                         .GetUserManager<ApplicationUserManager>();
-            ApplicationUser user = userManager.FindByEmail(User.Identity.Name);
+            ApplicationUser admin = userManager.FindByEmail(User.Identity.Name);
 
-            ownerRepository.BanOwnerById(enterprise.Owner.Id, user.Id);
+            banRepository.BanUserById(enterprise.Owner.Id, admin.Id);
+            TimeSpan duration = banRepository.TimeToEndOfBun(enterprise.Owner.Id);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public RedirectToRouteResult BunReviewer(int reviewId)
+        {
+            Review review = reviewRepository.GetById(reviewId);
+
+            ApplicationUserManager userManager = HttpContext.GetOwinContext()
+                            .GetUserManager<ApplicationUserManager>();
+            ApplicationUser admin = userManager.FindByEmail(User.Identity.Name);
+
+            banRepository.BanUserById(review.Reviewer.Id, admin.Id);
+
+            banRepository.BanUserById(review.Reviewer.Id, admin.Id);
+            TimeSpan duration = banRepository.TimeToEndOfBun(review.Reviewer.Id);
 
             return RedirectToAction("Index", "Home");
         }

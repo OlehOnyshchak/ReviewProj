@@ -24,12 +24,15 @@ namespace ReviewProj.WebUI.Controllers
         private ApplicationUserManager _userManager;
         private IReviewerRepository reviewerRepository;
         private IOwnerRepository ownerRepository;
+        private IBanRepository banRepository;
         
 
-        public AccountController(IReviewerRepository revRepo, IOwnerRepository ownRepo)
+        public AccountController(IReviewerRepository revRepo, IOwnerRepository ownRepo, 
+            IBanRepository banRepo)
         {
             reviewerRepository = revRepo;
             ownerRepository = ownRepo;
+            banRepository = banRepo;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -83,26 +86,18 @@ namespace ReviewProj.WebUI.Controllers
                 return View(model);
             }
 
+            
+            if (banRepository.IsUserBanned(model.Email))
+            {
+                return RedirectToAction("BanMessage", "Ban");
+            }
+
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    {
-                        Owner owner = ownerRepository.FindByEmail(model.Email);
-                        if (owner != null)
-                        {
-                            if (owner.IsBanned)
-                            {
-                                // 
-                            }
-                            else
-                            {
-
-                            }
-                        }
-                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

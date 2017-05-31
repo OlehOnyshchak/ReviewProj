@@ -11,7 +11,6 @@ namespace ReviewProj.Domain.Abstract
     {
         IQueryable<Owner> Owners { get; }
         Owner FindByEmail(string email);
-        void BanOwnerById(string id, string admId);
 
     }
 }
