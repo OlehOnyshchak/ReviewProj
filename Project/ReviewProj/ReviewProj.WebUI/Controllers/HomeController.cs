@@ -13,7 +13,7 @@ using System.IO;
 
 namespace ReviewProj.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private IEnterpriseRepository entRepository;
         public int PageSize = 20;
@@ -221,17 +221,13 @@ namespace ReviewProj.WebUI.Controllers
         // Change language
         public ActionResult ChangeLangToUA()
         {
-            //
             // Change the current culture for this user.
-            //
             SiteSession.CurrentUICulture = 2; //set Ukrainian
-            //
+
             // Cache the new current culture into the user HTTP session. 
-            //
             Session["CurrentUICulture"] = 2;
-            //
+
             // Redirect to the same page from where the request was made! 
-            //
             return Redirect(Request.UrlReferrer.ToString());
         }
 
