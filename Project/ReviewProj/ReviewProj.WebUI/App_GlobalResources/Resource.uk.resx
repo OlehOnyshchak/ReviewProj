@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutFirstPharKey" xml:space="preserve">
-    <value>Be usefull. Share your emotions and thoughts from a visited place. Dynamically innovate resource-leveling customer service for state of the art customer service. Provide information about favourite places, interesting spots. Rate other, share your advices and thoughts. Make someones' trip in Lviv easier and more comfortable.</value>
+    <value>Будь корисним. Поділися своїми емоціями і думками про відвіданий тобою заклад. Долучайся до створення сервісу, контент в якому творять самі користувачі. Ділися інформацією про улюблені місця та цікаві райони. Оцінюй відгуки інших людей, ділися своїми порадами та думками. Зроби чиюсь подорож до Львова простішою та комфортнішою.</value>
   </data>
   <data name="AboutHeaderKey" xml:space="preserve">
     <value>Лише найкращі відгуки про львівські ресторани, магазини та інші цікаві місця</value>
@@ -127,10 +127,10 @@
     <value>Про нас</value>
   </data>
   <data name="AboutSecondPharKey" xml:space="preserve">
-    <value>Register as private enterpreneur and create a profile for your restaurant/shop/other to promote and recieve honest feedbacks. Broaden your business and be open and clear for your costumers. The more true information you give, the more attention and visitors you wil receive.</value>
+    <value>Реєструйтеся в якості приватного підприємця та створюйте профіль для вашого ресторану / магазину / тощо, просувайте його та отримуйте чесні відгуки. Розширяйте свій бізнес та будьте відкритими і зрозумілими для ваших клієнтів. Чим більше правдивої інформації ви надасте про свій заклад, тим більше уваги та відвідувачів отримаєте.</value>
   </data>
   <data name="AboutThirdPharKey" xml:space="preserve">
-    <value>You have ability not only to help other tourists to find their best destination, you can become a bit responsible for developing better and more tourist-friendly city infrostucture.</value>
+    <value>У вас є можливість не тільки допомогти іншим туристам знайти найцікавіші місця та заклади, а й докластися до створення кращої та більш придатної для туризму інфраструктури міста.</value>
   </data>
   <data name="CafeTypeKey" xml:space="preserve">
     <value>Кафе</value>
@@ -236,5 +236,23 @@
   </data>
   <data name="WelcomeKey" xml:space="preserve">
     <value>Ласкаво просимо</value>
+  </data>
+  <data name="AddPhotoKey" xml:space="preserve">
+    <value>Додати фото</value>
+  </data>
+  <data name="BirthDateKey" xml:space="preserve">
+    <value>Дата народження</value>
+  </data>
+  <data name="ChangePasswordKey" xml:space="preserve">
+    <value>Змінити пароль</value>
+  </data>
+  <data name="EditKey" xml:space="preserve">
+    <value>Редагувати</value>
+  </data>
+  <data name="NationalityKey" xml:space="preserve">
+    <value>Національність</value>
+  </data>
+  <data name="NotSpecifiedKey" xml:space="preserve">
+    <value>не вказано</value>
   </data>
 </root>

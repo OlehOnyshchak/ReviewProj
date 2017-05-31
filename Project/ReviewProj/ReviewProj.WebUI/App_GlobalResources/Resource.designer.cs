@@ -106,11 +106,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, такую же, как Add Photo.
+        /// </summary>
+        internal static string AddPhotoKey {
+            get {
+                return ResourceManager.GetString("AddPhotoKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Birth Date.
+        /// </summary>
+        internal static string BirthDateKey {
+            get {
+                return ResourceManager.GetString("BirthDateKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, такую же, как Cafe.
         /// </summary>
         internal static string CafeTypeKey {
             get {
                 return ResourceManager.GetString("CafeTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как CHANGE PASSWORD.
+        /// </summary>
+        internal static string ChangePasswordKey {
+            get {
+                return ResourceManager.GetString("ChangePasswordKey", resourceCulture);
             }
         }
         
@@ -147,6 +174,15 @@ namespace Resources {
         internal static string CreateNewAccountKey {
             get {
                 return ResourceManager.GetString("CreateNewAccountKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как EDIT.
+        /// </summary>
+        internal static string EditKey {
+            get {
+                return ResourceManager.GetString("EditKey", resourceCulture);
             }
         }
         
@@ -246,6 +282,24 @@ namespace Resources {
         internal static string MyProfileKey {
             get {
                 return ResourceManager.GetString("MyProfileKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Nationality.
+        /// </summary>
+        internal static string NationalityKey {
+            get {
+                return ResourceManager.GetString("NationalityKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как not specified.
+        /// </summary>
+        internal static string NotSpecifiedKey {
+            get {
+                return ResourceManager.GetString("NotSpecifiedKey", resourceCulture);
             }
         }
         

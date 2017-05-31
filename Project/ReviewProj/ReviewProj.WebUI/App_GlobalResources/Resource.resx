@@ -237,4 +237,22 @@
   <data name="WelcomeKey" xml:space="preserve">
     <value>Welcome</value>
   </data>
+  <data name="AddPhotoKey" xml:space="preserve">
+    <value>Add Photo</value>
+  </data>
+  <data name="BirthDateKey" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="ChangePasswordKey" xml:space="preserve">
+    <value>CHANGE PASSWORD</value>
+  </data>
+  <data name="EditKey" xml:space="preserve">
+    <value>EDIT</value>
+  </data>
+  <data name="NationalityKey" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
+  <data name="NotSpecifiedKey" xml:space="preserve">
+    <value>not specified</value>
+  </data>
 </root>
