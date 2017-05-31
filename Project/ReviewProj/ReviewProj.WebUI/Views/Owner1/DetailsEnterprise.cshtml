@@ -1,4 +1,6 @@
-﻿@model ReviewProj.WebUI.Models.Enterprise1
+﻿@using ReviewProj.WebUI.Models;
+@using ReviewProj.Domain.Entities
+@model ReviewProj.WebUI.Models.Enterprise1
 
 @{
     ViewBag.Title = "DetailsEnterprise";
@@ -76,11 +78,47 @@
         <dd>
             @Html.DisplayFor(model => model.Type)
         </dd>
+        <div id="padding-style" class="row">
+            <div class="medium-6 columns">
 
-    </dl>
+                @if (Model.Resources != null)
+            {
+                foreach (Resource res in Model.Resources)
+                {
+                    if (res.Type == ResourceType.MainImage)
+                    {
+                        string imgSrc = "~/Content/UserResources/" + @res.DataPath;
+                            <a target="_blank" href="@Url.Content(imgSrc)">
+                                <img class="thumbnail" src="@Url.Content(imgSrc)">
+                            </a>
+                            break;
+                        }
+                    }
+
+                    <div class="row small-up-4">
+                        @foreach (Resource res in Model.Resources)
+                        {
+                            if (res.Type == ResourceType.SecondaryImage)
+                            {
+                                string imgSrc = "~/Content/UserResources/" + @res.DataPath;
+                                <div class="column">
+                                    <a target="_blank" href="@Url.Content(imgSrc)">
+                                        <img class="thumbnail" src="@Url.Content(imgSrc)">
+                                    </a>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                }
+
+
+            </div>
+</dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "EditRestData", "Owner1", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("AddPhoto", "", "Owner1", null, new { @class = "btn btn-default" })
     @Html.ActionLink("Back to List", "EnterprisesList", "Owner1", null, new { @class = "btn btn-default" })
     @Html.ActionLink("Save change", "SaveChange", "Owner1", null, new { @class = "btn btn-default" })
 </p>

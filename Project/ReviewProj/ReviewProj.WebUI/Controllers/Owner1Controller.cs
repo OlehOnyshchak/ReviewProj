@@ -182,7 +182,7 @@ namespace ReviewProj.WebUI.Controllers
             {
                 if(ent!=null)
                 {
-                    ent.Contacts = enterRepositority.getList(ent);
+                  //  ent.Contacts = enterRepositority.getList(ent);
                 }
             }
             /* using (var db = new AppDbContext())
@@ -232,6 +232,7 @@ namespace ReviewProj.WebUI.Controllers
             newent.Name = ent.Name;
             newent.Rating = ent.Rating;
             newent.EntId = ent.EntId;
+            newent.Resources = ent.Resources;
 
             return newent;
         }
@@ -255,7 +256,20 @@ namespace ReviewProj.WebUI.Controllers
             }
             return false;
         }
+        [HttpPost]
+        [Authorize(Roles = "reviewer")]
+        public ActionResult AddPhoto(HttpPostedFileBase file, Enterprise ent)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                Resource res = new Resource(file, ResourceType.MainImage, Server.MapPath("~/Content/UserResources"));
 
+                enterRepositority.UpdateMainPhoto(ent, res);
+
+            }
+            entResult = ent;
+            return RedirectToAction("DetailsEnterprise");
+        }
 
     }
 }
