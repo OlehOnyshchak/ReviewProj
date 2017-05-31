@@ -17,6 +17,7 @@ namespace ReviewProj.Domain.Concrete
             : base("ReviewProj_2.3", throwIfV1Schema: false)
         {
             Database.SetInitializer(new DBInitializer());
+            this.Configuration.LazyLoadingEnabled = true;
         }
 
         public static AppDbContext Create()
