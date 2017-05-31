@@ -27,6 +27,6 @@ namespace ReviewProj.Domain.Entities
         [Required]
         public DateTime StartTime { get; set; }
         [Required]
-        public TimeSpan BanDuration { get; set; }
+        public DateTime EndTime { get; set; }
     }
 }

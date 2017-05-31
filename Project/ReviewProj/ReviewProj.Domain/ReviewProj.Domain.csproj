@@ -107,6 +107,10 @@
     <Compile Include="Migrations\201705091931191_LikesSupportForReview.Designer.cs">
       <DependentUpon>201705091931191_LikesSupportForReview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705311910011_Added_EndTime_to_Ban_table.cs" />
+    <Compile Include="Migrations\201705311910011_Added_EndTime_to_Ban_table.Designer.cs">
+      <DependentUpon>201705311910011_Added_EndTime_to_Ban_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -117,6 +121,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705091931191_LikesSupportForReview.resx">
       <DependentUpon>201705091931191_LikesSupportForReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705311910011_Added_EndTime_to_Ban_table.resx">
+      <DependentUpon>201705311910011_Added_EndTime_to_Ban_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
