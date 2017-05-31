@@ -83,7 +83,7 @@ namespace ReviewProj.Domain.Concrete
 
         public void ChangeRating(Enterprise ent, double rating)
         {
-            context.Entry(ent).State = EntityState.Modified;
+            context.Enterprises.Attach(ent);
             ent.Rating = rating;
 
             context.SaveChanges();
@@ -118,6 +118,7 @@ namespace ReviewProj.Domain.Concrete
             enterprise.Resources.RemoveAll(res => res.ResourceId == id);
             context.SaveChanges();
         }
+
         public void AppointMain(Enterprise enterprise, int id)
         {
             List<Resource> mainImages = enterprise.Resources.Where(res => res.Type == ResourceType.MainImage).ToList();
@@ -128,7 +129,19 @@ namespace ReviewProj.Domain.Concrete
 
         public IQueryable<Enterprise> Enterprises
         {
-            get { return context.Enterprises; }
+            get
+            {
+                var ents = context.Enterprises;
+                foreach (var ent in ents)
+                {
+                    context.Entry(ent).Reference(x => x.Owner).Load();
+                    context.Entry(ent).Collection(x => x.Contacts).Load();
+                    context.Entry(ent).Collection(x => x.Resources).Load();
+                    context.Entry(ent).Collection(x => x.Reviews).Load();
+                }
+
+                return ents;
+            }
         }
 
         // INTEGRATION

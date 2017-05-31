@@ -52,7 +52,8 @@ namespace ReviewProj.WebUI.Controllers
                 }
             }
 
-           // entRepository.ChangeRating(ent, this.RecalculateEnterpriceRating(ent));
+            double updatedRating = this.RecalculateEnterpriceRating(ent);
+            entRepository.ChangeRating(ent, updatedRating);
 
             return View(ent);
         }
@@ -60,7 +61,7 @@ namespace ReviewProj.WebUI.Controllers
         private double RecalculateEnterpriceRating(Enterprise ent)
         {
             double denumerator = 0.0;
-            double numerator = 0 ;
+            double numerator = 0.0;
 
             foreach (var rev in ent.Reviews)
             {
@@ -70,7 +71,7 @@ namespace ReviewProj.WebUI.Controllers
                 denumerator += weight;
             }
 
-            return  numerator / denumerator;
+            return ent.Reviews.Count != 0 ? numerator / denumerator : ent.Rating;
         }
 
         public ActionResult AddReview(int entId, string reviewText, string rating)

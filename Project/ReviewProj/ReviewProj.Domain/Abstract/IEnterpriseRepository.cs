@@ -11,7 +11,7 @@ namespace ReviewProj.Domain.Abstract
     {
         IEnumerable<Enterprise> GetByName(string subName);
 
-   //     void ChangeRating(Enterprise ent, double rating);
+        void ChangeRating(Enterprise ent, double rating);
 
         IEnumerable<Enterprise> GetByType(EnterpriceType type);
 
