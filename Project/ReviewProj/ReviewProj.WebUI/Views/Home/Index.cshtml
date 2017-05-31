@@ -105,7 +105,7 @@
 					</div>
 				}
 				<div class="pager">
-					@Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x, model = Model }))
+					@Html.PageLinks(Model.PagingInfo, x => Url.Action("FilterList", new { page = x, model = Model }))
 				</div>
 			</div>
 		</div>
