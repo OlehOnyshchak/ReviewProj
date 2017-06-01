@@ -68,6 +68,11 @@
 					
 
 			<div id="Collections">
+                @if (Model.Enterprises.Count() == 0)
+                {
+                    <p>@Resources.Resource.EmptyFilterResultKey</p>
+                }
+
 				@foreach (Enterprise ent in Model.Enterprises)
 				{
 					<div class="collection-item-outer">
@@ -99,7 +104,6 @@
                                     <p>
                                         @ent.Description
                                     </p>
-                                    @*<button>Read more</button>*@
                                 </div>
                             </div>
 					</div>

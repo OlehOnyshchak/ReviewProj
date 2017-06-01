@@ -255,4 +255,7 @@
   <data name="NotSpecifiedKey" xml:space="preserve">
     <value>не вказано</value>
   </data>
+  <data name="EmptyFilterResultKey" xml:space="preserve">
+    <value>Немає жодного запису. що задовільняє заданий фільтр</value>
+  </data>
 </root>
