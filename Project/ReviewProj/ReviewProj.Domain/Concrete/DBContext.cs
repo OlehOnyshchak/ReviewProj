@@ -26,6 +26,7 @@ namespace ReviewProj.Domain.Concrete
         }
 
         public virtual DbSet<Vote> Votes { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Owner> Owners { get; set; }
         public virtual DbSet<Reviewer> Reviewers { get; set; }
         public virtual DbSet<Admin> Admins { get; set; }
@@ -82,9 +83,9 @@ namespace ReviewProj.Domain.Concrete
                     Street = "Rynok pl.",
                     HouseNumber = "10"
                 },
-                Contacts = new List<string>
+                Contacts = new List<Contact>
                 {
-                    "+380 67 670 6106"
+                    new Contact{ EmailOrPhone = "+380 67 670 6106" }
                 },
                 Resources = new List<Resource>
                 {
@@ -317,9 +318,9 @@ Enjoy with pleasure!And leave some for tomorrow!",
                     Street = "Serbska vul.",
                     HouseNumber = "3"
                 },
-                Contacts = new List<string>
+                Contacts = new List<Contact>
                 {
-                    "+380 50 430 6033"
+                     new Contact {EmailOrPhone = "+380 50 430 6033"} 
                 },
                 Resources = new List<Resource>
                 {
@@ -370,10 +371,10 @@ Enjoy with pleasure!And leave some for tomorrow!",
                     Street = "вул. Староєврейська",
                     HouseNumber = "3"
                 },
-                Contacts = new List<string>
+                Contacts = new List<Contact>
                 {
-                    "e-mail: cukiernia.lviv@gmail.com",
-                    "тел. (032) 235 69 49"
+                    new Contact{ EmailOrPhone = "cukiernia.lviv@gmail.com" },
+                    new Contact{ EmailOrPhone = "(032) 235 69 49" }
                 },
                 Resources = new List<Resource>
                 {
@@ -395,10 +396,6 @@ Enjoy with pleasure!And leave some for tomorrow!",
 Ми розуміємо, що завести вдома кішку – це величезна відповідальність і не кожен має можливість та час на це. Тому раді Вас повідомити, що нарешті у Львові відкрито перший заклад у форматі Cat Cafe. Тут Ви маєте чудову нагоду за чашечкою запашної кави провести час в компанії самих різноманітних котів та кішок. Хочете зняти стрес, тривогу, нормалізувати тиск, відновити сили – тоді чекаємо на Вас в Cat Cafe! Тут ви можете поспілкуватись та побавитись з котиками, зробити чудові фото на пам’ять та подарувати тепло й увагу нашим маленьким улюбленцям.
 Наші мешканці мають всі необхідні прививки, проходять регулярний ветеринарний огляд та перебувають під постійною увагою наших працівників.",
                 Address = new Address
-                {
-
-                },
-                Contacts = new List<string>
                 {
 
                 },

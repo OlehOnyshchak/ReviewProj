@@ -26,7 +26,8 @@ namespace ReviewProj.Domain.Entities
 
         public virtual Address Address { get; set; }
 
-        public virtual List<string> Contacts { get; set; }
+        [InverseProperty("Enterprise")]
+        public virtual List<Contact> Contacts { get; set; }
 
         public virtual List<Resource> Resources { get; set; }
 
