@@ -115,6 +115,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, такую же, как Back.
+        /// </summary>
+        internal static string BackKey {
+            get {
+                return ResourceManager.GetString("BackKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Back to my Profile.
+        /// </summary>
+        internal static string BackToMyProfileKey {
+            get {
+                return ResourceManager.GetString("BackToMyProfileKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, такую же, как Birth Date.
         /// </summary>
         internal static string BirthDateKey {
@@ -133,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, такую же, как Cancel.
+        /// </summary>
+        internal static string CancelKey {
+            get {
+                return ResourceManager.GetString("CancelKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, такую же, как CHANGE PASSWORD.
         /// </summary>
         internal static string ChangePasswordKey {
@@ -147,6 +174,24 @@ namespace Resources {
         internal static string ClubTypeKey {
             get {
                 return ResourceManager.GetString("ClubTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Code.
+        /// </summary>
+        internal static string CodeKey {
+            get {
+                return ResourceManager.GetString("CodeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Confirm new password.
+        /// </summary>
+        internal static string ConfirmNewPassword {
+            get {
+                return ResourceManager.GetString("ConfirmNewPassword", resourceCulture);
             }
         }
         
@@ -174,6 +219,15 @@ namespace Resources {
         internal static string CreateNewAccountKey {
             get {
                 return ResourceManager.GetString("CreateNewAccountKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Current password.
+        /// </summary>
+        internal static string CurrentPasswordKey {
+            get {
+                return ResourceManager.GetString("CurrentPasswordKey", resourceCulture);
             }
         }
         
@@ -295,6 +349,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, такую же, как New password.
+        /// </summary>
+        internal static string NewPasswordKey {
+            get {
+                return ResourceManager.GetString("NewPasswordKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, такую же, как not specified.
         /// </summary>
         internal static string NotSpecifiedKey {
@@ -385,6 +448,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, такую же, как Remeber this browser?.
+        /// </summary>
+        internal static string RememberThisBrowserKey {
+            get {
+                return ResourceManager.GetString("RememberThisBrowserKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, такую же, как Restaurant.
         /// </summary>
         internal static string RestaurantTypeKey {
@@ -399,6 +471,15 @@ namespace Resources {
         internal static string ReviewsKey {
             get {
                 return ResourceManager.GetString("ReviewsKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Save.
+        /// </summary>
+        internal static string SaveBtnKey {
+            get {
+                return ResourceManager.GetString("SaveBtnKey", resourceCulture);
             }
         }
         

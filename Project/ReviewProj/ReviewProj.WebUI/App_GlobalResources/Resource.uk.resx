@@ -255,4 +255,25 @@
   <data name="NotSpecifiedKey" xml:space="preserve">
     <value>не вказано</value>
   </data>
+  <data name="BackKey" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="BackToMyProfileKey" xml:space="preserve">
+    <value>Назад до Профілю</value>
+  </data>
+  <data name="CancelKey" xml:space="preserve">
+    <value>Скасувати</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Повторіть новий пароль</value>
+  </data>
+  <data name="CurrentPasswordKey" xml:space="preserve">
+    <value>Поточний пароль</value>
+  </data>
+  <data name="NewPasswordKey" xml:space="preserve">
+    <value>Новий пароль</value>
+  </data>
+  <data name="SaveBtnKey" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
 </root>
