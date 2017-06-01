@@ -19,6 +19,14 @@
             
             @if (Model.Resources != null)
             {
+                if (Model.Resources.Count == 0)
+                {
+                    string imgSrc = "~/Content/AppResources/no_image_available.png";
+                    <a target="_blank" href="@Url.Content(imgSrc)">
+                        <img class="thumbnail" src="@Url.Content(imgSrc)">
+                    </a>
+                }
+
                 foreach (Resource res in Model.Resources)
                 {
                     if (res.Type == ResourceType.MainImage)
@@ -45,7 +53,7 @@
                         }
                     }
                 </div>
-  
+
             }
 
 

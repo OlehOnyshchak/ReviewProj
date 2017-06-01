@@ -276,4 +276,13 @@
   <data name="SaveBtnKey" xml:space="preserve">
     <value>Зберегти</value>
   </data>
+  <data name="EmptyFilterResultKey" xml:space="preserve">
+    <value>Немає жодного запису, що задовільняє заданий фільтр</value>
+  </data>
+  <data name="NameKey" xml:space="preserve">
+    <value>Ім'я</value>
+  </data>
+  <data name="SortKey" xml:space="preserve">
+    <value>Сортувати за</value>
+  </data>
 </root>

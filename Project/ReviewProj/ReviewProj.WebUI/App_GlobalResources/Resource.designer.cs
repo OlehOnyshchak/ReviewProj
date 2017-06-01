@@ -241,6 +241,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, такую же, как We didn&apos;t find any matching based on your filter.
+        /// </summary>
+        internal static string EmptyFilterResultKey {
+            get {
+                return ResourceManager.GetString("EmptyFilterResultKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, такую же, как FastFood.
         /// </summary>
         internal static string FastFoodTypeKey {
@@ -336,6 +345,15 @@ namespace Resources {
         internal static string MyProfileKey {
             get {
                 return ResourceManager.GetString("MyProfileKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Name.
+        /// </summary>
+        internal static string NameKey {
+            get {
+                return ResourceManager.GetString("NameKey", resourceCulture);
             }
         }
         
@@ -489,6 +507,15 @@ namespace Resources {
         internal static string SearchBtnTitleKey {
             get {
                 return ResourceManager.GetString("SearchBtnTitleKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Sort.
+        /// </summary>
+        internal static string SortKey {
+            get {
+                return ResourceManager.GetString("SortKey", resourceCulture);
             }
         }
         

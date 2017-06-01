@@ -55,9 +55,6 @@ namespace ReviewProj.WebUI.Controllers
                 }
             }
 
-            double updatedRating = this.RecalculateEnterpriceRating(ent);
-            entRepository.ChangeRating(ent, updatedRating);
-
             return View(ent);
         }
 
@@ -77,6 +74,13 @@ namespace ReviewProj.WebUI.Controllers
             return ent.Reviews.Count != 0 ? numerator / denumerator : ent.Rating;
         }
 
+        private void UpdateEnterpriceRating(int entId)
+        {
+            Enterprise ent = entRepository.Enterprises.FirstOrDefault(e => e.EntId == entId);
+            double updatedRating = this.RecalculateEnterpriceRating(ent);
+            entRepository.ChangeRating(ent, updatedRating);
+        }
+
         public ActionResult AddReview(int entId, string reviewText, string rating)
         {
             int mark = Convert.ToInt32(rating);
@@ -86,6 +90,7 @@ namespace ReviewProj.WebUI.Controllers
                 Mark = mark
             });
 
+            UpdateEnterpriceRating(entId);
             return RedirectToAction("Index", new { id = entId });
         }
 
@@ -93,18 +98,24 @@ namespace ReviewProj.WebUI.Controllers
         public ActionResult DeleteReview(int reviewId, int entId)
         {
             reviewRepository.DeleteById(reviewId);
+            UpdateEnterpriceRating(entId);
+
             return RedirectToAction("Index", new { id = entId });
         }
         
         public ActionResult UpvoteReview(int id, string reviewerEmail, int entId)
         {
             reviewRepository.VoteForReview(id, reviewerEmail, true);
+            UpdateEnterpriceRating(entId);
+
             return RedirectToAction("Index", new { id = entId });
         }
 
         public ActionResult DownvoteReview(int id, string reviewerEmail, int entId)
         {
             reviewRepository.VoteForReview(id, reviewerEmail, false);
+            UpdateEnterpriceRating(entId);
+
             return RedirectToAction("Index", new { id = entId });
         }
 

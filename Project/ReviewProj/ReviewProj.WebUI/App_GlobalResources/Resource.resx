@@ -282,4 +282,13 @@
   <data name="SaveBtnKey" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="EmptyFilterResultKey" xml:space="preserve">
+    <value>We didn't find any matching based on your filter</value>
+  </data>
+  <data name="NameKey" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SortKey" xml:space="preserve">
+    <value>Sort</value>
+  </data>
 </root>
