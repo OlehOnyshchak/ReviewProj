@@ -24,7 +24,7 @@
 @if (User.IsInRole("owner"))
 {
     <li>
-        @Html.ActionLink(Resources.Resource.MyProfileKey, "Index", "Owner1", routeValues: null, htmlAttributes: new { title = "Profile" })
+        @Html.ActionLink(Resources.Resource.MyProfileKey, "EnterprisesList", "Owner1", routeValues: null, htmlAttributes: new { title = "Profile" })
     </li>
 
                 <li>
