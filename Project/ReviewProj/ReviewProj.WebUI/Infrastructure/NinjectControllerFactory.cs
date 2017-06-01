@@ -44,6 +44,7 @@ namespace ReviewProj.WebUI.Infrastructure
             ninjectKernel.Bind<IReviewerRepository>().To<ReviewerRepository>();            
             ninjectKernel.Bind<IOwnerRepository>().To<OwnerRepository>();
             ninjectKernel.Bind<IReviewRepository>().To<ReviewRepository>();
+            ninjectKernel.Bind<IBanRepository>().To<BanRepository>();
         }
     }
 }

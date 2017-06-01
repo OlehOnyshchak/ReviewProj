@@ -13,6 +13,7 @@ using ReviewProj.Domain.Entities;
 using ReviewProj.Domain.Concrete;
 using System.Data.Entity.Validation;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ReviewProj.Domain.Abstract;
 
 namespace ReviewProj.WebUI.Controllers
 {
@@ -21,9 +22,17 @@ namespace ReviewProj.WebUI.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IReviewerRepository reviewerRepository;
+        private IOwnerRepository ownerRepository;
+        private IBanRepository banRepository;
+        
 
-        public AccountController()
+        public AccountController(IReviewerRepository revRepo, IOwnerRepository ownRepo, 
+            IBanRepository banRepo)
         {
+            reviewerRepository = revRepo;
+            ownerRepository = ownRepo;
+            banRepository = banRepo;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -75,6 +84,12 @@ namespace ReviewProj.WebUI.Controllers
             if (!ModelState.IsValid)
             {
                 return View(model);
+            }
+
+            
+            if (banRepository.IsUserBanned(model.Email))
+            {
+                return RedirectToAction("BanMessage", "Ban");
             }
 
             // This doesn't count login failures towards account lockout

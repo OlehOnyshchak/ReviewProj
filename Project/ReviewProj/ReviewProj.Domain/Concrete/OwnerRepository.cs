@@ -20,6 +20,7 @@ namespace ReviewProj.Domain.Concrete
             }
         }
 
+
         public Owner FindByEmail(string email)
         {
             return context.Owners.FirstOrDefault(r => r.Email == email);
