@@ -72,7 +72,6 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
-        // INTEGRATION
         public void AddContact(Enterprise enterprise, string emailOrPhone)
         {
             if (emailOrPhone != null)
@@ -80,6 +79,21 @@ namespace ReviewProj.Domain.Concrete
                 Contact contact = new Contact();
                 contact.EmailOrPhone = emailOrPhone;
                 enterprise.Contacts.Add(contact);
+                context.SaveChanges();
+            }
+        }
+        public void RemoveContact(Enterprise enterprise, int idCont)
+        {
+            // enterprise.Contacts.RemoveAll(e => e.ContactId == idCont);
+            enterprise.Contacts.Where(e => e.ContactId == idCont).FirstOrDefault().EmailOrPhone ="deleted";
+            context.SaveChanges();
+           
+        }
+        public void EditContact(Enterprise enterprise, string emailOrPhone, int idCont)
+        {
+            if (emailOrPhone != null)
+            { 
+                enterprise.Contacts.Where(e => e.ContactId==idCont).FirstOrDefault().EmailOrPhone=emailOrPhone;
                 context.SaveChanges();
             }
         }
@@ -135,6 +149,31 @@ namespace ReviewProj.Domain.Concrete
             List<Resource> mainImages = enterprise.Resources.Where(res => res.Type == ResourceType.MainImage).ToList();
             mainImages.ForEach(res => res.Type = ResourceType.SecondaryImage);
             enterprise.Resources.Where(res => res.ResourceId == id).FirstOrDefault().Type = ResourceType.MainImage;
+            context.SaveChanges();
+        }
+
+        public void DeleteEnterprise(int id)
+        {
+            Enterprise enterprise = GetEnterpriseById(id);
+
+            foreach (Review review in context.Reviews.ToList())
+            {
+                if (review.Enterprise.EntId == id)
+                {
+                    context.Reviews.Remove(review);
+                }
+            }
+
+            foreach (Resource resource in context.Resources.ToList())
+            {
+                if (enterprise.Resources.Select(r => r.ResourceId)
+                    .Contains(resource.ResourceId))
+                {
+                    context.Resources.Remove(resource);
+                }
+            }
+
+            context.Enterprises.Remove(enterprise);
             context.SaveChanges();
         }
 

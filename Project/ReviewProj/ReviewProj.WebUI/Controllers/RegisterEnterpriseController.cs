@@ -13,8 +13,8 @@ using Microsoft.AspNet.Identity;
 
 namespace ReviewProj.WebUI.Controllers
 {
-    [Authorize(Roles = "owner")]
-    public class RegisterEnterpriseController : Controller
+        [Authorize(Roles ="owner")]
+        public class RegisterEnterpriseController : BaseController
     {
         private IEnterpriseRepository repository;
 

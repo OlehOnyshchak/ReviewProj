@@ -13,7 +13,7 @@ using System.Web.Mvc;
 namespace ReviewProj.WebUI.Controllers
 {
     [Authorize]
-    public class Owner1Controller : Controller
+    public class Owner1Controller : BaseController
     {
         private IOwnerRepository repository;
         private IEnterpriseRepository enterRepositority;
@@ -27,6 +27,7 @@ namespace ReviewProj.WebUI.Controllers
         private ApplicationUserManager _userManager;
         public static Enterprise entResult = new Enterprise();
         public static int id = 0;
+        public static int idContact = 0;
         private static string tempNameContact;
 
         public Owner1Controller()
@@ -104,32 +105,40 @@ namespace ReviewProj.WebUI.Controllers
         [HttpPost]
         public ActionResult AddContact(AddContacts model)
         {
-            entResult.Contacts.Add(new Contact { EmailOrPhone = model.contact });
+            Enterprise ent = enterRepositority.GetEnterpriseById(id);
+            enterRepositority.AddContact(ent, model.contact);
+            entResult = ent;
             return RedirectToAction("DetailsEnterprise", "Owner1");
         }
 
-        public ActionResult EditContact(string itemName)
+        public ActionResult EditContact(int idCont)
         {
+            Contact cont = new Contact();
+            cont = entResult.Contacts.Where(e => e.ContactId == idCont).FirstOrDefault();
             var Model = new AddContacts();
-            Model.contact = itemName;
-            tempNameContact = itemName;
+            idContact = idCont;
+            Model.contact = cont.EmailOrPhone;
+            tempNameContact = cont.EmailOrPhone;
             return View(Model);
         }
 
         [HttpPost]
         public ActionResult EditContact(AddContacts model)
         {
-            entResult.Contacts.Add(new Contact { EmailOrPhone = model.contact });
-            // INTEGRATE
-  //          entResult.Contacts.Remove(tempNameContact);
-            tempNameContact = null;
+            Enterprise ent = enterRepositority.GetEnterpriseById(id);
+            enterRepositority.EditContact(ent, model.contact,idContact);
+
+          tempNameContact = null;
+            idContact = 0;
+            entResult = ent;
             return RedirectToAction("DetailsEnterprise", "Owner1");
         }
 
-        public ActionResult DeleteContact(string itemName)
+        public ActionResult DeleteContact(int idCont)
         {
-            // INTEGRATE
-           // entResult.Contacts.Remove(itemName);
+            Enterprise ent = enterRepositority.GetEnterpriseById(id);
+            enterRepositority.RemoveContact(ent, idCont);
+            entResult = ent;
             return RedirectToAction("DetailsEnterprise", "Owner1");
         }
         public ActionResult EditRestData()
@@ -237,11 +246,7 @@ namespace ReviewProj.WebUI.Controllers
             Enterprise1 newent = new Enterprise1();
             newent.Address = ent.Address;
             // INTEGRATE
-            foreach(Contact cont in ent.Contacts)
-            {
-                newent.Contacts.Add(cont.EmailOrPhone);
-
-            }
+            newent.Contacts = ent.Contacts;
             //newent.Contacts = ent.Contacts;
             newent.Description = ent.Description;
             newent.Name = ent.Name;

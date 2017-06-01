@@ -58,9 +58,9 @@
         @foreach (var item in Model.Contacts)
         {
             <dd>
-                @Html.DisplayFor(model => item)
-                @Html.ActionLink("Edit", "EditContact", new { itemName = item }) |
-                @Html.ActionLink("Delete", "DeleteContact", new { itemName = item })
+                @Html.DisplayFor(model => item.EmailOrPhone)
+                @Html.ActionLink("Edit", "EditContact", new { idCont = item.ContactId }) |
+                @Html.ActionLink("Delete", "DeleteContact", new { idCont = item.ContactId })
             </dd>
         }
         <dt>

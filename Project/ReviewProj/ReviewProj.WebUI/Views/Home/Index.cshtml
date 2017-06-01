@@ -3,6 +3,7 @@
 
 <link href="~/Content/index_style.css" type="text/css" rel="stylesheet" />
 <link href="~/Content/custom.css" type="text/css" rel="stylesheet" />
+<link href="~/Content/ratingStyle.css" rel="stylesheet" />
 @*<link href="~/Content/bootstrap.css" type="text/css" rel="stylesheet" />*@
 @*<h2 class="collection-title"><br></h2>
 <p>Check it</p>
@@ -26,7 +27,7 @@
 						@Html.TextBoxFor(m => Model.SearchString)
 					</div>
 
-							<h4>Rating</h4>
+					<h4>@Resources.Resource.RatingKey</h4>
 					for (int i = 0; i < Model.RatingCategories.Count; ++i)
 					{
 						<div id="Checkbox">
@@ -39,7 +40,7 @@
 					}
 
 
-					<h4>Type</h4>
+					<h4>@Resources.Resource.TypeKey</h4>
 					for (int i = 0; i < Model.TypeCategories.Count; ++i)
 					{
 						<div id="Checkbox">
@@ -49,9 +50,17 @@
 							@Html.HiddenFor(m => Model.TypeCategories[i].Value)
 							<br />
 						</div>
-					}
+                    }
+
+                    <h4>Sort</h4>
+
+                        <div id="ComboBox">
+                            @Html.DropDownListFor(m => Model.SelectedSortingCategory, Model.SortingCategories)
+                            <br />
+                        </div>
+
 					<div id="IndexSearchButton">
-						<input type="submit" value="Search" />
+						<input type="submit" value=@Resources.Resource.SearchBtnTitleKey />
 					</div>
 				}
 			</div>
@@ -63,30 +72,40 @@
 				{
 					<div class="collection-item-outer">
 						<div class="collection-item">
-							<h4 class="institution-title">
-								<a href="/InstitutionDetails/Index/@ent.EntId">@ent.Name</a>
-							</h4>
-							<!-- Picture -->
-							@try
-							{
-								Resource res = ent.Resources.First(r => r.Type == ResourceType.MainImage);
-								<img height="120" src="@Url.Action("GetImage", new { fileName = res.DataPath })" />
-							}
-							catch
-							{
-								<img height="120" src="@Url.Action("GetImage", new { fileName = "" } )" />
-							}
-							<div class="collection-text">
-								<p>
-									@ent.Description
-								</p>
-								@*<button>Read more</button>*@
-							</div>
-						</div>
+                            <h4 class="institution-title">
+                                <a href="/InstitutionDetails/Index/@ent.EntId">@ent.Name</a>
+                                <div class="star">
+                                    @{
+                                        double institutionRating = ent.Rating;
+                                        for (int i = 1; i <= 5; ++i) // 5 = max rating possible
+                                        {
+                                            string starStyle = RatingHelper.styleForStarIndexWithRating(i, institutionRating);
+                                            <span class=@starStyle>☆</span>
+                                        }
+                                    }
+                                </div>
+                            </h4>
+                                <!-- Picture -->
+                                @try
+                                {
+                                    Resource res = ent.Resources.First(r => r.Type == ResourceType.MainImage);
+                                    <img height="120" src="@Url.Action("GetImage", new { fileName = res.DataPath })" />
+                                }
+                                catch
+                                {
+                                    <img height="120" src="@Url.Action("GetImage", new { fileName = "" } )" />
+                                }
+                                <div class="collection-text">
+                                    <p>
+                                        @ent.Description
+                                    </p>
+                                    @*<button>Read more</button>*@
+                                </div>
+                            </div>
 					</div>
 				}
 				<div class="pager">
-					@Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x, model = Model }))
+					@Html.PageLinks(Model.PagingInfo, x => Url.Action("FilterList", new { page = x, model = Model }))
 				</div>
 			</div>
 		</div>

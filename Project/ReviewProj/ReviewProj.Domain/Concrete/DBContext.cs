@@ -14,9 +14,10 @@ namespace ReviewProj.Domain.Concrete
     public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         public AppDbContext()
-            : base("ReviewProj_2.4", throwIfV1Schema: false)
+            : base("ReviewProj_2.3", throwIfV1Schema: false)
         {
             Database.SetInitializer(new DBInitializer());
+            this.Configuration.LazyLoadingEnabled = true;
         }
 
         public static AppDbContext Create()

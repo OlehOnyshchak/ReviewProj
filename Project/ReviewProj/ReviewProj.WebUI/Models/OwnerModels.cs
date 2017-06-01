@@ -38,7 +38,7 @@ namespace ReviewProj.WebUI.Models
 
         public Owner Owner { get; set; }
         public Address Address { get; set; }
-        public List<String> Contacts = new List<string>();
+        public List<Contact> Contacts = new List<Contact>();
         public List<Resource> Resources = new List<Resource>();
         public List<Review> Reviews = new List<Review>();
 

@@ -12,15 +12,18 @@ using ReviewProj.WebUI.Models;
 
 namespace ReviewProj.WebUI.Controllers
 {
-    public class InstitutionDetailsController : Controller
+    public class InstitutionDetailsController : BaseController
     {
         private IEnterpriseRepository entRepository;
         private IReviewRepository reviewRepository;
+        private IBanRepository banRepository;
+
         public InstitutionDetailsController(IEnterpriseRepository enterpriseRepository, 
-            IReviewRepository revRepo)
+            IReviewRepository revRepo, IBanRepository banRepo)
         {
             entRepository = enterpriseRepository;
             reviewRepository = revRepo;
+            banRepository = banRepo;
         }
 
         // GET: InstitutionDetails
@@ -91,6 +94,60 @@ namespace ReviewProj.WebUI.Controllers
         {
             reviewRepository.DeleteById(reviewId);
             return RedirectToAction("Index", new { id = entId });
+        }
+        
+        public ActionResult UpvoteReview(int id, string reviewerEmail, int entId)
+        {
+            reviewRepository.VoteForReview(id, reviewerEmail, true);
+            return RedirectToAction("Index", new { id = entId });
+        }
+
+        public ActionResult DownvoteReview(int id, string reviewerEmail, int entId)
+        {
+            reviewRepository.VoteForReview(id, reviewerEmail, false);
+            return RedirectToAction("Index", new { id = entId });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public RedirectToRouteResult DeleteInstitution(int entId)
+        {
+            entRepository.DeleteEnterprise(entId);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public RedirectToRouteResult BunOwner(int entId)
+        {
+            Enterprise enterprise = entRepository.GetEnterpriseById(entId);
+
+            ApplicationUserManager userManager = HttpContext.GetOwinContext()
+                                        .GetUserManager<ApplicationUserManager>();
+            ApplicationUser admin = userManager.FindByEmail(User.Identity.Name);
+
+            banRepository.BanUserById(enterprise.Owner.Id, admin.Id);
+            TimeSpan duration = banRepository.TimeToEndOfBun(enterprise.Owner.Id);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public RedirectToRouteResult BunReviewer(int reviewId)
+        {
+            Review review = reviewRepository.GetById(reviewId);
+
+            ApplicationUserManager userManager = HttpContext.GetOwinContext()
+                            .GetUserManager<ApplicationUserManager>();
+            ApplicationUser admin = userManager.FindByEmail(User.Identity.Name);
+
+            banRepository.BanUserById(review.Reviewer.Id, admin.Id);
+
+            banRepository.BanUserById(review.Reviewer.Id, admin.Id);
+            TimeSpan duration = banRepository.TimeToEndOfBun(review.Reviewer.Id);
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

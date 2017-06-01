@@ -15,5 +15,6 @@ namespace ReviewProj.Domain.Abstract
         Review GetById(int reviewId);
 
         void DeleteById(int reviewId);
+        void VoteForReview(int reviewID, string reviewerEmail, bool isUpvote);
     }
 }

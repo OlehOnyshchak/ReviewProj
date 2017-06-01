@@ -67,11 +67,27 @@
                 <p>@Model.Description.</p>
             }
         </div>
+        @if (ViewBag.UserRole == Role.Admin)
+        {
+        <div>
+            @using (Html.BeginForm("DeleteInstitution", "InstitutionDetails"))
+            {
+                <input type="hidden" name="entId" value="@Model.EntId" />
+                <input type="submit" value="Delete enterpeise" />
+            }
+
+            @using (Html.BeginForm("BunOwner", "InstitutionDetails"))
+            {
+                <input type="hidden" name="entId" value="@Model.EntId" />
+                <input type="submit" value="BUN" />
+            }
+        </div>
+        }
         <div class="column row">
             <hr>
             <div class="tabs-content" data-tabs-content="example-tabs">
                 <div class="tabs-panel is-active" id="panel1">
-                    <h4>Reviews</h4>
+                    <h4>@Resources.Resource.ReviewsKey</h4>
 
                         @foreach (Review review in Model.Reviews)
                         {
@@ -101,16 +117,31 @@
 
                                     @{
                                         ApplicationUser user = ViewBag.User;
+
+                                        string userMail = "";
+
                                         bool enableButton = false;
                                         if (user != null)
                                         {
-                                            if (ViewBag.UserRole == Role.Reviewer)
+                                            userMail = user.Email;
+                                            bool didCurrentUserVoteForReview = false;
+
+                                            foreach(Vote vote in review.Votes)
+                                            {
+                                                if(vote.Voter.Id == user.Id)
+                                                {
+                                                    didCurrentUserVoteForReview = true;
+                                                }
+                                            }
+
+                                            bool canVote = (ViewBag.UserRole == Role.Reviewer) && (review.Reviewer.Id != user.Id) && (!didCurrentUserVoteForReview);
+                                            if (canVote)
                                             {
                                                 enableButton = true;
                                             }
                                         }
-                                            <button type="submit" @(enableButton ? "" : "disabled") name="like"><img class="thumbnail" src="@Url.Content("~/Content/AppResources/like.png")" height="40" width="40" />@review.TotalLikes</button>
-                                            <button type="submit" @(enableButton ? "" : "disabled") name="dislike"><img class="thumbnail" src="@Url.Content("~/Content/AppResources/dislike.png")" height="40" width="40">@review.TotalDislikes</button>
+                                            <button type="button" onclick="location.href='@Url.Action("UpvoteReview", "InstitutionDetails", new { id = review.ReviewId, reviewerEmail = userMail, entId = Model.EntId })'" @(enableButton ? "enabled" : "disabled") name="like"><img class="thumbnail" src="@Url.Content("~/Content/AppResources/like.png")" height="40" width="40" />@review.TotalLikes</button>
+                                            <button type="button" onclick="location.href='@Url.Action("DownvoteReview", "InstitutionDetails", new { id = review.ReviewId, reviewerEmail = userMail, entId = Model.EntId })'" @(enableButton ? "enabled" : "disabled") name="dislike"><img class="thumbnail" src="@Url.Content("~/Content/AppResources/dislike.png")" height="40" width="40">@review.TotalDislikes</button>
                                     }
                                 </div>
                             </div>
@@ -123,8 +154,14 @@
                                         <input type="hidden" name="entId" value="@Model.EntId" />
                                         <input type="submit" value="Delete review" />
                                     }
+                                    @using (Html.BeginForm("BunReviewer", "InstitutionDetails"))
+                                    {
+                                        <input type="hidden" name="reviewId" value="@review.ReviewId" />
+                                        <input type="submit" value="BUN" />
+                                    }
                                 </div>
                             }
+
                         }
 
                 @if (ViewBag.UserRole == Role.Reviewer)
@@ -132,7 +169,7 @@
                     using (Html.BeginForm("AddReview", "InstitutionDetails", FormMethod.Get))
                     {
                         <div class="rating">
-                            <h5>Please rate:</h5>
+                            <h5>@Resources.Resource.PleaseRateKey</h5>
                             <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
                             <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
                             <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
@@ -140,8 +177,8 @@
                             <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
                         </div>
                         <input type="hidden" name="entId" value="@Model.EntId" />
-                        <textarea placeholder="Please type in your review" name="reviewText"></textarea>
-                        <button class="button" type="submit">Submit Review</button>
+                        <textarea placeholder="@Resources.Resource.TypeInReviewKey" name="reviewText"></textarea>
+                        <button class="button" type="submit">@Resources.Resource.SubmitReviewKey</button>
                         }
                     }
             </div>

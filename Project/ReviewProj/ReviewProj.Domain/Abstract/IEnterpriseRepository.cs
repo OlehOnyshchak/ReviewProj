@@ -25,17 +25,19 @@ namespace ReviewProj.Domain.Abstract
 
         void AddReview(int entId, string reviewerEmail, Review review);
 
+        void DeleteEnterprise(int id);
+
         void UpdateMainPhoto(Enterprise enterprise, Resource fileName);
 
         // INTEGRATION
         void AddContact(Enterprise enterprise, string emailOrPhone);
+        void RemoveContact(Enterprise enterprise, int idCont);
+        void EditContact(Enterprise enterprise, string emailOrPhone, int idCont);
         //void AddListContacts(Enterprise ent);
         //List<string> GetEnterpriseContacts(Enterprise enterprise);
         void RemovePhoto(Enterprise enterprise, int id);
         void AppointMain(Enterprise enterprise, int id);
         void ChangeData(Enterprise entInDb, Enterprise entNewData);
-
-        //void DeleteReview(int entId, int reviewId);
 
         IQueryable<Enterprise> Enterprises { get; }
 

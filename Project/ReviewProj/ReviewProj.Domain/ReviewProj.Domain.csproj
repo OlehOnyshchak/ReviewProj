@@ -88,6 +88,7 @@
     <Compile Include="Abstract\IReviewerRepository.cs" />
     <Compile Include="Abstract\IReviewRepository.cs" />
     <Compile Include="Abstract\IVoteRepository.cs" />
+    <Compile Include="Concrete\BanRepository.cs" />
     <Compile Include="Concrete\DBContext.cs" />
     <Compile Include="Concrete\EnterpriseRepository.cs" />
     <Compile Include="Concrete\OwnerRepository.cs" />
@@ -112,6 +113,14 @@
     <Compile Include="Migrations\201705311558183_CreatedContacts.Designer.cs">
       <DependentUpon>201705311558183_CreatedContacts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705311910011_Added_EndTime_to_Ban_table.cs" />
+    <Compile Include="Migrations\201705311910011_Added_EndTime_to_Ban_table.Designer.cs">
+      <DependentUpon>201705311910011_Added_EndTime_to_Ban_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706010423075_Merging.cs" />
+    <Compile Include="Migrations\201706010423075_Merging.Designer.cs">
+      <DependentUpon>201706010423075_Merging.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -125,6 +134,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705311558183_CreatedContacts.resx">
       <DependentUpon>201705311558183_CreatedContacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705311910011_Added_EndTime_to_Ban_table.resx">
+      <DependentUpon>201705311910011_Added_EndTime_to_Ban_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706010423075_Merging.resx">
+      <DependentUpon>201706010423075_Merging.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

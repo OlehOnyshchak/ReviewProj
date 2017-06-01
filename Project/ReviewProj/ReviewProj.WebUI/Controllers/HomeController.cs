@@ -13,10 +13,10 @@ using System.IO;
 
 namespace ReviewProj.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private IEnterpriseRepository entRepository;
-        public int PageSize = 20;
+        public int PageSize = 10;
         public HomeController(IEnterpriseRepository enterpriceRepository)
         {
             entRepository = enterpriceRepository;
@@ -41,11 +41,11 @@ namespace ReviewProj.WebUI.Controllers
         {
             return new List<SelectListItem>
             {
-                   new SelectListItem {Text = "5 stars", Value = "5" },
-                   new SelectListItem {Text = "4 stars", Value = "4" },
-                   new SelectListItem {Text = "3 stars", Value = "3" },
-                   new SelectListItem {Text = "2 stars", Value = "2" },
-                   new SelectListItem {Text = "1 stars", Value = "1" },
+                   new SelectListItem {Text = string.Format(Resources.Resource.StarNumberKey, 5), Value = "5" },
+                   new SelectListItem {Text = string.Format(Resources.Resource.StarNumberKey, 4), Value = "4" },
+                   new SelectListItem {Text = string.Format(Resources.Resource.StarNumberKey, 3), Value = "3" },
+                   new SelectListItem {Text = string.Format(Resources.Resource.StarNumberKey, 2), Value = "2" },
+                   new SelectListItem {Text = string.Format(Resources.Resource.StarNumberKey, 1), Value = "1" },
             };
         }
 
@@ -53,11 +53,20 @@ namespace ReviewProj.WebUI.Controllers
         {
             return new List<SelectListItem>
             {
-                   new SelectListItem {Text = "Restaurant", Value = "Restaurant" },
-                   new SelectListItem {Text = "Hotel", Value = "Hotel" },
-                   new SelectListItem {Text = "FastFood", Value = "FastFood" },
-                   new SelectListItem {Text = "Club", Value = "Club" },
-                   new SelectListItem {Text = "Cafe", Value = "Cafe" },
+                   new SelectListItem {Text = Resources.Resource.RestaurantTypeKey, Value = "Restaurant" },
+                   new SelectListItem {Text = Resources.Resource.HotelTypeKey, Value = "Hotel" },
+                   new SelectListItem {Text = Resources.Resource.FastFoodTypeKey, Value = "FastFood" },
+                   new SelectListItem {Text = Resources.Resource.ClubTypeKey, Value = "Club" },
+                   new SelectListItem {Text = Resources.Resource.CafeTypeKey, Value = "Cafe" },
+            };
+        }
+
+        private IList<SelectListItem> GetSortingItems()
+        {
+            return new List<SelectListItem>
+            {
+                   new SelectListItem {Text = "Name", Value = "Name", Selected = true },
+                   new SelectListItem {Text = "Rating", Value = "Rating" }
             };
         }
 
@@ -80,8 +89,23 @@ namespace ReviewProj.WebUI.Controllers
             }
         }
 
-        public ViewResult FilterList(EnterpriseListViewModel model)
+        public ViewResult FilterList(EnterpriseListViewModel model, int page = 1)
         {
+            // hack againts bug "Filter info is lost when we switch pages"
+            // don't know how to pass here actual model, so we will use previous one
+            if (model == null)
+            {
+                var cachedModel = Session["FilterModel"];
+                if (cachedModel == null)
+                {
+                    return View("Index", Index(null, page).Model);
+                }
+                else
+                {
+                    model = (EnterpriseListViewModel)cachedModel;
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 IList<EnterpriceType> types = new List<EnterpriceType>();
@@ -105,11 +129,21 @@ namespace ReviewProj.WebUI.Controllers
                 string name = model.SearchString;
                 IEnumerable<Enterprise> query = ratings.Count == 0 && types.Count == 0 ?
                     entRepository.GetByName(name) : entRepository.GetFiltratedByName(ratings, types, name);
+                if (model.SelectedSortingCategory == "Name")
+                {
+                    query = query.OrderBy(ent => ent.Name);
+                }
+                else
+                {
+                    query = query.OrderBy(ent => ent.Rating);
+                }
 
                 model.Enterprises = new List<Enterprise>(query);
             }
 
-            EnterpriseListViewModel newModel = UpdateModel(model, 1);
+            EnterpriseListViewModel newModel = UpdateModel(model, page);
+            model.PagingInfo = new PagingInfo(newModel.PagingInfo);
+            Session["FilterModel"] = new EnterpriseListViewModel(model);
 
             return View("Index", newModel);
         }
@@ -134,8 +168,12 @@ namespace ReviewProj.WebUI.Controllers
                     TotalItems = model.Enterprises.Count()
                 },
                 SearchString = model.SearchString,
-                RatingCategories = this.GetRatingItems(),
-                TypeCategories = this.GetTypeItems()
+                RatingCategories = model.RatingCategories.Count != 0 ? 
+                    model.RatingCategories : this.GetRatingItems(),
+                TypeCategories = model.TypeCategories.Count != 0 ?
+                    model.TypeCategories : this.GetTypeItems(),
+                SortingCategories = model.SortingCategories.Count != 0 ?
+                    model.SortingCategories : this.GetSortingItems()
             };
         }
 
@@ -216,6 +254,27 @@ namespace ReviewProj.WebUI.Controllers
             string contentType = "image/" + filePath.Substring(filePath.LastIndexOf('.') + 1);
 
             return File(imageData, contentType);
+        }
+        
+        // Change language
+        public ActionResult ChangeLangToUA()
+        {
+            // Change the current culture for this user.
+            SiteSession.CurrentUICulture = 2; //set Ukrainian
+
+            // Cache the new current culture into the user HTTP session. 
+            Session["CurrentUICulture"] = 2;
+
+            // Redirect to the same page from where the request was made! 
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+
+        public ActionResult ChangeLangToEN()
+        {
+            SiteSession.CurrentUICulture = 1; //Set English
+            Session["CurrentUICulture"] = 1;
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }
