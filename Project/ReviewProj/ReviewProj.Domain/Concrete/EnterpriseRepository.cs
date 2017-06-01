@@ -13,13 +13,6 @@ namespace ReviewProj.Domain.Concrete
     {
         private AppDbContext context = new AppDbContext();
 
-
-        // Return All Enterprises
-        public IQueryable<Enterprise> Enterprises
-        {
-            get { return context.Enterprises; }
-        }
-
         // Search by SubName
         public IEnumerable<Enterprise> GetByName(string subName)
         {
@@ -86,16 +79,46 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
-        // Change Rating
+        public void AddContact(Enterprise enterprise, string emailOrPhone)
+        {
+            Contact contact = new Contact();
+            contact.EmailOrPhone = emailOrPhone;
+            enterprise.Contacts.Add(contact);
+            context.SaveChanges();
+        }
+
         public void ChangeRating(Enterprise ent, double rating)
         {
-            context.Entry(ent).State = EntityState.Modified;
+            context.Enterprises.Attach(ent);
             ent.Rating = rating;
 
             context.SaveChanges();
         }
+       public void ChangeData(Enterprise entInDb, Enterprise entNewData)
+        {
+            entInDb.Address = entNewData.Address;
+            entInDb.Description = entNewData.Description;
+            entInDb.Name = entNewData.Name;
 
-        // Update Main Photo
+            context.SaveChanges();
+        }
+
+
+        // INTEGRATION
+        //public void AddListContacts(Enterprise ent)
+        //{
+        //    ent.Contacts = new List<string>();
+        //    context.SaveChanges();
+        //}
+
+
+        //public void DeleteReview(int entId, int reviewId)
+        //{
+        //    Review review = GetEnterpriseById(entId).Reviews.FirstOrDefault(rev => rev.ReviewId == reviewId);
+        //    GetEnterpriseById(entId).Reviews.RemoveAll(rev => rev.ReviewId == reviewId);
+        //    context.SaveChanges();
+        //}
+
         public void UpdateMainPhoto(Enterprise enterprise, Resource resource)
         {
             // If Enterprise has Main Image, it becomes Secondary
@@ -108,10 +131,18 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
-        // Remove Main Photo
-        public void RemoveMainPhoto(Enterprise enterprise)
+
+        public void RemovePhoto(Enterprise enterprise, int id)
         {
-            enterprise.Resources.RemoveAll(res => res.Type == ResourceType.MainImage);
+            enterprise.Resources.RemoveAll(res => res.ResourceId == id);
+            context.SaveChanges();
+        }
+
+        public void AppointMain(Enterprise enterprise, int id)
+        {
+            List<Resource> mainImages = enterprise.Resources.Where(res => res.Type == ResourceType.MainImage).ToList();
+            mainImages.ForEach(res => res.Type = ResourceType.SecondaryImage);
+            enterprise.Resources.Where(res => res.ResourceId == id).FirstOrDefault().Type = ResourceType.MainImage;
             context.SaveChanges();
         }
 
@@ -143,5 +174,29 @@ namespace ReviewProj.Domain.Concrete
             context.Enterprises.Remove(enterprise);
             context.SaveChanges();
         }
+
+        public IQueryable<Enterprise> Enterprises
+        {
+            get
+            {
+                var ents = context.Enterprises;
+                foreach (var ent in ents)
+                {
+                    context.Entry(ent).Reference(x => x.Owner).Load();
+                    context.Entry(ent).Collection(x => x.Contacts).Load();
+                    context.Entry(ent).Collection(x => x.Resources).Load();
+                    context.Entry(ent).Collection(x => x.Reviews).Load();
+                }
+
+                return ents;
+            }
+        }
+
+        // INTEGRATION
+        //public List<string> GetEnterpriseContacts(Enterprise enterprise)
+        //{    
+        //    context.Entry(enterprise).Collection(e => e.Contacts).Load();
+        //    return enterprise.Contacts;
+        //}
     }
 }

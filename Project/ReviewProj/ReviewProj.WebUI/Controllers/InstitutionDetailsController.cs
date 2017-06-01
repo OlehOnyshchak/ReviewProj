@@ -12,7 +12,7 @@ using ReviewProj.WebUI.Models;
 
 namespace ReviewProj.WebUI.Controllers
 {
-    public class InstitutionDetailsController : Controller
+    public class InstitutionDetailsController : BaseController
     {
         private IEnterpriseRepository entRepository;
         private IReviewRepository reviewRepository;
@@ -56,15 +56,13 @@ namespace ReviewProj.WebUI.Controllers
                 }
             }
 
-           // entRepository.ChangeRating(ent, this.RecalculateEnterpriceRating(ent));
-
             return View(ent);
         }
 
         private double RecalculateEnterpriceRating(Enterprise ent)
         {
             double denumerator = 0.0;
-            double numerator = 0 ;
+            double numerator = 0.0;
 
             foreach (var rev in ent.Reviews)
             {
@@ -74,7 +72,14 @@ namespace ReviewProj.WebUI.Controllers
                 denumerator += weight;
             }
 
-            return  numerator / denumerator;
+            return ent.Reviews.Count != 0 ? numerator / denumerator : ent.Rating;
+        }
+
+        private void UpdateEnterpriceRating(int entId)
+        {
+            Enterprise ent = entRepository.Enterprises.FirstOrDefault(e => e.EntId == entId);
+            double updatedRating = this.RecalculateEnterpriceRating(ent);
+            entRepository.ChangeRating(ent, updatedRating);
         }
 
         public ActionResult AddReview(int entId, string reviewText, string rating)
@@ -86,6 +91,7 @@ namespace ReviewProj.WebUI.Controllers
                 Mark = mark
             });
 
+            UpdateEnterpriceRating(entId);
             return RedirectToAction("Index", new { id = entId });
         }
 
@@ -93,18 +99,24 @@ namespace ReviewProj.WebUI.Controllers
         public ActionResult DeleteReview(int reviewId, int entId)
         {
             reviewRepository.DeleteById(reviewId);
+            UpdateEnterpriceRating(entId);
+
             return RedirectToAction("Index", new { id = entId });
         }
         
         public ActionResult UpvoteReview(int id, string reviewerEmail, int entId)
         {
             reviewRepository.VoteForReview(id, reviewerEmail, true);
+            UpdateEnterpriceRating(entId);
+
             return RedirectToAction("Index", new { id = entId });
         }
 
         public ActionResult DownvoteReview(int id, string reviewerEmail, int entId)
         {
             reviewRepository.VoteForReview(id, reviewerEmail, false);
+            UpdateEnterpriceRating(entId);
+
             return RedirectToAction("Index", new { id = entId });
         }
 

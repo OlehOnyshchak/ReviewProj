@@ -13,7 +13,7 @@ using System.IO;
 
 namespace ReviewProj.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private IEnterpriseRepository entRepository;
         public int PageSize = 10;
@@ -41,11 +41,11 @@ namespace ReviewProj.WebUI.Controllers
         {
             return new List<SelectListItem>
             {
-                   new SelectListItem {Text = "5 stars", Value = "5" },
-                   new SelectListItem {Text = "4 stars", Value = "4" },
-                   new SelectListItem {Text = "3 stars", Value = "3" },
-                   new SelectListItem {Text = "2 stars", Value = "2" },
-                   new SelectListItem {Text = "1 stars", Value = "1" },
+                   new SelectListItem {Text = string.Format(Resources.Resource.StarNumberKey, 5), Value = "5" },
+                   new SelectListItem {Text = string.Format(Resources.Resource.StarNumberKey, 4), Value = "4" },
+                   new SelectListItem {Text = string.Format(Resources.Resource.StarNumberKey, 3), Value = "3" },
+                   new SelectListItem {Text = string.Format(Resources.Resource.StarNumberKey, 2), Value = "2" },
+                   new SelectListItem {Text = string.Format(Resources.Resource.StarNumberKey, 1), Value = "1" },
             };
         }
 
@@ -53,11 +53,11 @@ namespace ReviewProj.WebUI.Controllers
         {
             return new List<SelectListItem>
             {
-                   new SelectListItem {Text = "Restaurant", Value = "Restaurant" },
-                   new SelectListItem {Text = "Hotel", Value = "Hotel" },
-                   new SelectListItem {Text = "FastFood", Value = "FastFood" },
-                   new SelectListItem {Text = "Club", Value = "Club" },
-                   new SelectListItem {Text = "Cafe", Value = "Cafe" },
+                   new SelectListItem {Text = Resources.Resource.RestaurantTypeKey, Value = "Restaurant" },
+                   new SelectListItem {Text = Resources.Resource.HotelTypeKey, Value = "Hotel" },
+                   new SelectListItem {Text = Resources.Resource.FastFoodTypeKey, Value = "FastFood" },
+                   new SelectListItem {Text = Resources.Resource.ClubTypeKey, Value = "Club" },
+                   new SelectListItem {Text = Resources.Resource.CafeTypeKey, Value = "Cafe" },
             };
         }
 
@@ -255,7 +255,26 @@ namespace ReviewProj.WebUI.Controllers
 
             return File(imageData, contentType);
         }
+        
+        // Change language
+        public ActionResult ChangeLangToUA()
+        {
+            // Change the current culture for this user.
+            SiteSession.CurrentUICulture = 2; //set Ukrainian
+
+            // Cache the new current culture into the user HTTP session. 
+            Session["CurrentUICulture"] = 2;
+
+            // Redirect to the same page from where the request was made! 
+            return Redirect(Request.UrlReferrer.ToString());
+        }
 
 
+        public ActionResult ChangeLangToEN()
+        {
+            SiteSession.CurrentUICulture = 1; //Set English
+            Session["CurrentUICulture"] = 1;
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }

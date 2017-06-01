@@ -11,7 +11,7 @@ namespace ReviewProj.Domain.Abstract
     {
         IEnumerable<Enterprise> GetByName(string subName);
 
-   //     void ChangeRating(Enterprise ent, double rating);
+        void ChangeRating(Enterprise ent, double rating);
 
         IEnumerable<Enterprise> GetByType(EnterpriceType type);
 
@@ -28,7 +28,14 @@ namespace ReviewProj.Domain.Abstract
         void DeleteEnterprise(int id);
 
         void UpdateMainPhoto(Enterprise enterprise, Resource fileName);
-        void RemoveMainPhoto(Enterprise enterprise);
+
+        // INTEGRATION
+        void AddContact(Enterprise enterprise, string emailOrPhone);
+        //void AddListContacts(Enterprise ent);
+        //List<string> GetEnterpriseContacts(Enterprise enterprise);
+        void RemovePhoto(Enterprise enterprise, int id);
+        void AppointMain(Enterprise enterprise, int id);
+        void ChangeData(Enterprise entInDb, Enterprise entNewData);
 
         IQueryable<Enterprise> Enterprises { get; }
 

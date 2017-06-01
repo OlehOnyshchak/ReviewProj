@@ -9,7 +9,7 @@
 @if (User.IsInRole("reviewer"))
 {
     <li>
-        @Html.ActionLink("GoTo Profile", "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Profile" })
+        @Html.ActionLink(@Resources.Resource.GoToProfileKey, "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Profile" })
     </li>
 
             <li>
@@ -18,27 +18,27 @@
 
                 <li>
                     @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
-                   @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "", "", routeValues: null, htmlAttributes: new { title = "Manage" })
+                   @*@Html.ActionLink(Resources.Resource.HelloKey + " " + User.Identity.GetUserName() + "!", "", "", routeValues: null, htmlAttributes: new { title = "Manage" })*@
                 </li>
 }
 @if (User.IsInRole("owner"))
 {
     <li>
-        @Html.ActionLink("My Profile", "Index", "Owner1", routeValues: null, htmlAttributes: new { title = "Profile" })
+        @Html.ActionLink(Resources.Resource.MyProfileKey, "Index", "Owner1", routeValues: null, htmlAttributes: new { title = "Profile" })
     </li>
 
                 <li>
-                    @Html.ActionLink("Welcome " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    @Html.ActionLink(Resources.Resource.WelcomeKey + " " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                 </li>
 }
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Resource.LogOFFKey</a></li>
         </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink(Resources.Resource.RegisterKey, "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink(Resources.Resource.LoginKey, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
