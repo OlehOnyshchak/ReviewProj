@@ -26,9 +26,9 @@ namespace ReviewProj.WebUI.Controllers
         private IReviewerRepository reviewerRepository;
         private IOwnerRepository ownerRepository;
         private IBanRepository banRepository;
-        
 
-        public AccountController(IReviewerRepository revRepo, IOwnerRepository ownRepo, 
+
+        public AccountController(IReviewerRepository revRepo, IOwnerRepository ownRepo,
             IBanRepository banRepo)
         {
             reviewerRepository = revRepo;
@@ -36,7 +36,7 @@ namespace ReviewProj.WebUI.Controllers
             banRepository = banRepo;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -54,9 +54,9 @@ namespace ReviewProj.WebUI.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -81,8 +81,6 @@ namespace ReviewProj.WebUI.Controllers
             return View();
         }
 
-
-        // Бан перевіряємо тут.
         //
         // POST: /Account/Login
         [HttpPost]
@@ -95,15 +93,11 @@ namespace ReviewProj.WebUI.Controllers
                 return View(model);
             }
 
-            // -- добавлено
+
             if (banRepository.IsUserBanned(model.Email))
             {
-                // сторінка з повідомленням про бан
                 return RedirectToAction("BanMessage", "Ban");
             }
-
-            // -- ----
-
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -152,7 +146,7 @@ namespace ReviewProj.WebUI.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -179,7 +173,7 @@ namespace ReviewProj.WebUI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel model,string asReviewer,string asOwner)
+        public ActionResult Register(RegisterViewModel model, string asReviewer, string asOwner)
         {
             if (ModelState.IsValid)
             {
@@ -193,89 +187,99 @@ namespace ReviewProj.WebUI.Controllers
                 }
             }
             return View(model);
-        
+
         }
         [AllowAnonymous]
         public async Task<ActionResult> RegisterAsReviewer(RegisterViewModel model)
         {
-            IdentityRole roleReviewer = new IdentityRole { Name = "reviewer" };
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-
-            using (var db = new AppDbContext())
+            if (ModelState.IsValid)
             {
-                var query = from b in db.Reviewers
-                            select b;
-                var q = query.ToArray();
-                Reviewer rv = new Reviewer(user);
-                db.Reviewers.Add(rv);
-                try
+                IdentityRole roleReviewer = new IdentityRole { Name = "reviewer" };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+                using (var db = new AppDbContext())
                 {
-                    db.SaveChanges();
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    var query = from b in db.Reviewers
+                                select b;
+                    var q = query.ToArray();
+                    Reviewer rv = new Reviewer(user);
+                    // db.Reviewers.Add(rv);
+                    /* try
+                     {
+                         db.SaveChanges();
+                     }
+                     catch (DbEntityValidationException ex)
+                     {
+                         foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                         {
+                             foreach (var validationError in entityValidationErrors.ValidationErrors)
+                             {
+                                 Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                             }
+                         }
+                     }*/
+                    //може вилетіти якщо вже існує користувач з таким логіном
+                    var result = await UserManager.CreateAsync(rv, model.Password);
+
+
+
+                    if (result.Succeeded)
                     {
-                        foreach (var validationError in entityValidationErrors.ValidationErrors)
-                        {
-                            Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                        }
+                        await UserManager.AddToRoleAsync(user.Id, roleReviewer.Name);
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        return RedirectToAction("Index", "Profile");
                     }
+                    AddErrors(result);
                 }
-                //може вилетіти якщо вже існує користувач з таким логіном
-                var result = await UserManager.AddPasswordAsync(user.Id, model.Password);
-                await UserManager.AddToRoleAsync(user.Id, roleReviewer.Name);
-
-
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    return RedirectToAction("Index", "Profile");
-                }
-                AddErrors(result);
+                //return View(model);
             }
-            return View(model);
+            return RedirectToAction("Register", model);
         }
         [AllowAnonymous]
         public async Task<ActionResult> RegisterAsOwner(RegisterViewModel model)
         {
-            IdentityRole roleOwner = new IdentityRole { Name = "owner" };
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-
-            using (var db = new AppDbContext())
+            if (ModelState.IsValid)
             {
-                var query = from b in db.Owners
-                            select b;
-                var q = query.ToArray();
-                Owner ow = new Owner(user);
-                db.Owners.Add(ow);
-                try
+                IdentityRole roleOwner = new IdentityRole { Name = "owner" };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+                using (var db = new AppDbContext())
                 {
-                    db.SaveChanges();
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    var query = from b in db.Owners
+                                select b;
+                    var q = query.ToArray();
+                    Owner ow = new Owner(user);
+                    // db.Owners.Add(ow);
+                    /* try
+                     {
+                         db.SaveChanges();
+                     }
+                     catch (DbEntityValidationException ex)
+                     {
+                         foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                         {
+                             foreach (var validationError in entityValidationErrors.ValidationErrors)
+                             {
+                                 Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                             }
+                         }
+                     }*/
+                    //може вилетіти якщо вже існує користувач з таким логіном
+                    var result = await UserManager.CreateAsync(ow, model.Password);
+
+
+
+                    if (result.Succeeded)
                     {
-                        foreach (var validationError in entityValidationErrors.ValidationErrors)
-                        {
-                            Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                        }
+                        await UserManager.AddToRoleAsync(user.Id, roleOwner.Name);
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        return RedirectToAction("Register", "RegisterEnterprise");
                     }
-                }
-                //може вилетіти якщо вже існує користувач з таким логіном
-                var result = await UserManager.AddPasswordAsync(user.Id, model.Password);
-                await UserManager.AddToRoleAsync(user.Id, roleOwner.Name);
 
-
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    return RedirectToAction("Register", "RegisterEnterprise");
+                    AddErrors(result);
                 }
-                AddErrors(result);
             }
-            return View(model);
+            return RedirectToAction("Register", model);
         }
 
         //
