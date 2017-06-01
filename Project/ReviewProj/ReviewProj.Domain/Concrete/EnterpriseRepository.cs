@@ -75,10 +75,13 @@ namespace ReviewProj.Domain.Concrete
         // INTEGRATION
         public void AddContact(Enterprise enterprise, string emailOrPhone)
         {
-            Contact contact = new Contact();
-            contact.EmailOrPhone = emailOrPhone;
-            enterprise.Contacts.Add(contact);
-            context.SaveChanges();
+            if (emailOrPhone != null)
+            {
+                Contact contact = new Contact();
+                contact.EmailOrPhone = emailOrPhone;
+                enterprise.Contacts.Add(contact);
+                context.SaveChanges();
+            }
         }
 
         public void ChangeRating(Enterprise ent, double rating)
