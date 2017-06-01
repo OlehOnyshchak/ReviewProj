@@ -169,12 +169,12 @@
 			<div class="collapse navbar-collapse" id="navbar">
 				@Html.Partial("_LoginPartial")
 				<ul class="nav navbar-nav navbar-right">
-                    <li>
+                    @*<li>
                         @Html.ActionLink("EN", "ChangeLangToEN", "Home")
                     </li>
                     <li>
                         @Html.ActionLink("UA", "ChangeLangToUA", "Home")
-                    </li>
+                    </li>*@
 					<li>
 						@Html.ActionLink(@Resources.Resource.HomeKey, "Index", "Home")
 					</li>
@@ -200,7 +200,15 @@
 		@RenderBody()
 		<hr />
 		<footer>
-			<p>&copy; @DateTime.Now.Year - Lviv Reviewer</p>
+			<p>&copy; @DateTime.Now.Year - Lviv Advisor</p>
+            <ul class="list-inline">
+                <li>
+                    @Html.ActionLink("EN", "ChangeLangToEN", "Home")
+                </li>
+                <li>
+                    @Html.ActionLink("UA", "ChangeLangToUA", "Home")
+                </li>
+            </ul>
 		</footer>
 	</div>
 
