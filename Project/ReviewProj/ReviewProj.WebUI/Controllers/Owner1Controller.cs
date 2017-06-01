@@ -13,7 +13,7 @@ using System.Web.Mvc;
 namespace ReviewProj.WebUI.Controllers
 {
     [Authorize]
-    public class Owner1Controller : Controller
+    public class Owner1Controller : BaseController
     {
         private IOwnerRepository repository;
         private IEnterpriseRepository enterRepositority;

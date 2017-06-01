@@ -25,7 +25,7 @@
         }
         else
         {
-            @Html.ActionLink("Add Photo", "AddPhoto", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink(Resources.Resource.AddPhotoKey, "AddPhoto", null, new { @class = "btn btn-primary" })
         }
     </div>
 </div>
@@ -42,7 +42,7 @@
 
         @if (Model.Nationality == null)
         {
-            <dd>not specified</dd>
+            <dd>@Resources.Resource.NotSpecifiedKey</dd>
         }
         else
         {
@@ -66,7 +66,7 @@
         </dd>
     </dl>
     <p class="btn-group btn-group-justified" top-padding="20px">
-        @Html.ActionLink("Change Password", "ChangePassword", "Manage", null, new { @class = "btn btn-primary" })
-        @Html.ActionLink("Edit", "EditProfile", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink(Resources.Resource.ChangePasswordKey, "ChangePassword", "Manage", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink(Resources.Resource.EditKey, "EditProfile", null, new { @class = "btn btn-primary" })
     </p>
 </div>

@@ -12,7 +12,7 @@ using ReviewProj.WebUI.Models;
 
 namespace ReviewProj.WebUI.Controllers
 {
-    public class InstitutionDetailsController : Controller
+    public class InstitutionDetailsController : BaseController
     {
         private IEnterpriseRepository entRepository;
         private IReviewRepository reviewRepository;
