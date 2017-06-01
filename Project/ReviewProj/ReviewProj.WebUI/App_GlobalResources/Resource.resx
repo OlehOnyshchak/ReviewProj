@@ -255,7 +255,40 @@
   <data name="NotSpecifiedKey" xml:space="preserve">
     <value>not specified</value>
   </data>
+  <data name="BackKey" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BackToMyProfileKey" xml:space="preserve">
+    <value>Back to my Profile</value>
+  </data>
+  <data name="CancelKey" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CodeKey" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirm new password</value>
+  </data>
+  <data name="CurrentPasswordKey" xml:space="preserve">
+    <value>Current password</value>
+  </data>
+  <data name="NewPasswordKey" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="RememberThisBrowserKey" xml:space="preserve">
+    <value>Remeber this browser?</value>
+  </data>
+  <data name="SaveBtnKey" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="EmptyFilterResultKey" xml:space="preserve">
     <value>We didn't find any matching based on your filter</value>
+  </data>
+  <data name="NameKey" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SortKey" xml:space="preserve">
+    <value>Sort</value>
   </data>
 </root>

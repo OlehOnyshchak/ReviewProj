@@ -255,7 +255,34 @@
   <data name="NotSpecifiedKey" xml:space="preserve">
     <value>не вказано</value>
   </data>
+  <data name="BackKey" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="BackToMyProfileKey" xml:space="preserve">
+    <value>Назад до Профілю</value>
+  </data>
+  <data name="CancelKey" xml:space="preserve">
+    <value>Скасувати</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Повторіть новий пароль</value>
+  </data>
+  <data name="CurrentPasswordKey" xml:space="preserve">
+    <value>Поточний пароль</value>
+  </data>
+  <data name="NewPasswordKey" xml:space="preserve">
+    <value>Новий пароль</value>
+  </data>
+  <data name="SaveBtnKey" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
   <data name="EmptyFilterResultKey" xml:space="preserve">
-    <value>Немає жодного запису. що задовільняє заданий фільтр</value>
+    <value>Немає жодного запису, що задовільняє заданий фільтр</value>
+  </data>
+  <data name="NameKey" xml:space="preserve">
+    <value>Ім'я</value>
+  </data>
+  <data name="SortKey" xml:space="preserve">
+    <value>Сортувати за</value>
   </data>
 </root>

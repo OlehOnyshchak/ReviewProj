@@ -22,16 +22,18 @@ namespace ReviewProj.WebUI.Controllers
             }
         }
 
-        protected override bool DisableAsyncSupport
-        {
-            get { return true; }
-        }
+        //protected override bool DisableAsyncSupport
+        //{
+        //    get { return true; }
+        //}
 
         /// <summary>
         /// Manage the internationalization before to invokes the action in the current controller context.
         /// </summary>
-        protected override void ExecuteCore()
+        protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
+            base.Initialize(requestContext);
+
             int culture = 0;
             if (this.Session == null || this.Session["CurrentUICulture"] == null)
             {
@@ -47,7 +49,7 @@ namespace ReviewProj.WebUI.Controllers
             //
             // Invokes the action in the current controller context.
             //
-            base.ExecuteCore();
+            //base.ExecuteCore();
         }
     }
 }

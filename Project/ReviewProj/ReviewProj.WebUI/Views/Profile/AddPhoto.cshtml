@@ -19,12 +19,12 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="OK" class="btn btn-default" />
-                @Html.ActionLink("Cancel", "Index", "Profile", null, new { @class = "btn btn-default" })
+                @Html.ActionLink(Resources.Resource.CancelKey, "Index", "Profile", null, new { @class = "btn btn-default" })
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back", "Index")
+    @Html.ActionLink(Resources.Resource.BackKey, "Index")
 </div>

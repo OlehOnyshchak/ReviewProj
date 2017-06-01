@@ -4,13 +4,19 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System;
 using System.IO;
+using ReviewProj.WebUI.HtmlHelpers;
 
 namespace ReviewProj.WebUI.Models
 {
     public class ProfileViewModel
     {
+        [LocalizedDisplayName("NationalityKey")]
         public string Nationality { get; set; }
+
+        [LocalizedDisplayName("BirthDateKey")]
         public DateTime BirthDate { get; set; }
+
+        [LocalizedDisplayName("RatingKey")]
         public double Rating { get; set; }
         public bool HasPhoto { get; set; }
     }
