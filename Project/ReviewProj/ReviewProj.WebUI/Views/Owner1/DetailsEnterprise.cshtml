@@ -57,11 +57,14 @@
         <dd>[@Html.ActionLink("New", "AddContact")]</dd>
         @foreach (var item in Model.Contacts)
         {
+            if (item.EmailOrPhone != "deleted")
+            {
             <dd>
                 @Html.DisplayFor(model => item.EmailOrPhone)
                 @Html.ActionLink("Edit", "EditContact", new { idCont = item.ContactId }) |
                 @Html.ActionLink("Delete", "DeleteContact", new { idCont = item.ContactId })
             </dd>
+            }
         }
         <dt>
             @Html.DisplayNameFor(model => model.Description)
