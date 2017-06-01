@@ -18,6 +18,7 @@ namespace ReviewProj.WebUI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            // Додаємо користувачів з ролями. Admin, Reviewer and Owner
             IdentityConfig.RegisterUsers();
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());

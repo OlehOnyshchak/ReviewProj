@@ -12,16 +12,21 @@ namespace ReviewProj.Domain.Concrete
     {
         private AppDbContext context = new AppDbContext();
 
-        public IEnumerable<Review> Reviews
-        {
-            get { return context.Reviews; }
-        }
+        public ReviewRepository()
+        { }
 
         public ReviewRepository(AppDbContext dbContext)
         {
             context = dbContext;
         }
 
+        // Get All Reviews
+        public IEnumerable<Review> Reviews
+        {
+            get { return context.Reviews; }
+        }
+
+        // Vote for Review
         public void VoteForReview(int reviewID, string reviewerEmail, bool isLike)
         {
             Review review =  GetById(reviewID);
@@ -56,16 +61,17 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
+        // Get Review by ID
+        public Review GetById(int reviewId)
+        {
+            return Reviews.FirstOrDefault(rev => rev.ReviewId == reviewId);
+        }
 
+        // Delete Review by ID
         public void DeleteById(int reviewId)
         {
             context.Reviews.Remove(GetById(reviewId));
             context.SaveChanges();
-        }
-
-        public Review GetById(int reviewId)
-        {
-            return Reviews.FirstOrDefault(rev => rev.ReviewId == reviewId);
         }
     }
 }

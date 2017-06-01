@@ -18,11 +18,15 @@ namespace ReviewProj.WebUI
 {
     public static class IdentityConfig
     {
+        // Тут створюємо користувачів з Ролями. 
+        // admin@gmail.com
+        // reviewer@gmail.com
+        // owner@gmail.com
+        // Pa$$word0
         public static void RegisterUsers()
         {
             AppDbContext context = AppDbContext.Create();
 
-            //List<Enterprise> list = context.Enterprises.ToList();
             ApplicationUserManager userManager =
                 new ApplicationUserManager(new UserStore<ApplicationUser>(context));
 

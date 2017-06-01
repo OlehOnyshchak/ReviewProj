@@ -13,27 +13,32 @@ namespace ReviewProj.Domain.Concrete
     {
         private AppDbContext context = new AppDbContext();
 
+        // Search by SubName
         public IEnumerable<Enterprise> GetByName(string subName)
         {
             return string.IsNullOrEmpty(subName) ? 
                 Enterprises : Enterprises.Where(ent => ent.Name.Contains(subName));
         }
 
+        // Search by Type
         public IEnumerable<Enterprise> GetByType(EnterpriceType type)
         {
             return Enterprises.Where(ent => ent.Type == type);
         }
 
+        // Search by Rating
         public IEnumerable<Enterprise> GetByRating(int rating)
         {
             return Enterprises.Where(ent => ent.Rating == rating);
         }
 
+        // Search by Type & Name
         public IEnumerable<Enterprise> GetByTypeAndName(EnterpriceType type, string subName)
         {
             return this.GetByType(type).Intersect<Enterprise>(this.GetByName(subName)); 
         }
 
+        // Search by Ratings, Types and SubName
         public IEnumerable<Enterprise> GetFiltratedByName(IList<int> ratings, IList<EnterpriceType> types, string subName)
         {
             IEnumerable<Enterprise> entWithName = this.GetByName(subName);
@@ -60,11 +65,13 @@ namespace ReviewProj.Domain.Concrete
             return result;
         }
 
+        // Find Enterprise by ID
         public Enterprise GetEnterpriseById(int id)
         {
             return Enterprises.FirstOrDefault(ent => ent.EntId == id);
         }
 
+        // Adding Review
         public void AddReview(int entId, string reviewerEmail, Review review)
         {
             review.Reviewer = new ReviewerRepository(context).FindByEmail(reviewerEmail);
@@ -114,6 +121,7 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
+
         // INTEGRATION
         //public void AddListContacts(Enterprise ent)
         //{
@@ -131,12 +139,16 @@ namespace ReviewProj.Domain.Concrete
 
         public void UpdateMainPhoto(Enterprise enterprise, Resource resource)
         {
+            // If Enterprise has Main Image, it becomes Secondary
             List<Resource> mainImages = enterprise.Resources.Where(res => res.Type == ResourceType.MainImage).ToList();
             mainImages.ForEach(res => res.Type = ResourceType.SecondaryImage);
 
+            // Add new Main Image
+            resource.Type = ResourceType.MainImage;
             enterprise.Resources.Add(resource);
             context.SaveChanges();
         }
+
 
         public void RemovePhoto(Enterprise enterprise, int id)
         {
@@ -152,10 +164,12 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
+        // Delete Enterprise
         public void DeleteEnterprise(int id)
         {
             Enterprise enterprise = GetEnterpriseById(id);
 
+            // Delete all Reviews of the Enterprise
             foreach (Review review in context.Reviews.ToList())
             {
                 if (review.Enterprise.EntId == id)
@@ -164,6 +178,7 @@ namespace ReviewProj.Domain.Concrete
                 }
             }
 
+            // Delete all Resources of the Enterprise
             foreach (Resource resource in context.Resources.ToList())
             {
                 if (enterprise.Resources.Select(r => r.ResourceId)
@@ -173,6 +188,7 @@ namespace ReviewProj.Domain.Concrete
                 }
             }
 
+            // Delete the Enterprise
             context.Enterprises.Remove(enterprise);
             context.SaveChanges();
         }
