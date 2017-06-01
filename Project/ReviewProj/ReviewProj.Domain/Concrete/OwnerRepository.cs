@@ -12,15 +12,16 @@ namespace ReviewProj.Domain.Concrete
     {
         private AppDbContext context = new AppDbContext();
 
+        // Get All Owners
         public IQueryable<Owner> Owners
         {
             get
             {
-                throw new NotImplementedException();
+                return context.Owners;
             }
         }
 
-
+        // Find Owner with the same Email
         public Owner FindByEmail(string email)
         {
             return context.Owners.FirstOrDefault(r => r.Email == email);

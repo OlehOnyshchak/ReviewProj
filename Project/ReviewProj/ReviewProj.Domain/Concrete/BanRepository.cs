@@ -12,6 +12,7 @@ namespace ReviewProj.Domain.Concrete
     {
         private AppDbContext context = new AppDbContext();
 
+        // Get all Bans
         public IQueryable<Ban> Bans
         {
             get
@@ -20,6 +21,7 @@ namespace ReviewProj.Domain.Concrete
             }
         }
 
+        // Ban User 
         public void BanUserById(string userId, string admId)
         {
             Ban ban = new Ban
@@ -34,6 +36,7 @@ namespace ReviewProj.Domain.Concrete
             context.SaveChanges();
         }
 
+        // Check: Is User Banned ?
         public bool IsUserBanned(string userEmail)
         {
             foreach(Ban ban in Bans)

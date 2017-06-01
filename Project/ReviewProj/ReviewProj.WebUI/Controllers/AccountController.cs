@@ -74,6 +74,8 @@ namespace ReviewProj.WebUI.Controllers
             return View();
         }
 
+
+        // Бан перевіряємо тут.
         //
         // POST: /Account/Login
         [HttpPost]
@@ -86,11 +88,15 @@ namespace ReviewProj.WebUI.Controllers
                 return View(model);
             }
 
-            
+            // -- добавлено
             if (banRepository.IsUserBanned(model.Email))
             {
+                // сторінка з повідомленням про бан
                 return RedirectToAction("BanMessage", "Ban");
             }
+
+            // -- ----
+
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true

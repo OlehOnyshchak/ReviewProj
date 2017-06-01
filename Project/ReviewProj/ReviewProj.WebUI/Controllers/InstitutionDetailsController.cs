@@ -51,6 +51,7 @@ namespace ReviewProj.WebUI.Controllers
                         ViewBag.UserRole = Role.Admin;
                         break;
                     default:
+                        ViewBag.UserRole = Role.Guest;
                         break;
                 }
             }
@@ -115,18 +116,24 @@ namespace ReviewProj.WebUI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+
         [HttpPost]
         [Authorize(Roles = "admin")]
         public RedirectToRouteResult BunOwner(int entId)
         {
+            // дістаємо овнера, якого хочемо банити. (з його закладу)
             Enterprise enterprise = entRepository.GetEnterpriseById(entId);
 
+            // дістаємо адміна. (це його сесія)
             ApplicationUserManager userManager = HttpContext.GetOwinContext()
                                         .GetUserManager<ApplicationUserManager>();
             ApplicationUser admin = userManager.FindByEmail(User.Identity.Name);
 
+            // адмін банить юзера
             banRepository.BanUserById(enterprise.Owner.Id, admin.Id);
-            TimeSpan duration = banRepository.TimeToEndOfBun(enterprise.Owner.Id);
+
+            // скільки часу до кінця бану. (поки не потрібно)
+            //TimeSpan duration = banRepository.TimeToEndOfBun(review.Reviewer.Id);
 
             return RedirectToAction("Index", "Home");
         }
@@ -135,16 +142,20 @@ namespace ReviewProj.WebUI.Controllers
         [Authorize(Roles = "admin")]
         public RedirectToRouteResult BunReviewer(int reviewId)
         {
+            // дістаємо рев'ювера, якого хочемо банити.
+            // кнопка забанити знаходиться під його рев'ю
             Review review = reviewRepository.GetById(reviewId);
 
+            // дістаємо адміна. (це його сесія)
             ApplicationUserManager userManager = HttpContext.GetOwinContext()
                             .GetUserManager<ApplicationUserManager>();
             ApplicationUser admin = userManager.FindByEmail(User.Identity.Name);
 
+            // адмін банить юзера
             banRepository.BanUserById(review.Reviewer.Id, admin.Id);
 
-            banRepository.BanUserById(review.Reviewer.Id, admin.Id);
-            TimeSpan duration = banRepository.TimeToEndOfBun(review.Reviewer.Id);
+            // скільки часу до кінця бану. (поки не потрібно)
+            //TimeSpan duration = banRepository.TimeToEndOfBun(review.Reviewer.Id);
 
             return RedirectToAction("Index", "Home");
         }
